@@ -1,7 +1,7 @@
 import React from "react";
 
-function App() {
-  return <div className="App"></div>;
+function App(): JSX.Element {
+  return <div className="App" />;
 }
 
 export default App;
