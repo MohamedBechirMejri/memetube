@@ -1,13 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import UseAnimations from "react-useanimations";
+import menu4 from "react-useanimations/lib/menu4";
 import ytLogoLight from "../Assets/Images/Logos/yt-logo-light.png";
 import ytLogoDark from "../Assets/Images/Logos/yt-logo-dark.png";
 
 function Sidebar(): JSX.Element {
   return (
-    <div className="flex flex-col h-screen max-w-screen-sm overflow-y-scroll w-fit">
+    <div className="flex flex-col items-start h-screen max-w-screen-sm overflow-y-scroll w-fit justify-evenly">
       <div className="flex">
-        <span>|||</span>
+        <span>
+          <UseAnimations
+            animation={menu4}
+            size={56}
+            style={{ cursor: "pointer", padding: 100 }}
+          />
+        </span>
         <Link to="/">
           {" "}
           <img src={ytLogoDark} alt="Youtube Logo" className="w-[7em]" />
@@ -20,7 +28,6 @@ function Sidebar(): JSX.Element {
         <Link to="/">
           <span>i</span> Explore
         </Link>
-
         <Link to="/">
           <span>i</span> Subscriptions
         </Link>
