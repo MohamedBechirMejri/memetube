@@ -5,12 +5,12 @@ import ytLogoDark from "../Assets/Images/Logos/yt-logo-dark.png";
 
 function Sidebar(): JSX.Element {
   return (
-    <div>
+    <div className="flex flex-col h-screen max-w-screen-sm overflow-y-scroll w-fit">
       <div className="flex">
         <span>|||</span>
         <Link to="/">
           {" "}
-          <img src={ytLogoDark} alt="Youtube Logo" />
+          <img src={ytLogoDark} alt="Youtube Logo" className="w-[7em]" />
         </Link>
       </div>
       <div className="flex flex-col">
