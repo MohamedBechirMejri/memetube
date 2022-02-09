@@ -142,25 +142,55 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
         </NavLink>
       </div>
       <hr className="w-full" />
-      <footer>
-        <div>
-          <a href="https://.com">About</a>
-          <a href="https://.com">About</a>
-          <a href="https://.com">About</a>
-          <a href="https://.com">About</a>
-          <a href="https://.com">About</a>
-          <a href="https://.com">About</a>
-          <a href="https://.com">About</a>
+      <footer className="max-w-[15em] flex flex-col items-start justify-center gap-4 p-4 text-sm text-gray-200">
+        <div className="flex flex-wrap items-center justify-start gap-1 ">
+          <a href="https://.com" className="hover:underline">
+            About
+          </a>
+          <a href="https://.com" className="hover:underline">
+            Press
+          </a>
+          <a href="https://.com" className="hover:underline">
+            Copyright
+          </a>
+          <a href="https://.com" className="hover:underline">
+            Contact us
+          </a>
+          <a href="https://.com" className="hover:underline">
+            Creators
+          </a>
+          <a href="https://.com" className="hover:underline">
+            Advertise
+          </a>
+          <a href="https://.com" className="hover:underline">
+            Developers
+          </a>
         </div>{" "}
-        <div>
-          <a href="https://.com">About</a>
-          <a href="https://.com">About</a>
-          <a href="https://.com">About</a>
-          <a href="https://.com">About</a>
-          <a href="https://.com">About</a>
+        <div className="flex flex-wrap items-center justify-start gap-1 ">
+          <a href="https://.com" className="hover:underline">
+            Terms
+          </a>
+          <a href="https://.com" className="hover:underline">
+            Privacy
+          </a>
+          <a href="https://.com" className="hover:underline">
+            Policy & Safety
+          </a>
+          <a href="https://.com" className="hover:underline">
+            How Youtube Works
+          </a>
+          <a href="https://.com" className="hover:underline">
+            Test New Features
+          </a>
         </div>
-        <p>
-          © 2022 <a href="https://.com">Mohamed Bechir</a>
+        <p className="text-gray-400">
+          © 2022{" "}
+          <a
+            href="https://.com"
+            className="transition-all hover:text-emerald-400"
+          >
+            Mohamed Bechir
+          </a>
         </p>
       </footer>
     </nav>
