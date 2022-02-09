@@ -1,5 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import {
+  MdExpandLess,
+  MdExpandMore,
+  MdOndemandVideo,
+  MdOutlineExplore,
+  MdOutlineHistory,
+  MdOutlineSubscriptions,
+  MdOutlineVideoLibrary,
+  MdOutlineWatchLater,
+} from "react-icons/md";
+import { RiHeart2Line, RiSettings3Line } from "react-icons/ri";
+import { BsPatchExclamation } from "react-icons/bs";
+import { TiHomeOutline } from "react-icons/ti";
 
 function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
   return (
@@ -13,19 +26,28 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           to="/"
           className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
         >
-          <span>i</span> Home
+          <span>
+            <TiHomeOutline />
+          </span>{" "}
+          Home
         </NavLink>
         <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
         >
-          <span>i</span> Explore
+          <span>
+            <MdOutlineExplore />
+          </span>{" "}
+          Explore
         </NavLink>
         <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
         >
-          <span>i</span> Subscriptions
+          <span>
+            <MdOutlineSubscriptions />
+          </span>{" "}
+          Subscriptions
         </NavLink>
       </div>
       <hr className="w-full" />
@@ -35,35 +57,53 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           to="/"
           className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
         >
-          <span>i</span> Library
+          <span>
+            <MdOutlineVideoLibrary />
+          </span>{" "}
+          Library
         </NavLink>
         <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
         >
-          <span>i</span> History
+          <span>
+            <MdOutlineHistory />
+          </span>{" "}
+          History
         </NavLink>
         <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
         >
-          <span>i</span> Your Videos
+          <span>
+            <MdOndemandVideo />
+          </span>{" "}
+          Your Videos
         </NavLink>
         <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
         >
-          <span>i</span> Watch later
+          <span>
+            <MdOutlineWatchLater />
+          </span>{" "}
+          Watch later
         </NavLink>
         <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
         >
-          <span>i</span> Liked videos
+          <span>
+            <RiHeart2Line />
+          </span>{" "}
+          Liked videos
         </NavLink>
         <div>{/* playlists map shown if show more == true */}</div>
         <div className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white">
-          <span>i</span> show more/less
+          <span>
+            <MdExpandMore />
+          </span>{" "}
+          show more
         </div>
       </div>
       <hr className="w-full" />
@@ -73,7 +113,11 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           {/* filter of top 7 subs else if show more then map of subs */}
         </div>
         <div className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white">
-          <span>i</span> show more/less
+          <span>
+            {" "}
+            <MdExpandLess />
+          </span>{" "}
+          show less
         </div>
       </div>
       <hr className="w-full" />
@@ -82,13 +126,19 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           to="/"
           className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
         >
-          <span>i</span> Settings
+          <span>
+            <RiSettings3Line />
+          </span>{" "}
+          Settings
         </NavLink>{" "}
         <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
         >
-          <span>i</span> Send Feedback
+          <span>
+            <BsPatchExclamation />
+          </span>{" "}
+          Send Feedback
         </NavLink>
       </div>
       <hr className="w-full" />
