@@ -1,37 +1,13 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
-import UseAnimations from "react-useanimations";
-import menu4 from "react-useanimations/lib/menu4";
-import ytLogoLight from "../Assets/Images/Logos/yt-logo-light.png";
-import ytLogoDark from "../Assets/Images/Logos/yt-logo-dark.png";
+import React from "react";
+import { NavLink } from "react-router-dom";
 
-function Sidebar(): JSX.Element {
-  const [isOpen, setIsOpen] = useState(false);
+function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
   return (
-    <div className="flex flex-col items-start justify-start h-screen ">
-      <div className="flex items-center">
-        <span
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}
-        >
-          <UseAnimations
-            animation={menu4}
-            size={56}
-            style={{ cursor: "pointer", padding: 100 }}
-          />
-        </span>
-        <Link to="/">
-          {" "}
-          <img src={ytLogoDark} alt="Youtube Logo" className="w-[6em]" />
-        </Link>
-      </div>
-      <div
-        className={`overflow-y-scroll transition-all ${
-          isOpen ? "w-0" : "w-fit"
-        } `}
+    <div className="flex flex-col items-start justify-start h-screen max-w-[30vw] ">
+      <nav
+        className={`overflow-y-scroll overflow-x-hidden transition-all w-fit ${
+          isSidebarOpen ? "animate-revealSidebar" : "animate-hideSidebar"
+        } noscroll `}
       >
         <div className="flex flex-col">
           <NavLink
@@ -138,7 +114,7 @@ function Sidebar(): JSX.Element {
             © 2022 <a href="https://.com">Mohamed Bechir</a>
           </p>
         </footer>
-      </div>
+      </nav>
     </div>
   );
 }
