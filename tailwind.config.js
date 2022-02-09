@@ -13,7 +13,7 @@ module.exports = {
             opacity: "0",
           },
           "50%": {
-            width: "110%",
+            width: "105%",
           },
           "100%": {
             width: "100%",
@@ -21,11 +21,11 @@ module.exports = {
         },
         hideSidebar: {
           "0%": {
-            width: "110%",
+            width: "100%",
             opacity: "1",
           },
           "50%": {
-            width: "110%",
+            width: "105%",
             opacity: "1",
           },
           "100%": {
