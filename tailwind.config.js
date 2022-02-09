@@ -10,6 +10,7 @@ module.exports = {
         revealSidebar: {
           "0%": {
             width: "0",
+            opacity: "0",
           },
           "50%": {
             width: "110%",
@@ -21,12 +22,15 @@ module.exports = {
         hideSidebar: {
           "0%": {
             width: "110%",
+            opacity: "1",
           },
           "50%": {
             width: "110%",
+            opacity: "1",
           },
           "100%": {
             width: "0",
+            opacity: "0",
           },
         },
       },
