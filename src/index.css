@@ -23,3 +23,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #1f232caf;
 }
+
+.noscroll::-webkit-scrollbar {
+  display: none;
+}
