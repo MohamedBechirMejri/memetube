@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
   return (
-    <div className="flex flex-col items-start justify-start h-screen max-w-[30vw] ">
+    <div className="flex flex-col items-start justify-start h-screen max-w-[40vw] w-fit ">
       <nav
         className={`overflow-y-scroll overflow-x-hidden transition-all w-fit ${
           isSidebarOpen ? "animate-revealSidebar" : "animate-hideSidebar"
