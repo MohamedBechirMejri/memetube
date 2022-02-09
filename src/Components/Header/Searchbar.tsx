@@ -3,7 +3,7 @@ import { IoMicOutline } from "react-icons/io5";
 
 function Searchbar(): JSX.Element {
   return (
-    <div className="flex items-center justify-start w-full h-full px-4 py-2 border-b-[.1px] border-l-[.1px] border-[#2c323a]">
+    <div className="flex items-center justify-start w-full h-full px-4 py-2 ">
       <span className="text-2xl text-[#585e64] ">
         <IoMicOutline />
       </span>
