@@ -21,15 +21,16 @@ function Header({
   return (
     <div>
       {" "}
-      <div className="flex items-center">
+      <div className="flex items-center gap-4 p-4">
         <span
           onClick={() => {
             setIsSidebarOpen(!isSidebarOpen);
           }}
+          className="transition-all duration-200 ease-in-out bg-white rounded-full cursor-pointer hover:scale-105 active:scale-95"
         >
           <UseAnimations
             animation={menu4}
-            size={56}
+            // size={56}
             style={{ cursor: "pointer", padding: 100 }}
           />
         </span>
