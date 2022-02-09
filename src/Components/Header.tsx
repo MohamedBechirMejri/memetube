@@ -7,6 +7,7 @@ import menu4 from "react-useanimations/lib/menu4";
 import ytLogoLight from "../Assets/Images/Logos/yt-logo-light.png";
 import ytLogoDark from "../Assets/Images/Logos/yt-logo-dark.png";
 import Searchbar from "./Header/Searchbar";
+import Userstuff from "./Header/UserStuff";
 
 function Header({
   isDarkMode,
@@ -20,7 +21,7 @@ function Header({
   setIsSidebarOpen: (isSidebarOpenArg: boolean) => void;
 }): JSX.Element {
   return (
-    <div className="flex items-center justify-between w-screen">
+    <div className="flex items-center justify-between w-screen border-b-[.1px] border-[#2c323a]">
       {" "}
       <div className="flex items-center gap-4 p-4 w-[14.5em]">
         <span
@@ -36,10 +37,15 @@ function Header({
         </span>
         <Link to="/">
           {" "}
-          <img src={ytLogoDark} alt="Youtube Logo" className="w-[6em]" />
+          <img
+            src={isDarkMode ? ytLogoDark : ytLogoLight}
+            alt="Youtube Logo"
+            className="w-[6em]"
+          />
         </Link>
       </div>
       <Searchbar />
+      <Userstuff />
     </div>
   );
 }
