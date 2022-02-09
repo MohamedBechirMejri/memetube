@@ -17,9 +17,9 @@ import { TiHomeOutline } from "react-icons/ti";
 function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
   return (
     <nav
-      className={`flex flex-col items-start justify-start h-full overflow-y-scroll overflow-x-hidden transition-all w-fit max-w-[40vw] ${
+      className={`flex flex-col items-start justify-start h-[92vh] overflow-y-scroll overflow-x-hidden transition-all w-fit max-w-[40vw] ${
         isSidebarOpen ? "animate-revealSidebar" : "animate-hideSidebar"
-      } noscroll `}
+      } noscroll border-r-[.1px] border-[#2c323a] `}
     >
       <div className="flex flex-col w-full">
         <NavLink
@@ -50,7 +50,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           Subscriptions
         </NavLink>
       </div>
-      <hr className="w-full" />
+      <hr className="w-full border-[#2c323a]" />
       <div className="flex flex-col w-full">
         {" "}
         <NavLink
@@ -106,7 +106,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           show more
         </div>
       </div>
-      <hr className="w-full" />
+      <hr className="w-full border-[#2c323a]" />
       <div className="w-full">
         <h2>Subscriptions</h2>
         <div>
@@ -120,7 +120,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           show less
         </div>
       </div>
-      <hr className="w-full" />
+      <hr className="w-full border-[#2c323a]" />
       <div className="w-full">
         <NavLink
           to="/"
@@ -141,7 +141,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           Send Feedback
         </NavLink>
       </div>
-      <hr className="w-full" />
+      <hr className="w-full border-[#2c323a]" />
       <footer className="max-w-[15em] flex flex-col items-start justify-center gap-4 p-4 text-sm text-gray-200">
         <div className="flex flex-wrap items-center justify-start gap-1 ">
           <a href="https://.com" className="hover:underline">
