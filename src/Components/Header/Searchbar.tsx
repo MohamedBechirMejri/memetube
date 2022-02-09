@@ -9,7 +9,7 @@ function Searchbar(): JSX.Element {
       </span>
       <input
         type="text"
-        className="text-[#585e64] bg-transparent outline-none p-4 placeholder:text-[#585e64]"
+        className="text-[#585e64] bg-transparent outline-none p-4 placeholder:text-[#585e64] w-full"
         placeholder="Type to search"
       />
     </div>
