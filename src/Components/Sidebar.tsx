@@ -8,7 +8,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
         isSidebarOpen ? "animate-revealSidebar" : "animate-hideSidebar"
       } noscroll `}
     >
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full">
         <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
@@ -29,7 +29,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
         </NavLink>
       </div>
       <hr className="w-full" />
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full">
         {" "}
         <NavLink
           to="/"
@@ -67,7 +67,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
         </div>
       </div>
       <hr className="w-full" />
-      <div>
+      <div className="w-full">
         <h2>Subscriptions</h2>
         <div>
           {/* filter of top 7 subs else if show more then map of subs */}
@@ -77,7 +77,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
         </div>
       </div>
       <hr className="w-full" />
-      <div>
+      <div className="w-full">
         <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
