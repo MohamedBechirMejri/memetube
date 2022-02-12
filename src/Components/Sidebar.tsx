@@ -24,7 +24,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
       <div className="flex flex-col w-full">
         <NavLink
           to="/"
-          className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
+          className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
           <span>
             <TiHomeOutline />
@@ -33,7 +33,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
         </NavLink>
         <NavLink
           to="/"
-          className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
+          className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
           <span>
             <MdOutlineExplore />
@@ -42,7 +42,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
         </NavLink>
         <NavLink
           to="/"
-          className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
+          className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
           <span>
             <MdOutlineSubscriptions />
@@ -55,7 +55,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
         {" "}
         <NavLink
           to="/"
-          className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
+          className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
           <span>
             <MdOutlineVideoLibrary />
@@ -64,7 +64,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
         </NavLink>
         <NavLink
           to="/"
-          className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
+          className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
           <span>
             <MdOutlineHistory />
@@ -73,7 +73,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
         </NavLink>
         <NavLink
           to="/"
-          className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
+          className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
           <span>
             <MdOndemandVideo />
@@ -82,7 +82,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
         </NavLink>
         <NavLink
           to="/"
-          className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
+          className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
           <span>
             <MdOutlineWatchLater />
@@ -91,7 +91,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
         </NavLink>
         <NavLink
           to="/"
-          className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
+          className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
           <span>
             <RiHeart2Line />
@@ -99,7 +99,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           Liked videos
         </NavLink>
         <div>{/* playlists map shown if show more == true */}</div>
-        <div className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white">
+        <div className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white">
           <span>
             <MdExpandMore />
           </span>{" "}
@@ -112,7 +112,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
         <div>
           {/* filter of top 7 subs else if show more then map of subs */}
         </div>
-        <div className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white">
+        <div className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white">
           <span>
             {" "}
             <MdExpandLess />
@@ -124,7 +124,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
       <div className="w-full">
         <NavLink
           to="/"
-          className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
+          className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
           <span>
             <RiSettings3Line />
@@ -133,7 +133,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
         </NavLink>{" "}
         <NavLink
           to="/"
-          className="flex items-center justify-start w-full gap-2 p-3 transition-all hover:bg-gray-600 hover:text-white"
+          className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
           <span>
             <BsPatchExclamation />

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Header from "./Components/Header";
+import Home from "./Components/Home";
 import Sidebar from "./Components/Sidebar";
 
 function App(): JSX.Element {
@@ -13,8 +14,9 @@ function App(): JSX.Element {
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
       />{" "}
-      <div>
+      <div className="flex ">
         <Sidebar isSidebarOpen={isSidebarOpen} />
+        <Home />
       </div>
     </div>
   );
