@@ -13,19 +13,19 @@ module.exports = {
             opacity: "0",
           },
           "50%": {
-            width: "105%",
+            width: "270px",
           },
           "100%": {
-            width: "100%",
+            width: "260px",
           },
         },
         hideSidebar: {
           "0%": {
-            width: "100%",
+            width: "260px",
             opacity: "1",
           },
           "50%": {
-            width: "105%",
+            width: "270px",
             opacity: "1",
           },
           "100%": {

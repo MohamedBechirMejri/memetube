@@ -17,7 +17,7 @@ import { TiHomeOutline } from "react-icons/ti";
 function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
   return (
     <nav
-      className={`flex flex-col items-start justify-start h-[92vh] overflow-y-scroll overflow-x-hidden transition-all w-fit max-w-[40vw] ${
+      className={`flex flex-col items-start justify-start h-[92vh] overflow-y-scroll overflow-x-hidden transition-all shrink-0 ${
         isSidebarOpen ? "animate-revealSidebar" : "animate-hideSidebar"
       } noscroll border-r-[.1px] border-[#2c323a] `}
     >
