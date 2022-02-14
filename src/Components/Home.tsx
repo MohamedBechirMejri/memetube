@@ -80,7 +80,7 @@ function Home(): JSX.Element {
       {videosList.map(video => (
         <div className=" p-2 sm:w-[25em]" key={video.id}>
           <Link to={`/video/${video.id}`}>
-            <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
+            <div className="p-4 bg-[#000000aa] rounded-lg shadow-lg">
               <img src={video.image} alt={video.title} className="w-full" />
               <div className="p-4">
                 <h3 className="mb-2 font-semibold md:text-xl">{video.title}</h3>
