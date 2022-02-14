@@ -79,12 +79,14 @@ function Home(): JSX.Element {
     <div>
       <div className="flex flex-wrap overflow-y-scroll">
         {videosList.map(video => (
-          <div className="w-1/4 p-2" key={video.id}>
+          <div className="w-full p-2" key={video.id}>
             <Link to={`/video/${video.id}`}>
               <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
                 <img src={video.image} alt={video.title} className="w-full" />
                 <div className="p-4">
-                  <h3 className="mb-2 text-xl font-bold">{video.title}</h3>
+                  <h3 className="mb-2 font-semibold md:text-xl">
+                    {video.title}
+                  </h3>
                   <p className="text-sm text-gray-400">{video.channel}</p>
                 </div>
               </div>
