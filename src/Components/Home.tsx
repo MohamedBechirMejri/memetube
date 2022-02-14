@@ -76,24 +76,20 @@ const videosList = [
 
 function Home(): JSX.Element {
   return (
-    <div>
-      <div className="flex flex-wrap overflow-y-scroll">
-        {videosList.map(video => (
-          <div className="w-full p-2" key={video.id}>
-            <Link to={`/video/${video.id}`}>
-              <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
-                <img src={video.image} alt={video.title} className="w-full" />
-                <div className="p-4">
-                  <h3 className="mb-2 font-semibold md:text-xl">
-                    {video.title}
-                  </h3>
-                  <p className="text-sm text-gray-400">{video.channel}</p>
-                </div>
+    <div className="flex flex-wrap p-10 overflow-x-hidden overflow-y-scroll">
+      {videosList.map(video => (
+        <div className=" p-2 sm:w-[25em]" key={video.id}>
+          <Link to={`/video/${video.id}`}>
+            <div className="p-4 bg-gray-800 rounded-lg shadow-lg">
+              <img src={video.image} alt={video.title} className="w-full" />
+              <div className="p-4">
+                <h3 className="mb-2 font-semibold md:text-xl">{video.title}</h3>
+                <p className="text-sm text-gray-400">{video.channel}</p>
               </div>
-            </Link>
-          </div>
-        ))}
-      </div>
+            </div>
+          </Link>
+        </div>
+      ))}
     </div>
   );
 }
