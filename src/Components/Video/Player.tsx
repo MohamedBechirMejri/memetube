@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 function Player({ url }: { url: string }): JSX.Element {
   return (
     <div className="overflow-hidden rounded-lg">
-      <ReactPlayer controls url={url} />
+      <ReactPlayer playing controls url={url} />
     </div>
   );
 }
