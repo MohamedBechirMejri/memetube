@@ -5,6 +5,7 @@ import RelatedVideos from "./Video/RelatedVideos";
 import ToolBox from "./Video/ToolBox";
 import Comments from "./Video/Comments";
 import Details from "./Video/Details";
+import addCommasToNumber from "../Utils/addCommasToNumber";
 
 function Video(): JSX.Element {
   const { videoId } = useParams();
@@ -19,8 +20,10 @@ function Video(): JSX.Element {
         />
         <div>
           <div>
-            <h1>video title</h1>
-            <p>views count</p>
+            <h1 className="font-medium text-[#e6e8e9]">Big Buck Bunny</h1>
+            <p className="text-xs text-[#acb1b8] ">
+              {addCommasToNumber(7981491919)} views
+            </p>
           </div>
           <ToolBox />
         </div>
