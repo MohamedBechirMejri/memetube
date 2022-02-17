@@ -50,7 +50,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           Subscriptions
         </NavLink>
       </div>
-      <hr className="w-full border-[#2c323a]" />
+      <hr/>
       <div className="flex flex-col w-full">
         {" "}
         <NavLink
@@ -106,7 +106,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           show more
         </div>
       </div>
-      <hr className="w-full border-[#2c323a]" />
+      <hr/>
       <div className="w-full">
         <h2>Subscriptions</h2>
         <div>
@@ -120,7 +120,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           show less
         </div>
       </div>
-      <hr className="w-full border-[#2c323a]" />
+      <hr/>
       <div className="w-full">
         <NavLink
           to="/"
@@ -141,7 +141,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           Send Feedback
         </NavLink>
       </div>
-      <hr className="w-full border-[#2c323a]" />
+      <hr/>
       <footer className="max-w-[15em] flex flex-col items-start justify-center gap-4 p-4 text-sm text-gray-200">
         <div className="flex flex-wrap items-center justify-start gap-1 ">
           <a href="https://.com" className="hover:underline">

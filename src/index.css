@@ -27,3 +27,7 @@
 .noscroll::-webkit-scrollbar {
   display: none;
 }
+hr {
+  width: 100%;
+  border-color: #2c323a;
+}
