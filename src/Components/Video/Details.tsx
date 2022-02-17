@@ -32,7 +32,7 @@ function Details(): JSX.Element {
         </div>
         <button
           type="button"
-          className="border-[#cf2d2b] border-2 py-2 px-4 m-2 rounded-lg hover:bg-[#cf2d2b] active:scale-[.98] transition-all hover:text-white"
+          className="border-[#cf2d2b] border-2 py-2 px-4 m-2 rounded-lg hover:bg-[#cf2d2b] active:scale-[.98] transition-all hover:text-white text-sm font-medium"
         >
           Subscribe
         </button>
