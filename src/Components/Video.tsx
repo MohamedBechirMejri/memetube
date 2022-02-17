@@ -10,8 +10,8 @@ import addCommasToNumber from "../Utils/addCommasToNumber";
 function Video(): JSX.Element {
   const { videoId } = useParams();
   return (
-    <div>
-      <div>
+    <div className="flex justify-center w-full">
+      <div className="flex flex-col gap-4 max-w-[70em]">
         <div className="p-2">
           <Player
             url={

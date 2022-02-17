@@ -17,7 +17,7 @@ function App(): JSX.Element {
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
       />{" "}
-      <div className="flex ">
+      <div className="flex w-full">
         <Sidebar isSidebarOpen={isSidebarOpen} />
         <Routes>
           <Route index element={<Home />} />
