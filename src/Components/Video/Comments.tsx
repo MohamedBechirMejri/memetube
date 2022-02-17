@@ -10,6 +10,52 @@ import {
   MdThumbUp,
 } from "react-icons/md";
 
+const comments = [
+  {
+    user: {
+      name: "John Doe",
+      avatar: "https://i.pravatar.cc/300?img=1",
+    },
+    comment: "This is a comment",
+    date: "2020-01-01",
+    likes: 0,
+    dislikes: 0,
+    replies: [
+      {
+        user: {
+          name: "John Doe",
+          avatar: "https://i.pravatar.cc/300?img=1",
+        },
+        comment: "This is a comment",
+        date: "2020-01-01",
+        likes: 0,
+        dislikes: 0,
+      },
+    ],
+  },
+  {
+    user: {
+      name: "John Doe",
+      avatar: "https://i.pravatar.cc/300?img=1",
+    },
+    comment: "This is a comment",
+    date: "2020-01-01",
+    likes: 0,
+    dislikes: 0,
+    replies: [
+      {
+        user: {
+          name: "John Doe",
+          avatar: "https://i.pravatar.cc/300?img=1",
+        },
+        comment: "This is a comment",
+        date: "2020-01-01",
+        likes: 0,
+        dislikes: 0,
+      },
+    ],
+  },
+];
 function Comments(): JSX.Element {
   return (
     <div>
