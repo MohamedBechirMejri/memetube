@@ -31,3 +31,6 @@ hr {
   width: 100%;
   border-color: #2c323a;
 }
+body {
+  overflow-x: hidden;
+}
