@@ -12,13 +12,15 @@ function Video(): JSX.Element {
   return (
     <div>
       <div>
-        <Player
-          url={
-            // TODO: get video url from backend
-            "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-          }
-        />
-        <div>
+        <div className="p-2">
+          <Player
+            url={
+              // TODO: get video url from backend
+              "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            }
+          />
+        </div>
+        <div className="flex items-center justify-between px-2">
           <div>
             <h1 className="font-medium text-[#e6e8e9]">Big Buck Bunny</h1>
             <p className="text-xs text-[#acb1b8] ">
