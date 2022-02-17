@@ -3,7 +3,7 @@ import turnNumerIntoWords from "../../Utils/turnNumbersIntoWords";
 
 function Details(): JSX.Element {
   return (
-    <div>
+    <div className="flex flex-col gap-3 p-1">
       <div className="flex items-center justify-between">
         <div className="flex items-center justify-start">
           <img
@@ -38,7 +38,10 @@ function Details(): JSX.Element {
         </button>
       </div>
       <p>
-        Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, ab!
+        Cupiditate a et quod repellendus blanditiis. Veritatis quidem corporis
+        soluta, recusandae cupiditate reprehenderit facilis tempora ratione
+        officia eius minus facere.
       </p>
     </div>
   );
