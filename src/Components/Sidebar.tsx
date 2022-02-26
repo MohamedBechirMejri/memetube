@@ -4,10 +4,10 @@ import {
   MdExpandLess,
   MdExpandMore,
   MdOndemandVideo,
-  MdOutlineExplore,
+  // MdOutlineExplore,
   MdOutlineHistory,
   MdOutlineSubscriptions,
-  MdOutlineVideoLibrary,
+  // MdOutlineVideoLibrary,
   MdOutlineWatchLater,
 } from "react-icons/md";
 import { RiHeart2Line, RiSettings3Line } from "react-icons/ri";
@@ -108,7 +108,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
       </div>
       <hr />
       <div className="w-full">
-        <h2>Subscriptions</h2>
+        <h2 className="px-4 pt-2 font-semibold">Subscriptions</h2>
         <div>
           {/* filter of top 7 subs else if show more then map of subs */}
         </div>
