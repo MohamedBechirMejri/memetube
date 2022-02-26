@@ -31,7 +31,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           </span>{" "}
           Home
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
@@ -39,7 +39,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
             <MdOutlineExplore />
           </span>{" "}
           Explore
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
@@ -50,10 +50,10 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           Subscriptions
         </NavLink>
       </div>
-      <hr/>
+      <hr />
       <div className="flex flex-col w-full">
         {" "}
-        <NavLink
+        {/* <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
@@ -61,7 +61,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
             <MdOutlineVideoLibrary />
           </span>{" "}
           Library
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
@@ -106,7 +106,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           show more
         </div>
       </div>
-      <hr/>
+      <hr />
       <div className="w-full">
         <h2>Subscriptions</h2>
         <div>
@@ -120,7 +120,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           show less
         </div>
       </div>
-      <hr/>
+      <hr />
       <div className="w-full">
         <NavLink
           to="/"
@@ -141,9 +141,9 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           Send Feedback
         </NavLink>
       </div>
-      <hr/>
-      <footer className="max-w-[15em] flex flex-col items-start justify-center gap-4 p-4 text-sm text-gray-200">
-        <div className="flex flex-wrap items-center justify-start gap-1 ">
+      <hr />
+      <footer className="max-w-[15em] flex flex-col items-start justify-center gap-2 p-4 text-sm text-gray-200">
+        {/* <div className="flex flex-wrap items-center justify-start gap-1 ">
           <a href="https://.com" className="hover:underline">
             About
           </a>
@@ -182,15 +182,15 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           <a href="https://.com" className="hover:underline">
             Test New Features
           </a>
-        </div>
+        </div> */}
         <p className="text-gray-400">
-          © 2022{" "}
           <a
             href="https://.com"
             className="transition-all hover:text-emerald-400"
           >
-            Mohamed Bechir
-          </a>
+            Mohamed Bechir Mejri
+          </a>{" "}
+          © 2022 .
         </p>
       </footer>
     </nav>
