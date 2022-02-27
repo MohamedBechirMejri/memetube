@@ -40,7 +40,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           </span>{" "}
           Explore
         </NavLink> */}
-        <NavLink
+        {/* <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
@@ -48,7 +48,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
             <MdOutlineSubscriptions />
           </span>{" "}
           Subscriptions
-        </NavLink>
+        </NavLink> */}
       </div>
       <hr />
       <div className="flex flex-col w-full">
@@ -62,7 +62,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           </span>{" "}
           Library
         </NavLink> */}
-        <NavLink
+        {/* <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
@@ -70,7 +70,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
             <MdOutlineHistory />
           </span>{" "}
           History
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
@@ -80,7 +80,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           </span>{" "}
           Your Videos
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
@@ -88,8 +88,8 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
             <MdOutlineWatchLater />
           </span>{" "}
           Watch later
-        </NavLink>
-        <NavLink
+        </NavLink> */}
+        {/* <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
@@ -97,20 +97,20 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
             <RiHeart2Line />
           </span>{" "}
           Liked videos
-        </NavLink>
+        </NavLink> */}
         <div>{/* playlists map shown if show more == true */}</div>
-        <div className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white">
+        {/* <div className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white">
           <span>
             <MdExpandMore />
           </span>{" "}
           show more
-        </div>
+        </div> */}
       </div>
       <hr />
-      <div className="w-full">
+      {/* <div className="w-full">
         <h2 className="px-4 pt-2 font-semibold">Subscriptions</h2>
         <div>
-          {/* filter of top 7 subs else if show more then map of subs */}
+          // filter of top 7 subs else if show more then map of subs
         </div>
         <div className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white">
           <span>
@@ -119,7 +119,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           </span>{" "}
           show less
         </div>
-      </div>
+      </div> */}
       <hr />
       <div className="w-full">
         <NavLink
@@ -131,15 +131,17 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           </span>{" "}
           Settings
         </NavLink>{" "}
-        <NavLink
-          to="/"
+        <a
+          href="https://github.com/MohamedBechirMejri/beautube/issues"
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
           <span>
             <BsPatchExclamation />
           </span>{" "}
           Send Feedback
-        </NavLink>
+        </a>
       </div>
       <hr />
       <footer className="max-w-[15em] flex flex-col items-start justify-center gap-2 p-4 text-sm text-gray-200">
