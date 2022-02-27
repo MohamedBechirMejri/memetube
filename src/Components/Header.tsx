@@ -4,8 +4,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import UseAnimations from "react-useanimations";
 import menu4 from "react-useanimations/lib/menu4";
-import ytLogoLight from "../Assets/Images/Logos/yt-logo-light.png";
-import ytLogoDark from "../Assets/Images/Logos/yt-logo-dark.png";
 import Searchbar from "./Header/Searchbar";
 import Userstuff from "./Header/UserStuff";
 
@@ -37,11 +35,7 @@ function Header({
         </span>
         <Link to="/">
           {" "}
-          <img
-            src={isDarkMode ? ytLogoDark : ytLogoLight}
-            alt="Youtube Logo"
-            className="w-[6em]"
-          />
+          <h1>BT</h1>
         </Link>
       </div>
       <Searchbar />
