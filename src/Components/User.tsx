@@ -55,7 +55,7 @@ function User(): JSX.Element {
           alt="Cover"
           className="m-auto"
         />{" "}
-        <div className="absolute bottom-0 right-0 flex gap-1 p-2 bg-[#ffffffbb] rounded-md h-1/3 w-1/2 overflow-hidden max-w-[175px] max-h-[40px] items-center justify-center">
+        <div className="absolute top-0 right-0 flex gap-1 p-2 bg-[#ffffffbb] rounded-md h-1/3 w-1/2 overflow-hidden max-w-[175px] max-h-[40px] items-center justify-center">
           {socials.map(social => (
             <a
               href={social.url}
@@ -92,7 +92,7 @@ function User(): JSX.Element {
             </a>
           ))}
         </div>
-        <div className="absolute flex flex-col items-center justify-start w-full -translate-x-1/2 left-1/2 top-full">
+        <div className="absolute flex flex-col items-center justify-start w-full -translate-x-1/2 left-1/2 top-[50%]">
           <img
             src="https://picsum.photos/500"
             alt="User"
@@ -107,7 +107,13 @@ function User(): JSX.Element {
             }{" "}
             subscribers
           </p>
-          <p className="p-4 text-center text-gray-200">I Make Videos!</p>
+          <p className="px-4 py-2 text-center text-gray-200">I Make Videos!</p>
+          <button
+            type="button"
+            className="border-[#cf2d2b] border-2 py-2 px-4 m-2 rounded-lg hover:bg-[#cf2d2b] active:scale-[.98] transition-all hover:text-white text-sm font-medium"
+          >
+            Subscribe
+          </button>
         </div>
       </div>
     </div>
