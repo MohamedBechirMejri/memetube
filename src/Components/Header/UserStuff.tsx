@@ -1,20 +1,43 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MdOutlineAddBox } from "react-icons/md";
-import { RiApps2Line, RiNotification3Line } from "react-icons/ri";
+// import { RiApps2Line, RiNotification3Line } from "react-icons/ri";
+import UserContext from "../../Utils/UserContext";
 
-function Userstuff(): JSX.Element {
+function Userstuff({
+  isAddVideoShown,
+  setIsAddVideoShown,
+}: {
+  isAddVideoShown: boolean;
+  setIsAddVideoShown: (isAddVideoShownArg: boolean) => void;
+}): JSX.Element {
+  const user: {
+    name: string;
+  } = useContext(UserContext);
   return (
-    <div className="flex items-center h-full gap-4 text-2xl">
-      <button type="button">
+    <div className="flex items-center justify-center h-full gap-4 p-4 text-2xl">
+      <button
+        type="button"
+        onClick={() => {
+          setIsAddVideoShown(!isAddVideoShown);
+        }}
+      >
         <MdOutlineAddBox />
       </button>
-      <button type="button">
+      {/* <button type="button">
         <RiApps2Line />
-      </button>
-      <button type="button">
+      </button> */}
+      {/* <button type="button">
         <RiNotification3Line />
+      </button> */}
+      <button type="button">
+        {!user.name ? (
+          <button type="button" className="">
+            Login
+          </button>
+        ) : (
+          user.name
+        )}
       </button>
-      <button type="button">user</button>
     </div>
   );
 }
