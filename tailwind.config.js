@@ -5,7 +5,7 @@ module.exports = {
       animation: {
         revealSidebar: "revealSidebar 0.5s ease-in-out forwards",
         hideSidebar: "hideSidebar 0.5s ease-in-out forwards",
-        reveal: "reveal 0.3s  forwards",
+        reveal: "reveal 0.45s  forwards",
       },
       keyframes: {
         revealSidebar: {
@@ -37,11 +37,11 @@ module.exports = {
         reveal: {
           "0%": {
             opacity: "0",
-            transform: "translateY(1%)",
+            transform: "translateY(4%)",
           },
           "50%": {
-            opacity: "1",
             transform: "translateY(-1%)",
+            opacity: ".5",
           },
           "100%": {
             opacity: "1",
