@@ -123,7 +123,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
       <hr />
       <div className="w-full">
         <NavLink
-          to="/"
+          to="settings"
           className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
           <span>
