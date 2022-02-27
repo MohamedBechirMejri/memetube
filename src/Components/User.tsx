@@ -40,7 +40,7 @@ const socials = [
     url: "https://www.tiktok.com/",
   },
   {
-    icon: "reddit",
+    icon: "discord",
     url: "https://www.discord.com/",
   },
 ];
@@ -50,18 +50,39 @@ function User(): JSX.Element {
     <div className="w-full">
       <div className="relative">
         <img src="https://picsum.photos/1000/500" alt="Cover" className="" />{" "}
-        <div className="absolute bottom-0 right-0 flex gap-1 p-2 bg-[#ffffff2f] rounded-md">
+        <div className="absolute bottom-0 right-0 flex gap-1 p-2 bg-[#ffffff] rounded-md">
           {socials.map(social => (
-            <a href={social.url} className="">
+            <a
+              href={social.url}
+              className="hover:scale-105"
+              target={social.icon === "website" ? "_blank" : ""}
+              rel="noreferrer"
+            >
               <i className="">
-                {social.icon === "facebook" && <FaFacebook />}
-                {social.icon === "twitter" && <FaTwitter />}
-                {social.icon === "instagram" && <FaInstagram />}
-                {social.icon === "twitch" && <FaTwitch />}
-                {social.icon === "reddit" && <FaReddit />}
-                {social.icon === "website" && <FaGlobe />}
-                {social.icon === "tiktok" && <FaTiktok />}
-                {social.icon === "discord" && <FaDiscord />}
+                {social.icon === "facebook" && (
+                  <FaFacebook className=" text-[#1778F2] " />
+                )}
+                {social.icon === "twitter" && (
+                  <FaTwitter className=" text-[#55ACEE]" />
+                )}
+                {social.icon === "instagram" && (
+                  <FaInstagram className=" text-[#DD2A7B]" />
+                )}
+                {social.icon === "twitch" && (
+                  <FaTwitch className=" text-[#6441A4]" />
+                )}
+                {social.icon === "reddit" && (
+                  <FaReddit className=" text-[#FF4500]" />
+                )}
+                {social.icon === "website" && (
+                  <FaGlobe className=" text-[black]" />
+                )}
+                {social.icon === "tiktok" && (
+                  <FaTiktok className=" text-[#69C9D0]" />
+                )}
+                {social.icon === "discord" && (
+                  <FaDiscord className=" text-[#738ADB]" />
+                )}
               </i>
             </a>
           ))}
