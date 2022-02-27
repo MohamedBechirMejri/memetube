@@ -49,8 +49,12 @@ function User(): JSX.Element {
   return (
     <div className="w-full">
       <div className="relative">
-        <img src="https://picsum.photos/1000/500" alt="Cover" className="" />{" "}
-        <div className="absolute bottom-0 right-0 flex gap-1 p-2 bg-[#ffffff] rounded-md">
+        <img
+          src="https://picsum.photos/2000/500"
+          alt="Cover"
+          className="m-auto"
+        />{" "}
+        <div className="absolute bottom-0 right-0 flex gap-1 p-2 bg-[#ffffffbb] rounded-md h-1/3 w-1/2 overflow-hidden max-w-[175px] max-h-[40px] items-center justify-center">
           {socials.map(social => (
             <a
               href={social.url}
@@ -87,11 +91,11 @@ function User(): JSX.Element {
             </a>
           ))}
         </div>
-        <div className="absolute">
+        <div className="absolute -translate-x-1/2 left-1/2 top-full">
           <img
-            src="https://picsum.photos/100"
+            src="https://picsum.photos/500"
             alt="User"
-            className="rounded-full "
+            className="rounded-full w-20 sm-w-[9em] ring ring-[#ffffff8c]"
           />
         </div>
       </div>
