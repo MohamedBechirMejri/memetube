@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Header from "./Components/Header";
 import Home from "./Components/Home";
 import Sidebar from "./Components/Sidebar";
+import User from "./Components/User";
 import Video from "./Components/Video";
 
 function App(): JSX.Element {
@@ -22,6 +23,7 @@ function App(): JSX.Element {
         <Routes>
           <Route index element={<Home />} />
           <Route path="/video/:videoId" element={<Video />} />
+          <Route path="/user/:userId" element={<User />} />
         </Routes>
       </div>
     </div>
