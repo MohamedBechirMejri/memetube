@@ -1,41 +1,33 @@
 import React, { useContext, useState } from "react";
 import { MdOutlineAddBox } from "react-icons/md";
-// import { RiApps2Line, RiNotification3Line } from "react-icons/ri";
 import UserContext from "../../Utils/UserContext";
 
 function Userstuff(): JSX.Element {
   const user: {
     name: string;
   } = useContext(UserContext);
-  const [isAddVideoShown, setIsAddVideoShown] = useState(false);
-  return (
+
+  const [isAddVideoShown, setIsAddVideoShown] = useState(true);
+
+  return !user.name ? (
     <div className="flex items-center justify-center h-full gap-4 p-4 text-2xl">
-      {!user.name && (
-        <button
-          type="button"
-          onClick={() => {
-            setIsAddVideoShown(!isAddVideoShown);
-          }}
-        >
-          <MdOutlineAddBox />
-        </button>
-      )}{" "}
-      {/* <button type="button">
-        <RiApps2Line />
-      </button> */}
-      {/* <button type="button">
-        <RiNotification3Line />
-      </button> */}
-      <button type="button">
-        {!user.name ? (
-          <button type="button" className="">
-            Login
-          </button>
-        ) : (
-          user.name
-        )}
-      </button>
+      <MdOutlineAddBox
+        onClick={() => {
+          setIsAddVideoShown(!isAddVideoShown);
+        }}
+        className={` text-3xl transition-all cursor-pointer hover:scale-105 active:scale-95 ${
+          isAddVideoShown && "rotate-45"
+        } `}
+      />
+      {user.name}
     </div>
+  ) : (
+    <button
+      type="button"
+      className="px-4 py-2 text-xl font-semibold border border-[#cf2d2b] mx-1 rounded-lg hover:bg-[#cf2d2b] transition-all active:scale-95"
+    >
+      login
+    </button>
   );
 }
 
