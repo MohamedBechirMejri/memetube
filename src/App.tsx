@@ -10,7 +10,7 @@ import UserContext from "./Utils/UserContext";
 function App(): JSX.Element {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isAddVideoShown, setIsAddVideoShown] = useState(false);
+
   const [user, setUser] = useState({
     name: "",
   });
@@ -26,8 +26,6 @@ function App(): JSX.Element {
           setIsDarkMode={setIsDarkMode}
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
-          isAddVideoShown={isAddVideoShown}
-          setIsAddVideoShown={setIsAddVideoShown}
         />{" "}
         <div className="flex w-full">
           <Sidebar isSidebarOpen={isSidebarOpen} />
