@@ -9,6 +9,7 @@ import {
   FaTwitch,
   FaTwitter,
 } from "react-icons/fa";
+import turnNumerIntoWords from "../Utils/turnNumbersIntoWords";
 
 const socials = [
   {
@@ -91,12 +92,22 @@ function User(): JSX.Element {
             </a>
           ))}
         </div>
-        <div className="absolute -translate-x-1/2 left-1/2 top-full">
+        <div className="absolute flex flex-col items-center justify-start w-full -translate-x-1/2 left-1/2 top-full">
           <img
             src="https://picsum.photos/500"
             alt="User"
             className="rounded-full w-20 sm-w-[9em] ring ring-[#ffffff8c]"
           />
+          <h1 className="pt-4 text-xl font-semibold text-gray-200">User</h1>
+          <p className="text-xs text-gray-400">
+            {" "}
+            {
+              // TODO: get number of subs from backend
+              turnNumerIntoWords(123456789)
+            }{" "}
+            subscribers
+          </p>
+          <p className="p-4 text-center text-gray-200">I Make Videos!</p>
         </div>
       </div>
     </div>
