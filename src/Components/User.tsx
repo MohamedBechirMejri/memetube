@@ -1,61 +1,100 @@
 import React from "react";
-import {
-  FaDiscord,
-  FaFacebook,
-  FaGlobe,
-  FaInstagram,
-  FaReddit,
-  FaTiktok,
-  FaTwitch,
-  FaTwitter,
-} from "react-icons/fa";
+// import {
+//   FaDiscord,
+//   FaFacebook,
+//   FaGlobe,
+//   FaInstagram,
+//   FaReddit,
+//   FaTiktok,
+//   FaTwitch,
+//   FaTwitter,
+// } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import turnNumerIntoWords from "../Utils/turnNumbersIntoWords";
 
-const socials = [
+// const socials = [
+//   {
+//     icon: "facebook",
+//     url: "https://www.facebook.com/",
+//   },
+//   {
+//     icon: "twitter",
+//     url: "https://www.twitter.com/",
+//   },
+//   {
+//     icon: "instagram",
+//     url: "https://www.instagram.com/",
+//   },
+//   {
+//     icon: "twitch",
+//     url: "https://www.twitch.tv/",
+//   },
+//   {
+//     icon: "website",
+//     url: "https://www.example.com/",
+//   },
+//   {
+//     icon: "reddit",
+//     url: "https://www.reddit.com/",
+//   },
+//   {
+//     icon: "tiktok",
+//     url: "https://www.tiktok.com/",
+//   },
+//   {
+//     icon: "discord",
+//     url: "https://www.discord.com/",
+//   },
+// ];
+
+const videos = [
   {
-    icon: "facebook",
-    url: "https://www.facebook.com/",
+    id: 1,
+    title: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    image: "https://img.youtube.com/vi/QH2-TGUlwu4/hqdefault.jpg",
   },
   {
-    icon: "twitter",
-    url: "https://www.twitter.com/",
+    id: 2,
+    title: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    image: "https://img.youtube.com/vi/QH2-TGUlwu4/hqdefault.jpg",
   },
   {
-    icon: "instagram",
-    url: "https://www.instagram.com/",
+    id: 3,
+    title: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    image: "https://img.youtube.com/vi/QH2-TGUlwu4/hqdefault.jpg",
   },
   {
-    icon: "twitch",
-    url: "https://www.twitch.tv/",
+    id: 4,
+    title: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    image: "https://img.youtube.com/vi/QH2-TGUlwu4/hqdefault.jpg",
   },
   {
-    icon: "website",
-    url: "https://www.example.com/",
+    id: 5,
+    title: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    image: "https://img.youtube.com/vi/QH2-TGUlwu4/hqdefault.jpg",
   },
   {
-    icon: "reddit",
-    url: "https://www.reddit.com/",
+    id: 6,
+    title: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    image: "https://img.youtube.com/vi/QH2-TGUlwu4/hqdefault.jpg",
   },
   {
-    icon: "tiktok",
-    url: "https://www.tiktok.com/",
-  },
-  {
-    icon: "discord",
-    url: "https://www.discord.com/",
+    id: 7,
+    title: "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    image: "https://img.youtube.com/vi/QH2-TGUlwu4/hqdefault.jpg",
   },
 ];
 
 function User(): JSX.Element {
   return (
-    <div className="w-full">
+    <div className="w-full py-10">
       <div className="relative">
-        <img
+        {/* <img
           src="https://picsum.photos/2000/500"
           alt="Cover"
           className="m-auto"
-        />{" "}
-        <div className="absolute top-0 right-0 flex gap-1 p-2 bg-[#ffffffbb] rounded-md h-1/3 w-1/2 overflow-hidden max-w-[175px] max-h-[40px] items-center justify-center">
+        />{" "} */}
+        {/* <div className="absolute top-0 right-0 flex gap-1 p-2 bg-[#ffffffbb] rounded-md h-1/3 w-1/2 overflow-hidden max-w-[175px] max-h-[40px] items-center justify-center">
           {socials.map(social => (
             <a
               href={social.url}
@@ -91,8 +130,8 @@ function User(): JSX.Element {
               </i>
             </a>
           ))}
-        </div>
-        <div className="absolute flex flex-col items-center justify-start w-full -translate-x-1/2 left-1/2 top-[50%]">
+        </div> */}
+        <div className="flex flex-col items-center justify-start w-full ">
           <img
             src="https://picsum.photos/500"
             alt="User"
@@ -115,6 +154,25 @@ function User(): JSX.Element {
             Subscribe
           </button>
         </div>
+      </div>{" "}
+      <div className="flex flex-wrap items-center justify-start gap-2 p-10 overflow-x-hidden overflow-y-scroll">
+        {videos.map(video => (
+          <div
+            className=" sm:w-[23em] hover:scale-[1.02] active:scale-[.995] transition-all"
+            key={video.id}
+          >
+            <Link to={`/video/${video.id}`}>
+              <div className="overflow-hidden  bg-[#000000aa] rounded-lg shadow-lg">
+                <img src={video.image} alt={video.title} className="w-full" />
+                <div className="p-4">
+                  <h3 className="mb-2 font-semibold md:text-xl">
+                    {video.title}
+                  </h3>
+                </div>
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );
