@@ -12,11 +12,15 @@ function Header({
   setIsDarkMode,
   isSidebarOpen,
   setIsSidebarOpen,
+  isAddVideoShown,
+  setIsAddVideoShown,
 }: {
   isDarkMode: boolean;
   setIsDarkMode: (isDarkModeArg: boolean) => void;
   isSidebarOpen: boolean;
   setIsSidebarOpen: (isSidebarOpenArg: boolean) => void;
+  isAddVideoShown: boolean;
+  setIsAddVideoShown: (isAddVideoShownArg: boolean) => void;
 }): JSX.Element {
   return (
     <div className="flex items-center justify-between w-screen border-b-[.1px] border-[#2c323a]">
@@ -39,7 +43,10 @@ function Header({
         </Link>
       </div>
       <Searchbar />
-      <Userstuff />
+      <Userstuff
+        isAddVideoShown={isAddVideoShown}
+        setIsAddVideoShown={setIsAddVideoShown}
+      />
     </div>
   );
 }
