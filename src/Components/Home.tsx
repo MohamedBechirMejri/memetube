@@ -76,14 +76,17 @@ const videosList = [
 
 function Home(): JSX.Element {
   return (
-    <div className="flex gap-2 flex-wrap p-10 overflow-x-hidden overflow-y-scroll items-center justify-start">
-      {videosList.map(video => (
+    <div className="flex flex-wrap items-center justify-start gap-2 p-10 overflow-x-hidden overflow-y-scroll ">
+      {videosList.map((video, i) => (
         <div
-          className=" sm:w-[23em] hover:scale-[1.02] active:scale-[.995] transition-all"
+          className={`" sm:w-[23em] hover:scale-[1.02] active:scale-[.995] transition-all animate-reveal opacity-0 "`}
           key={video.id}
+          style={{
+            animationDelay: `${i * 0.05}s`,
+          }}
         >
           <Link to={`/video/${video.id}`}>
-            <div className="overflow-hidden  bg-[#000000aa] rounded-lg shadow-lg">
+            <div className="overflow-hidden bg-[#000000aa] rounded-lg shadow-lg">
               <img src={video.image} alt={video.title} className="w-full" />
               <div className="p-4">
                 <h3 className="mb-2 font-semibold md:text-xl">{video.title}</h3>
