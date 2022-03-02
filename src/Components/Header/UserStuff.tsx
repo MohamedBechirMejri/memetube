@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useContext, useState } from "react";
 import { MdOutlineAddBox } from "react-icons/md";
 import UserContext from "../../Utils/UserContext";
@@ -10,6 +11,7 @@ function Userstuff(): JSX.Element {
   const [isAddVideoShown, setIsAddVideoShown] = useState(true);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [video, setVideo] = useState(null as File | null);
 
   return !user.name ? (
     <div className="flex items-center justify-center h-full gap-4 p-4 text-2xl">
@@ -50,7 +52,7 @@ function Userstuff(): JSX.Element {
             />
           </label>{" "}
           <label htmlFor="video-file">
-            <input type="file" />
+            <input type="file" onChange={e => setVideo(e.target.files![0])} />
           </label>
           <button
             type="button"
