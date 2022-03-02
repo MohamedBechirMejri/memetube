@@ -14,8 +14,10 @@ const firebaseConfig = {
   messagingSenderId: "716036336224",
   appId: "1:716036336224:web:4d4cca77dd6f9adb003105",
 };
+
 initializeApp(firebaseConfig);
 getStorage();
+
 ReactDOM.render(
   <BrowserRouter>
     <App />
