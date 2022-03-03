@@ -34,7 +34,7 @@ function Video(): JSX.Element {
 
   return (
     <div className="flex justify-center w-full">
-      <div className="flex flex-col gap-4 max-w-[70em]">
+      <div className="flex flex-col gap-4 max-w-[70em] w-screen">
         <div className="p-2">
           <Player url={video.url} />
         </div>
@@ -48,7 +48,7 @@ function Video(): JSX.Element {
           <ToolBox />
         </div>
         <hr />
-        <Details />
+        <Details description={video.description} uploader={video.uploader} />
         <hr />
         <Comments />
       </div>
