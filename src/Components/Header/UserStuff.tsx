@@ -96,7 +96,7 @@ function Userstuff(): JSX.Element {
     );
   };
 
-  return !user ? (
+  return (
     <div className="flex items-center justify-center h-full gap-4 p-4 text-2xl">
       <MdOutlineAddBox
         onClick={() => {
@@ -106,7 +106,7 @@ function Userstuff(): JSX.Element {
           isAddVideoShown && "rotate-[135deg]"
         } `}
       />
-      {user}
+      {/* {user} */}
       {isAddVideoShown && (
         <div className="fixed z-50 flex flex-col items-center justify-center gap-4 p-8 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg dark:bg-[#1f232c] inset-1/2 w-fit h-fit ">
           {!isUploading ? (
@@ -188,15 +188,14 @@ function Userstuff(): JSX.Element {
             </>
           )}
         </div>
-      )}
+      )}{" "}
+      <button
+        type="button"
+        className="px-4 py-2 w-max text-xl font-semibold border border-[#cf2d2b] mx-1 rounded-lg hover:bg-[#cf2d2b] transition-all active:scale-95"
+      >
+        {user ? auth.currentUser!.displayName : "Sign In"}
+      </button>
     </div>
-  ) : (
-    <button
-      type="button"
-      className="px-4 py-2 text-xl font-semibold border border-[#cf2d2b] mx-1 rounded-lg hover:bg-[#cf2d2b] transition-all active:scale-95"
-    >
-      login
-    </button>
   );
 }
 
