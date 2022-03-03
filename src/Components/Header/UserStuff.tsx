@@ -17,7 +17,7 @@ import UserContext from "../../Utils/UserContext";
 function Userstuff(): JSX.Element {
   const user = useContext(UserContext);
 
-  const [isAddVideoShown, setIsAddVideoShown] = useState(true);
+  const [isAddVideoShown, setIsAddVideoShown] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [video, setVideo] = useState(null as File | null);
