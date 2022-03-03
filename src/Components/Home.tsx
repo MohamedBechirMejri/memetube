@@ -1,5 +1,6 @@
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 
 function Home(): JSX.Element {
@@ -56,7 +57,12 @@ function Home(): JSX.Element {
         >
           <Link to={`/video/${video.id}`}>
             <div className="overflow-hidden bg-[#000000aa] rounded-lg shadow-lg">
-              <img src="{video.image}" alt={video.title} className="w-full" />
+              <ReactPlayer
+                url={video.url}
+                width="100%"
+                height="100%"
+                className="overflow-hidden shadow-lg rounded-xl"
+              />
               <div className="p-4">
                 <h3 className="mb-2 font-semibold md:text-xl">{video.title}</h3>
                 <p className="text-sm text-gray-400">{video.uploader}</p>
