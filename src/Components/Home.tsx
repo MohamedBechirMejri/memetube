@@ -46,10 +46,10 @@ function Home(): JSX.Element {
   }, []);
 
   return (
-    <div className="flex flex-wrap items-center justify-start gap-2 p-10 overflow-x-hidden overflow-y-scroll ">
+    <div className="flex flex-wrap items-start justify-start gap-2 p-10 overflow-x-hidden overflow-y-scroll ">
       {videosList.map((video, i) => (
         <div
-          className={`" sm:w-[23em] hover:scale-[1.02] active:scale-[.995] transition-all animate-reveal opacity-0 "`}
+          className={`" sm:w-[23em] hover:scale-[1.02] active:scale-[.995] transition-all animate-reveal opacity-0"`}
           key={video.id}
           style={{
             animationDelay: `${i * 0.05}s`,
@@ -61,7 +61,7 @@ function Home(): JSX.Element {
                 url={video.url}
                 width="100%"
                 height="100%"
-                className="overflow-hidden shadow-lg rounded-xl"
+                className="overflow-hidden shadow-lg rounded-xl max-h-52"
               />
               <div className="p-4">
                 <h3 className="mb-2 font-semibold md:text-xl">{video.title}</h3>
