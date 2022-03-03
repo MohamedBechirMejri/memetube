@@ -10,7 +10,8 @@ import { getAuth, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 
 import uniqid from "uniqid";
-import { MdOutlineAddBox } from "react-icons/md";
+import { MdLogout, MdOutlineAddBox } from "react-icons/md";
+import { Link } from "react-router-dom";
 import UserContext from "../../Utils/UserContext";
 
 function Userstuff(): JSX.Element {
@@ -189,12 +190,31 @@ function Userstuff(): JSX.Element {
           )}
         </div>
       )}{" "}
-      <button
-        type="button"
-        className="px-4 py-2 w-max text-xl font-semibold border border-[#cf2d2b] mx-1 rounded-lg hover:bg-[#cf2d2b] transition-all active:scale-95"
-      >
-        {user ? auth.currentUser!.displayName : "Sign In"}
-      </button>
+      {!user ? (
+        <button
+          type="button"
+          className="px-4 py-2 w-max text-xl font-semibold border border-[#cf2d2b] mx-1 rounded-lg hover:bg-[#cf2d2b] transition-all active:scale-95"
+          onClick={signIn}
+        >
+          Sign In
+        </button>
+      ) : (
+        <div className="flex items-center justify-center gap-4 mx-1 text-xl font-semibold rounded-lg w-max">
+          <Link
+            to={`/user/${auth.currentUser!.uid}`}
+            className="px-4 py-2 w-max border border-[#2bcf83] mx-1 rounded-lg hover:bg-[#2bcf83] transition-all active:scale-95"
+          >
+            {auth.currentUser!.displayName}
+          </Link>
+          <button
+            type="button"
+            onClick={logOut}
+            className="px-4 py-2 w-max border border-[#cf2d2b] mx-1 rounded-lg hover:bg-[#cf2d2b] transition-all active:scale-95"
+          >
+            <MdLogout />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
