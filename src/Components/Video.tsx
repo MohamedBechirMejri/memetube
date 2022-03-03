@@ -1,5 +1,8 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { getDoc, getFirestore, doc } from "firebase/firestore";
 import Player from "./Video/Player";
 import RelatedVideos from "./Video/RelatedVideos";
 import ToolBox from "./Video/ToolBox";
@@ -8,23 +11,38 @@ import Details from "./Video/Details";
 import addCommasToNumber from "../Utils/addCommasToNumber";
 
 function Video(): JSX.Element {
-  const { videoId } = useParams();
+  const params = useParams();
+  const [video, setVideo] = useState({
+    id: "",
+    title: "",
+    description: "",
+    url: "",
+    uploader: "",
+    likes: 0,
+    dislikes: 0,
+    comments: [],
+    views: 0,
+    date: "",
+  });
+
+  useEffect(() => {
+    const id = params.videoId;
+    const db = getFirestore();
+    const videoRef = doc(db, `videos`, id!);
+    getDoc(videoRef).then(videoData => setVideo(videoData.data() as any));
+  }, []);
+
   return (
     <div className="flex justify-center w-full">
       <div className="flex flex-col gap-4 max-w-[70em]">
         <div className="p-2">
-          <Player
-            url={
-              // TODO: get video url from backend
-              "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-            }
-          />
+          <Player url={video.url} />
         </div>
         <div className="flex items-center justify-between px-2">
           <div>
-            <h1 className="font-medium text-[#e6e8e9]">Big Buck Bunny</h1>
+            <h1 className="font-medium text-[#e6e8e9]">{video.title}</h1>
             <p className="text-xs text-[#acb1b8] ">
-              {addCommasToNumber(7981491919)} views
+              {addCommasToNumber(video.views)} views
             </p>
           </div>
           <ToolBox />
