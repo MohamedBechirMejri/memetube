@@ -6,6 +6,9 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import { getAuth, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
+
 import uniqid from "uniqid";
 import { MdOutlineAddBox } from "react-icons/md";
 import UserContext from "../../Utils/UserContext";
@@ -21,15 +24,40 @@ function Userstuff(): JSX.Element {
   const [video, setVideo] = useState(null as File | null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState("0");
+  const [videoId, setVideoId] = useState(uniqid());
 
+  const auth = getAuth();
+  const db = getFirestore();
+
+  const logOut = (): void => {
+    auth.signOut();
+  };
+  const signIn = (): void => {
+    signInWithRedirect(auth, new GoogleAuthProvider());
+  };
+  const addVideo = (videoData: {
+    title: string;
+    description: string;
+    url: string;
+    uploader: string;
+    likes: number;
+    dislikes: number;
+    comments: object[];
+    views: number;
+    date: string;
+  }): void => {
+    setDoc(doc(db, "videos", videoId), {
+      ...videoData,
+    });
+  };
   const handleAddVideo = async (): Promise<void> => {
     if (video === null) {
       return;
     }
-
-    const videoRef = ref(getStorage(), `videos/${uniqid()}`);
-    const uploadTask = uploadBytesResumable(videoRef, video);
     setIsUploading(true);
+
+    const videoRef = ref(getStorage(), `videos/${videoId}`);
+    const uploadTask = uploadBytesResumable(videoRef, video);
 
     uploadTask.on(
       "state_changed",
@@ -41,10 +69,10 @@ function Userstuff(): JSX.Element {
         setUploadProgress(progress);
         switch (snapshot.state) {
           case "paused":
-            console.log("Upload is paused");
+            //    console.log("Upload is paused");
             break;
           case "running":
-            console.log("Upload is running");
+            //    console.log("Upload is running");
             break;
         }
       },
@@ -64,6 +92,7 @@ function Userstuff(): JSX.Element {
             views: 0,
             date: new Date().toISOString(),
           };
+          addVideo(videoData);
         });
       }
     );
