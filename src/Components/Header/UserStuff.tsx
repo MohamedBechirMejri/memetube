@@ -72,35 +72,7 @@ function Userstuff(): JSX.Element {
       {user.name}
       {isAddVideoShown && (
         <div className="fixed z-50 flex flex-col items-center justify-center gap-4 p-4 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg dark:bg-[#1f232c] inset-1/2 w-fit h-fit ">
-          {isUploading ? (
-            <>
-              <h1 className="p-8 animate-pulse">
-                {" "}
-                {uploadProgress}% uploaded.
-              </h1>
-              {/* <span className="p-4 bg-white rounded-full animate-pulse" /> */}
-              {/* <div className="flex gap-2 ">
-                <button
-                  type="button"
-                  className="px-4 py-2 text-lg font-bold text-white uppercase transition-all bg-green-500 rounded hover:bg-green-700 active:scale-95"
-                >
-                  cancel
-                </button>
-                <button
-                  type="button"
-                  className="px-4 py-2 text-lg font-bold text-white uppercase transition-all bg-green-500 rounded hover:bg-green-700 active:scale-95"
-                >
-                  pause
-                </button>
-                <button
-                  type="button"
-                  className="px-4 py-2 text-lg font-bold text-white uppercase transition-all bg-green-500 rounded hover:bg-green-700 active:scale-95"
-                >
-                  resume
-                </button>
-              </div> */}
-            </>
-          ) : (
+          {!isUploading ? (
             <>
               <label
                 htmlFor="title"
@@ -140,6 +112,34 @@ function Userstuff(): JSX.Element {
               >
                 Add Video
               </button>
+            </>
+          ) : (
+            <>
+              <h1 className="p-8 animate-pulse">
+                {" "}
+                {uploadProgress}% uploaded.
+              </h1>
+              {/* <span className="p-4 bg-white rounded-full animate-pulse" /> */}
+              {/* <div className="flex gap-2 ">
+                <button
+                  type="button"
+                  className="px-4 py-2 text-lg font-bold text-white uppercase transition-all bg-green-500 rounded hover:bg-green-700 active:scale-95"
+                >
+                  cancel
+                </button>
+                <button
+                  type="button"
+                  className="px-4 py-2 text-lg font-bold text-white uppercase transition-all bg-green-500 rounded hover:bg-green-700 active:scale-95"
+                >
+                  pause
+                </button>
+                <button
+                  type="button"
+                  className="px-4 py-2 text-lg font-bold text-white uppercase transition-all bg-green-500 rounded hover:bg-green-700 active:scale-95"
+                >
+                  resume
+                </button>
+              </div> */}
             </>
           )}
         </div>
