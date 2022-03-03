@@ -14,9 +14,7 @@ import { MdOutlineAddBox } from "react-icons/md";
 import UserContext from "../../Utils/UserContext";
 
 function Userstuff(): JSX.Element {
-  const user: {
-    name: string;
-  } = useContext(UserContext);
+  const user = useContext(UserContext);
 
   const [isAddVideoShown, setIsAddVideoShown] = useState(true);
   const [title, setTitle] = useState("");
@@ -85,7 +83,7 @@ function Userstuff(): JSX.Element {
             title,
             description,
             url: downloadURL,
-            uploader: user.name, // TODO: get user id from context
+            uploader: "user!.uid", // TODO: get user id from context
             likes: 0,
             dislikes: 0,
             comments: [],
@@ -98,7 +96,7 @@ function Userstuff(): JSX.Element {
     );
   };
 
-  return !user.name ? (
+  return !user ? (
     <div className="flex items-center justify-center h-full gap-4 p-4 text-2xl">
       <MdOutlineAddBox
         onClick={() => {
@@ -108,7 +106,7 @@ function Userstuff(): JSX.Element {
           isAddVideoShown && "rotate-[135deg]"
         } `}
       />
-      {user.name}
+      {user}
       {isAddVideoShown && (
         <div className="fixed z-50 flex flex-col items-center justify-center gap-4 p-8 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg dark:bg-[#1f232c] inset-1/2 w-fit h-fit ">
           {!isUploading ? (
