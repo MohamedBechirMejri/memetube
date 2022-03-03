@@ -84,7 +84,7 @@ function Userstuff(): JSX.Element {
             title,
             description,
             url: downloadURL,
-            uploader: "user!.uid", // TODO: get user id from context
+            uploader: auth.currentUser!.uid,
             likes: 0,
             dislikes: 0,
             comments: [],
