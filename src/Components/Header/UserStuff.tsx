@@ -35,6 +35,7 @@ function Userstuff(): JSX.Element {
     signInWithRedirect(auth, new GoogleAuthProvider());
   };
   const addVideo = (videoData: {
+    id: string;
     title: string;
     description: string;
     url: string;
@@ -81,6 +82,7 @@ function Userstuff(): JSX.Element {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
           const videoData = {
+            id: videoId,
             title,
             description,
             url: downloadURL,
