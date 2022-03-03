@@ -26,6 +26,7 @@ function Userstuff(): JSX.Element {
   const videoId = uniqid();
 
   const auth = getAuth();
+
   const db = getFirestore();
 
   const logOut = (): void => {
@@ -49,6 +50,15 @@ function Userstuff(): JSX.Element {
     setDoc(doc(db, "videos", videoId), {
       ...videoData,
     });
+    setDoc(
+      doc(db, "users", auth.currentUser!.uid),
+      {
+        displayName: auth.currentUser!.displayName,
+        photoURL: auth.currentUser!.photoURL,
+        videos: [videoId],
+      },
+      { merge: true }
+    );
   };
   const handleAddVideo = async (): Promise<void> => {
     if (video === null) {
@@ -207,6 +217,7 @@ function Userstuff(): JSX.Element {
             className="px-4 py-2 w-max border border-[#2bcf83] mx-1 rounded-lg hover:bg-[#2bcf83] transition-all active:scale-95"
           >
             {auth.currentUser!.displayName}
+            {/* <img className="rounded-full" src={auth.photoURL} alt="user" /> */}
           </Link>
           <button
             type="button"
