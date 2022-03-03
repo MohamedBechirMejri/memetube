@@ -53,7 +53,17 @@ function Userstuff(): JSX.Element {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
-          console.log("File available at", downloadURL);
+          const videoData = {
+            title,
+            description,
+            url: downloadURL,
+            uploader: user.name, // TODO: get user id from context
+            likes: 0,
+            dislikes: 0,
+            comments: [],
+            views: 0,
+            date: new Date().toISOString(),
+          };
         });
       }
     );
