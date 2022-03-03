@@ -71,7 +71,7 @@ function Userstuff(): JSX.Element {
       />
       {user.name}
       {isAddVideoShown && (
-        <div className="fixed z-50 flex flex-col items-center justify-center gap-4 p-4 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg dark:bg-[#1f232c] inset-1/2 w-fit h-fit ">
+        <div className="fixed z-50 flex flex-col items-center justify-center gap-4 p-8 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg dark:bg-[#1f232c] inset-1/2 w-fit h-fit ">
           {!isUploading ? (
             <>
               <label
@@ -99,19 +99,27 @@ function Userstuff(): JSX.Element {
                   onChange={e => setDescription(e.target.value)}
                 />
               </label>{" "}
-              <label htmlFor="video-file">
-                <input
-                  type="file"
-                  onChange={e => setVideo(e.target.files![0])}
-                />
-              </label>
-              <button
-                type="button"
-                className="px-4 py-2 font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-700"
-                onClick={handleAddVideo}
-              >
-                Add Video
-              </button>
+              <div>
+                <label
+                  htmlFor="video-file"
+                  className="px-4 py-2 font-bold text-white bg-red-500 rounded-lg cursor-pointer hover:bg-red-700"
+                >
+                  <input
+                    className="hidden"
+                    type="file"
+                    onChange={e => setVideo(e.target.files![0])}
+                    id="video-file"
+                  />
+                  Select Video
+                </label>
+                <button
+                  type="button"
+                  className="px-4 py-2 font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-700"
+                  onClick={handleAddVideo}
+                >
+                  Add Video
+                </button>
+              </div>
             </>
           ) : (
             <>
