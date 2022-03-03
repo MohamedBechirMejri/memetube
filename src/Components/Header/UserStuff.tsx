@@ -23,7 +23,7 @@ function Userstuff(): JSX.Element {
   const [video, setVideo] = useState(null as File | null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState("0");
-  const [videoId, setVideoId] = useState(uniqid());
+  const videoId = uniqid();
 
   const auth = getAuth();
   const db = getFirestore();
