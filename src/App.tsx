@@ -1,3 +1,4 @@
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./Components/Header";
@@ -11,9 +12,9 @@ function App(): JSX.Element {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const [user, setUser] = useState({
-    name: "",
-  });
+  const [user, setUser] = useState(null as object | null);
+  const auth = getAuth();
+  onAuthStateChanged(auth, usr => setUser(usr));
 
   return (
     <UserContext.Provider

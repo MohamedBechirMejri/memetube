@@ -10,6 +10,7 @@
     "@types/node": "^16.7.13",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
+    "firebase": "^9.6.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
@@ -18,6 +19,7 @@
     "react-scripts": "5.0.0",
     "react-useanimations": "^2.0.8",
     "typescript": "^4.4.2",
+    "uniqid": "^5.4.0",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -39,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "@types/uniqid": "^5.3.2",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
     "autoprefixer": "^10.4.2",

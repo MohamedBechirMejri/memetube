@@ -1,32 +1,46 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import turnNumerIntoWords from "../../Utils/turnNumbersIntoWords";
 
-function Details(): JSX.Element {
+function Details({
+  description,
+  uploader,
+}: {
+  description: string;
+  uploader: string;
+}): JSX.Element {
+  const [channel, setChannel] = useState({
+    displayName: "",
+    photoURL: "",
+    videos: [],
+  } as any);
+  useEffect(() => {
+    const db = getFirestore();
+    const channelRef = doc(
+      db,
+      `users`,
+      uploader! || "xvlvn3KIxNOnLvtuQwYgLLpNk8W2"
+    );
+    getDoc(channelRef).then(channelData =>
+      setChannel(channelData.data() as any)
+    );
+  }, [uploader]);
   return (
     <div className="flex flex-col gap-3 p-1">
       <div className="flex items-center justify-between">
         <div className="flex items-center justify-start">
           <img
-            src={
-              // TODO: get channel Logo from backend
-              "https://storage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg"
-            }
+            src={channel?.photoURL}
             alt="Channel Logo"
             className="w-12 h-12 m-2 rounded-[.65em] shadow-lg"
           />
           <div className="flex flex-col items-start justify-center">
-            <h2 className="font-bold">
-              {
-                // TODO: get channel name from backend
-                "Google"
-              }
-            </h2>
+            <h2 className="font-bold">{channel?.displayName}</h2>
             <p className="text-xs text-gray-400 ">
-              {
-                // TODO: get number of subs from backend
-                turnNumerIntoWords(123456789)
-              }{" "}
-              subscribers
+              {turnNumerIntoWords(channel?.subscribers || 0)} subscribers
             </p>
           </div>
         </div>
@@ -37,12 +51,7 @@ function Details(): JSX.Element {
           Subscribe
         </button>
       </div>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, ab!
-        Cupiditate a et quod repellendus blanditiis. Veritatis quidem corporis
-        soluta, recusandae cupiditate reprehenderit facilis tempora ratione
-        officia eius minus facere.
-      </p>
+      <p>{description}</p>
     </div>
   );
 }
