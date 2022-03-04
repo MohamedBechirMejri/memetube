@@ -9,7 +9,7 @@ function Player({ url }: { url: string }): JSX.Element {
       url={url}
       width="100%"
       height="100%"
-      className="overflow-hidden shadow-lg rounded-xl"
+      className="overflow-hidden shadow-lg rounded-xl max-h-[75vh]"
     />
   );
 }
