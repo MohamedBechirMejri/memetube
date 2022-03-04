@@ -34,6 +34,14 @@ function Userstuff(): JSX.Element {
   };
   const signIn = (): void => {
     signInWithRedirect(auth, new GoogleAuthProvider());
+    setDoc(
+      doc(db, "users", auth.currentUser!.uid),
+      {
+        displayName: auth.currentUser!.displayName,
+        photoURL: auth.currentUser!.photoURL,
+      },
+      { merge: true }
+    );
   };
   const addVideo = (videoData: {
     id: string;
@@ -50,15 +58,6 @@ function Userstuff(): JSX.Element {
     setDoc(doc(db, "videos", videoId), {
       ...videoData,
     });
-    setDoc(
-      doc(db, "users", auth.currentUser!.uid),
-      {
-        displayName: auth.currentUser!.displayName,
-        photoURL: auth.currentUser!.photoURL,
-        videos: [videoId],
-      },
-      { merge: true }
-    );
   };
   const handleAddVideo = async (): Promise<void> => {
     if (video === null) {
