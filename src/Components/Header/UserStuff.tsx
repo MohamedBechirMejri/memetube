@@ -214,15 +214,18 @@ function Userstuff(): JSX.Element {
         <div className="flex items-center justify-center gap-4 mx-1 text-xl font-semibold rounded-lg w-max">
           <Link
             to={`/user/${auth.currentUser!.uid}`}
-            className="px-4 py-2 w-max border border-[#2bcf83] mx-1 rounded-lg hover:bg-[#2bcf83] transition-all active:scale-95"
+            className="transition-all rounded-full hover:ring w-max active:scale-95"
           >
-            {auth.currentUser!.displayName}
-            {/* <img className="rounded-full" src={auth.photoURL} alt="user" /> */}
+            <img
+              className="rounded-full max-h-9"
+              src={auth.currentUser!.photoURL || ""}
+              alt="user"
+            />
           </Link>
           <button
             type="button"
             onClick={logOut}
-            className="px-4 py-2 w-max border border-[#cf2d2b] mx-1 rounded-lg hover:bg-[#cf2d2b] transition-all active:scale-95"
+            className="px-3 py-2 w-max border border-[#cf2d2b] mx-1 rounded-lg hover:bg-[#cf2d2b] transition-all active:scale-95"
           >
             <MdLogout />
           </button>
