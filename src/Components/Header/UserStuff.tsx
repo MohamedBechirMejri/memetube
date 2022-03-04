@@ -48,7 +48,11 @@ function Userstuff(): JSX.Element {
     title: string;
     description: string;
     url: string;
-    uploader: string;
+    uploader: {
+      displayName: string | null;
+      photoURL: string | null;
+      id: string;
+    };
     likes: number;
     dislikes: number;
     comments: object[];
@@ -95,7 +99,11 @@ function Userstuff(): JSX.Element {
             title,
             description,
             url: downloadURL,
-            uploader: auth.currentUser!.uid,
+            uploader: {
+              displayName: auth.currentUser!.displayName,
+              photoURL: auth.currentUser!.photoURL,
+              id: auth.currentUser!.uid,
+            },
             likes: 0,
             dislikes: 0,
             comments: [],

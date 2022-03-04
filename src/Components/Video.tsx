@@ -17,7 +17,11 @@ function Video(): JSX.Element {
     title: "",
     description: "",
     url: "",
-    uploader: "",
+    uploader: {
+      displayName: "",
+      photoURL: "",
+      id: "",
+    },
     likes: 0,
     dislikes: 0,
     comments: [],
@@ -48,7 +52,7 @@ function Video(): JSX.Element {
           <ToolBox />
         </div>
         <hr />
-        <Details description={video.description} uploader={video.uploader} />
+        <Details description={video.description} uploader={video.uploader.id} />
         <hr />
         <Comments />
       </div>

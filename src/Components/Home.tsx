@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
@@ -10,7 +11,11 @@ function Home(): JSX.Element {
       title: string;
       description: string;
       url: string;
-      uploader: string;
+      uploader: {
+        displayName: string;
+        photoURL: string;
+        id: string;
+      };
       likes: number;
       dislikes: number;
       comments: object[];
@@ -25,12 +30,16 @@ function Home(): JSX.Element {
   useEffect(() => {
     getDocs(videosRef)
       .then(snapshot => {
-        const videos = snapshot.docs.map(doc => doc.data()) as {
+        const videos = snapshot.docs.map(docmnt => docmnt.data()) as {
           id: string;
           title: string;
           description: string;
           url: string;
-          uploader: string;
+          uploader: {
+            displayName: string;
+            photoURL: string;
+            id: string;
+          };
           likes: number;
           dislikes: number;
           comments: object[];
@@ -65,7 +74,9 @@ function Home(): JSX.Element {
               />
               <div className="p-4">
                 <h3 className="mb-2 font-semibold md:text-xl">{video.title}</h3>
-                <p className="text-sm text-gray-400">{video.uploader}</p>
+                <p className="text-sm text-gray-400">
+                  {video.uploader.displayName}
+                </p>
               </div>
             </div>
           </Link>
