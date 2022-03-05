@@ -53,8 +53,8 @@ function Userstuff(): JSX.Element {
       photoURL: string | null;
       id: string;
     };
-    likes: number;
-    dislikes: number;
+    likes: string[];
+    dislikes: string[];
     comments: object[];
     views: number;
     date: string;
@@ -104,8 +104,8 @@ function Userstuff(): JSX.Element {
               photoURL: auth.currentUser!.photoURL,
               id: auth.currentUser!.uid,
             },
-            likes: 0,
-            dislikes: 0,
+            likes: [],
+            dislikes: [],
             comments: [],
             views: 0,
             date: new Date().toISOString(),

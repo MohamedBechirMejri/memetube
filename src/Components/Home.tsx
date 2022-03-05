@@ -16,8 +16,8 @@ function Home(): JSX.Element {
         photoURL: string;
         id: string;
       };
-      likes: number;
-      dislikes: number;
+      likes: string[];
+      dislikes: string[];
       comments: object[];
       views: number;
       date: string;
@@ -40,8 +40,8 @@ function Home(): JSX.Element {
             photoURL: string;
             id: string;
           };
-          likes: number;
-          dislikes: number;
+          likes: string[];
+          dislikes: string[];
           comments: object[];
           views: number;
           date: string;
