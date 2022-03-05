@@ -14,12 +14,7 @@ function Details({
   description: string;
   uploader: string;
 }): JSX.Element {
-  const [channel, setChannel] = useState({
-    displayName: "",
-    photoURL: "",
-    subscribers: [],
-    uid: "xvlvn3KIxNOnLvtuQwYgLLpNk8W2",
-  } as any);
+  const [channel, setChannel] = useState(null as any);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const db = getFirestore();
   const auth = getAuth();
@@ -66,7 +61,9 @@ function Details({
     }
   };
 
-  return channel && (
+  return !channel ? (
+    <div>Loading...</div>
+  ) : (
     <div className="flex flex-col gap-3 p-1">
       <div className="flex items-center justify-between">
         <Link
