@@ -11,6 +11,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import ReactPlayer from "react-player";
 // import {
 //   FaDiscord,
 //   FaFacebook,
@@ -81,8 +82,11 @@ function User(): JSX.Element {
     });
     const q = query(
       collection(db, "videos"),
-      where("uploader", "==", userData.uid)
+      where("uploader.id", "==", userData.uid)
     );
+    getDocs(q).then(videoos => {
+      setVideos(videoos.docs.map(v => v.data()));
+    });
   }, []);
 
   return (
@@ -141,9 +145,7 @@ function User(): JSX.Element {
           </h1>
           <p className="text-xs text-gray-400">
             {" "}
-            {turnNumerIntoWords(userData.subscribers.length)}
-            {" "}
-            subscribers
+            {turnNumerIntoWords(userData.subscribers.length)} subscribers
           </p>
           {/* <p className="px-4 py-2 text-center text-gray-200">I Make Videos!</p> */}
           {/* <button
@@ -155,18 +157,29 @@ function User(): JSX.Element {
         </div>
       </div>{" "}
       <div className="flex flex-wrap items-center justify-start gap-2 p-10 overflow-x-hidden overflow-y-scroll">
-        {videos.map(video => (
+        {videos.map((video,i) => (
           <div
-            className=" sm:w-[23em] hover:scale-[1.02] active:scale-[.995] transition-all"
+            className={`" sm:w-[23em] hover:scale-[1.02] active:scale-[.995] transition-all animate-reveal opacity-0"`}
             key={video.id}
+            style={{
+              animationDelay: `${i * 0.05}s`,
+            }}
           >
             <Link to={`/video/${video.id}`}>
-              <div className="overflow-hidden  bg-[#000000aa] rounded-lg shadow-lg">
-                <img src={video.image} alt={video.title} className="w-full" />
+              <div className="overflow-hidden bg-[#000000aa] rounded-lg shadow-lg">
+                <ReactPlayer
+                  url={video.url}
+                  width="100%"
+                  height="100%"
+                  className="overflow-hidden shadow-lg rounded-xl max-h-52"
+                />
                 <div className="p-4">
                   <h3 className="mb-2 font-semibold md:text-xl">
                     {video.title}
                   </h3>
+                  <p className="text-sm text-gray-400">
+                    {video.uploader.displayName}
+                  </p>
                 </div>
               </div>
             </Link>
