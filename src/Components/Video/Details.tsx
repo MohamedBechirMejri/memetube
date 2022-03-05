@@ -15,6 +15,7 @@ function Details({
   const [channel, setChannel] = useState({
     displayName: "",
     photoURL: "",
+    subscribers: [],
   } as any);
   useEffect(() => {
     const db = getFirestore();
@@ -32,14 +33,14 @@ function Details({
       <div className="flex items-center justify-between">
         <div className="flex items-center justify-start">
           <img
-            src={channel?.photoURL}
+            src={channel.photoURL}
             alt="Channel Logo"
             className="w-12 h-12 m-2 rounded-[.65em] shadow-lg"
           />
           <div className="flex flex-col items-start justify-center">
-            <h2 className="font-bold">{channel?.displayName}</h2>
+            <h2 className="font-bold">{channel.displayName}</h2>
             <p className="text-xs text-gray-400 ">
-              {turnNumerIntoWords(channel?.subscribers || 0)} subscribers
+              {turnNumerIntoWords(channel.subscribers.length)} subscribers
             </p>
           </div>
         </div>
