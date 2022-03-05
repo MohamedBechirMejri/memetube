@@ -6,8 +6,9 @@ import {
   AiOutlineLike,
 } from "react-icons/ai";
 import { MdOutlineLibraryAdd, MdOutlineShare } from "react-icons/md";
+import VideoData from "../../Types/VideoData";
 
-function ToolBox(): JSX.Element {
+function ToolBox({ video }: { video: VideoData }): JSX.Element {
   return (
     <div className="flex items-center gap-2">
       {" "}
@@ -16,14 +17,16 @@ function ToolBox(): JSX.Element {
         className="flex items-center gap-2 p-1 transition-all rounded hover:bg-slate-700 active:bg-slate-600"
       >
         {/* <AiFillLike /> */}
-        <AiOutlineLike />0
+        <AiOutlineLike />
+        {video.likes.length}
       </button>
       <button
         type="button"
         className="flex items-center gap-2 p-1 transition-all rounded hover:bg-slate-700 active:bg-slate-600"
       >
         {/* <AiFillDislike /> */}
-        <AiOutlineDislike />0
+        <AiOutlineDislike />
+        {video.dislikes.length}
       </button>
       <button
         type="button"

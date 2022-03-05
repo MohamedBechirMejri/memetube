@@ -49,7 +49,7 @@ function Video(): JSX.Element {
               {addCommasToNumber(video.views)} views
             </p>
           </div>
-          <ToolBox />
+          <ToolBox video={video} />
         </div>
         <hr />
         <Details description={video.description} uploader={video.uploader.id} />
