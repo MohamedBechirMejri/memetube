@@ -1,4 +1,16 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { getAuth } from "firebase/auth";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  query,
+  collection,
+  where,
+  getDocs,
+} from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 // import {
 //   FaDiscord,
 //   FaFacebook,
@@ -47,45 +59,32 @@ import turnNumerIntoWords from "../Utils/turnNumbersIntoWords";
 //   },
 // ];
 
-const videos = [
-  {
-    id: 1,
-    title: "React - The Complete Guide (incl Hooks, React Router, Redux)",
-    image: "https://img.youtube.com/vi/QH2-TGUlwu4/hqdefault.jpg",
-  },
-  {
-    id: 2,
-    title: "React - The Complete Guide (incl Hooks, React Router, Redux)",
-    image: "https://img.youtube.com/vi/QH2-TGUlwu4/hqdefault.jpg",
-  },
-  {
-    id: 3,
-    title: "React - The Complete Guide (incl Hooks, React Router, Redux)",
-    image: "https://img.youtube.com/vi/QH2-TGUlwu4/hqdefault.jpg",
-  },
-  {
-    id: 4,
-    title: "React - The Complete Guide (incl Hooks, React Router, Redux)",
-    image: "https://img.youtube.com/vi/QH2-TGUlwu4/hqdefault.jpg",
-  },
-  {
-    id: 5,
-    title: "React - The Complete Guide (incl Hooks, React Router, Redux)",
-    image: "https://img.youtube.com/vi/QH2-TGUlwu4/hqdefault.jpg",
-  },
-  {
-    id: 6,
-    title: "React - The Complete Guide (incl Hooks, React Router, Redux)",
-    image: "https://img.youtube.com/vi/QH2-TGUlwu4/hqdefault.jpg",
-  },
-  {
-    id: 7,
-    title: "React - The Complete Guide (incl Hooks, React Router, Redux)",
-    image: "https://img.youtube.com/vi/QH2-TGUlwu4/hqdefault.jpg",
-  },
-];
-
 function User(): JSX.Element {
+  const [videos, setVideos] = useState([] as any[]);
+  const [userData, setUserData] = useState({
+    displayName: "",
+    photoURL: "",
+    subscribers: [],
+    uid: "xvlvn3KIxNOnLvtuQwYgLLpNk8W2",
+  } as any);
+
+  useEffect(() => {
+    const db = getFirestore();
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user === null) {
+      return;
+    }
+    const userRef = doc(db, `users`, user.uid);
+    getDoc(userRef).then(usr => {
+      setUserData(usr.data() as any);
+    });
+    const q = query(
+      collection(db, "videos"),
+      where("uploader", "==", userData.uid)
+    );
+  }, []);
+
   return (
     <div className="w-full py-10">
       <div className="relative">
@@ -133,26 +132,26 @@ function User(): JSX.Element {
         </div> */}
         <div className="flex flex-col items-center justify-start w-full ">
           <img
-            src="https://picsum.photos/500"
+            src={userData.photoURL}
             alt="User"
             className="rounded-full w-20 sm-w-[9em] ring ring-[#ffffff8c]"
           />
-          <h1 className="pt-4 text-xl font-semibold text-gray-200">User</h1>
+          <h1 className="pt-4 text-xl font-semibold text-gray-200">
+            {userData.displayName}
+          </h1>
           <p className="text-xs text-gray-400">
             {" "}
-            {
-              // TODO: get number of subs from backend
-              turnNumerIntoWords(123456789)
-            }{" "}
+            {turnNumerIntoWords(userData.subscribers.length)}
+            {" "}
             subscribers
           </p>
-          <p className="px-4 py-2 text-center text-gray-200">I Make Videos!</p>
-          <button
+          {/* <p className="px-4 py-2 text-center text-gray-200">I Make Videos!</p> */}
+          {/* <button
             type="button"
             className="border-[#cf2d2b] border-2 py-2 px-4 m-2 rounded-lg hover:bg-[#cf2d2b] active:scale-[.98] transition-all hover:text-white text-sm font-medium"
           >
             Subscribe
-          </button>
+          </button> */}
         </div>
       </div>{" "}
       <div className="flex flex-wrap items-center justify-start gap-2 p-10 overflow-x-hidden overflow-y-scroll">
