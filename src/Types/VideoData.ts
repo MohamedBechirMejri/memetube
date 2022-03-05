@@ -11,7 +11,7 @@ interface VideoData {
   likes: string[];
   dislikes: string[];
   comments: object[];
-  views: number;
+  views: string[];
   date: string;
 }
 export default VideoData;

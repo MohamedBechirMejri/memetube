@@ -26,7 +26,7 @@ function Video(): JSX.Element {
     likes: [],
     dislikes: [],
     comments: [],
-    views: 0,
+    views: [],
     date: "",
   });
 
@@ -51,7 +51,7 @@ function Video(): JSX.Element {
           <div>
             <h1 className="font-medium text-[#e6e8e9]">{video.title}</h1>
             <p className="text-xs text-[#acb1b8] ">
-              {addCommasToNumber(video.views)} views
+              {addCommasToNumber(video.views.length || 0)} views
             </p>
           </div>
           <ToolBox video={video} getVideoData={getVideoData} />

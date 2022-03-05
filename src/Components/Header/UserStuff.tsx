@@ -93,7 +93,7 @@ function Userstuff(): JSX.Element {
             likes: [],
             dislikes: [],
             comments: [],
-            views: 0,
+            views: [],
             date: new Date().toISOString(),
           };
           addVideo(videoData);

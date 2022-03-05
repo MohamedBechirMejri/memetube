@@ -15,7 +15,6 @@ function Details({
   const [channel, setChannel] = useState({
     displayName: "",
     photoURL: "",
-    videos: [],
   } as any);
   useEffect(() => {
     const db = getFirestore();
