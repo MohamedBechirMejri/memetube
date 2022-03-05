@@ -11,12 +11,14 @@ import { doc, getFirestore, setDoc } from "firebase/firestore";
 
 import uniqid from "uniqid";
 import { MdLogout, MdOutlineAddBox } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../../Utils/UserContext";
 import VideoData from "../../Types/VideoData";
 
 function Userstuff(): JSX.Element {
   const user = useContext(UserContext);
+
+  const navigate = useNavigate();
 
   const [isAddVideoShown, setIsAddVideoShown] = useState(false);
   const [title, setTitle] = useState("");
@@ -99,6 +101,9 @@ function Userstuff(): JSX.Element {
             date: new Date().toISOString(),
           };
           addVideo(videoData);
+          setIsUploading(false);
+          setIsAddVideoShown(false);
+          navigate(`/video/${videoId}`);
         });
       }
     );
