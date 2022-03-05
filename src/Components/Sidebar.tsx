@@ -73,15 +73,17 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           </span>{" "}
           History
         </NavLink> */}
-        <NavLink
-          to={`/user/${getAuth().currentUser!.uid}`}
-          className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
-        >
-          <span>
-            <MdOndemandVideo />
-          </span>{" "}
-          Your Videos
-        </NavLink>
+        {getAuth().currentUser && (
+          <NavLink
+            to={`/user/${getAuth().currentUser!.uid}`}
+            className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
+          >
+            <span>
+              <MdOndemandVideo />
+            </span>{" "}
+            Your Videos
+          </NavLink>
+        )}
         {/* <NavLink
           to="/"
           className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
