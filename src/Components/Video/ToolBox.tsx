@@ -86,32 +86,36 @@ function ToolBox({
   return (
     <div className="flex items-center gap-2">
       {" "}
-      <button
-        type="button"
-        className="flex items-center gap-2 p-1 transition-all rounded hover:bg-slate-700 active:bg-slate-600"
-        onClick={() => {
-          handleLike();
-          getVideoData();
-        }}
-      >
-        {likes.includes(user!.uid) ? <AiFillLike /> : <AiOutlineLike />}
-        {likes.length}
-      </button>
-      <button
-        type="button"
-        className="flex items-center gap-2 p-1 transition-all rounded hover:bg-slate-700 active:bg-slate-600"
-        onClick={() => {
-          handleDislike();
-          getVideoData();
-        }}
-      >
-        {dislikes.includes(user!.uid) ? (
-          <AiFillDislike />
-        ) : (
-          <AiOutlineDislike />
-        )}
-        {dislikes.length}
-      </button>
+      {user && (
+        <>
+          <button
+            type="button"
+            className="flex items-center gap-2 p-1 transition-all rounded hover:bg-slate-700 active:bg-slate-600"
+            onClick={() => {
+              handleLike();
+              getVideoData();
+            }}
+          >
+            {likes.includes(user!.uid) ? <AiFillLike /> : <AiOutlineLike />}
+            {likes.length}
+          </button>
+          <button
+            type="button"
+            className="flex items-center gap-2 p-1 transition-all rounded hover:bg-slate-700 active:bg-slate-600"
+            onClick={() => {
+              handleDislike();
+              getVideoData();
+            }}
+          >
+            {dislikes.includes(user!.uid) ? (
+              <AiFillDislike />
+            ) : (
+              <AiOutlineDislike />
+            )}
+            {dislikes.length}
+          </button>
+        </>
+      )}
       {/* <button
         type="button"
         className="flex items-center gap-2 p-1 transition-all rounded hover:bg-slate-700 active:bg-slate-600"
