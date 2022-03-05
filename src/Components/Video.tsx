@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDoc, getFirestore, doc, setDoc } from "firebase/firestore";
@@ -44,17 +45,20 @@ function Video(): JSX.Element {
 
   useEffect(() => {
     getVideoData();
-    if (user === null) {
-      return;
-    }
-    if (!video.views.includes(user.uid))
-      setDoc(
-        doc(db, "videos", video.id),
-        {
-          views: [...video.views, user!.uid],
-        },
-        { merge: true }
-      );
+    const unsub = (): void => {
+      if (user === null) {
+        return;
+      }
+      if (!video.views.includes(user.uid))
+        setDoc(
+          doc(db, "videos", video.id),
+          {
+            views: [...video.views, user!.uid],
+          },
+          { merge: true }
+        );
+    };
+    return unsub;
   }, []);
 
   return (
