@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useEffect, useState } from "react";
@@ -29,11 +30,15 @@ function Video(): JSX.Element {
     date: "",
   });
 
-  useEffect(() => {
+  const getVideoData = (): void => {
     const id = params.videoId;
     const db = getFirestore();
     const videoRef = doc(db, `videos`, id!);
     getDoc(videoRef).then(videoData => setVideo(videoData.data() as any));
+  };
+
+  useEffect(() => {
+    getVideoData();
   }, []);
 
   return (
@@ -49,7 +54,7 @@ function Video(): JSX.Element {
               {addCommasToNumber(video.views)} views
             </p>
           </div>
-          <ToolBox video={video} />
+          <ToolBox video={video} getVideoData={getVideoData} />
         </div>
         <hr />
         <Details description={video.description} uploader={video.uploader.id} />
