@@ -23,7 +23,13 @@ function App(): JSX.Element {
       value={user}
     >
       <div className="bg-white dark:bg-[#1f232c] min-h-screen w-screen dark:text-white flex flex-col items-start justify-start overflow-hidden">
-        <Toaster />
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            duration: 2000,
+            className: "bg-white dark:bg-[#1f232c] dark:text-white",
+          }}
+        />
         <Header
           isDarkMode={isDarkMode}
           setIsDarkMode={setIsDarkMode}
