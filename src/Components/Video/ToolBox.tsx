@@ -12,6 +12,7 @@ import {
   // MdOutlineLibraryAdd,
   MdOutlineShare,
 } from "react-icons/md";
+import toast from "react-hot-toast";
 import VideoData from "../../Types/VideoData";
 
 function ToolBox({
@@ -28,7 +29,7 @@ function ToolBox({
   const { likes, dislikes } = video;
 
   const handleLike = (): void => {
-    if (user === null) {
+    if (user === null || video.likes === []) {
       return;
     }
     if (likes.includes(user.uid)) {
@@ -52,7 +53,7 @@ function ToolBox({
   };
 
   const handleDislike = (): void => {
-    if (user === null) {
+    if (user === null || video.likes === []) {
       return;
     }
     if (dislikes.includes(user.uid)) {
@@ -76,9 +77,10 @@ function ToolBox({
   };
 
   const handleShare = (): void => {
+    const notify = (): string => toast("Copied to clipboard");
     // copy link to clipboard
     navigator.clipboard.writeText(window.location.href);
-
+    notify();
   };
 
   return (
