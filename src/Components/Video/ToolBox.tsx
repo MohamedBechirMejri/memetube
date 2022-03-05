@@ -29,7 +29,7 @@ function ToolBox({
   const { likes, dislikes } = video;
 
   const handleLike = (): void => {
-    if (user === null) {
+    if (user === null || video.likes === []) {
       return;
     }
     if (likes.includes(user.uid)) {
@@ -53,7 +53,7 @@ function ToolBox({
   };
 
   const handleDislike = (): void => {
-    if (user === null) {
+    if (user === null || video.likes === []) {
       return;
     }
     if (dislikes.includes(user.uid)) {
