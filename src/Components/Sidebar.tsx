@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from "react";
 import { NavLink } from "react-router-dom";
 import {
@@ -13,6 +14,7 @@ import {
 import { RiHeart2Line, RiSettings3Line } from "react-icons/ri";
 import { BsPatchExclamation } from "react-icons/bs";
 import { TiHomeOutline } from "react-icons/ti";
+import { getAuth } from "firebase/auth";
 
 function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
   return (
@@ -72,7 +74,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
           History
         </NavLink> */}
         <NavLink
-          to="/"
+          to={`/user/${getAuth().currentUser!.uid}`}
           className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
           <span>
@@ -122,7 +124,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
       </div> */}
       <hr />
       <div className="w-full">
-        <NavLink
+        {/* <NavLink
           to="settings"
           className="flex items-center justify-start w-full gap-2 p-4 px-4 transition-all hover:bg-gray-600 hover:text-white"
         >
@@ -130,7 +132,7 @@ function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }): JSX.Element {
             <RiSettings3Line />
           </span>{" "}
           Settings
-        </NavLink>{" "}
+        </NavLink>{" "} */}
         <a
           href="https://github.com/MohamedBechirMejri/beautube/issues"
           target="_blank"
