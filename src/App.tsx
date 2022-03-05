@@ -1,5 +1,6 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import React, { useState } from "react";
+import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 import Header from "./Components/Header";
 import Home from "./Components/Home";
@@ -22,6 +23,7 @@ function App(): JSX.Element {
       value={user}
     >
       <div className="bg-white dark:bg-[#1f232c] min-h-screen w-screen dark:text-white flex flex-col items-start justify-start overflow-hidden">
+        <Toaster />
         <Header
           isDarkMode={isDarkMode}
           setIsDarkMode={setIsDarkMode}
