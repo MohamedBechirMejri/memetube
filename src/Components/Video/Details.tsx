@@ -4,6 +4,7 @@
 import { getAuth } from "firebase/auth";
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import turnNumerIntoWords from "../../Utils/turnNumbersIntoWords";
 
 function Details({
@@ -17,6 +18,7 @@ function Details({
     displayName: "",
     photoURL: "",
     subscribers: [],
+    uid: "xvlvn3KIxNOnLvtuQwYgLLpNk8W2",
   } as any);
   const [isSubscribed, setIsSubscribed] = useState(false);
 
@@ -66,24 +68,13 @@ function Details({
     }
   };
 
-  // getDoc(channelRef).then(channelData => {
-  //   const { subscribers } = channelData.data()!;
-  //   setIsSubscribed(subscribers.includes(auth.currentUser!.uid));
-  //   setDoc(
-  //     channelRef,
-  //     {
-  //       subscribers: isSubscribed
-  //         ? subscribers.filter((sub: string) => sub !== auth.currentUser!.uid)
-  //         : [...subscribers, auth.currentUser!.uid],
-  //     },
-  //     { merge: true }
-  //   );
-  // });
-
   return (
     <div className="flex flex-col gap-3 p-1">
       <div className="flex items-center justify-between">
-        <div className="flex items-center justify-start">
+        <Link
+          to={`/user/${channel.uid}`}
+          className="flex items-center justify-start"
+        >
           <img
             src={channel.photoURL}
             alt="Channel Logo"
@@ -95,7 +86,7 @@ function Details({
               {turnNumerIntoWords(channel.subscribers.length)} subscribers
             </p>
           </div>
-        </div>
+        </Link>
         <button
           type="button"
           className="border-[#cf2d2b] border-2 py-2 px-4 m-2 rounded-lg hover:bg-[#cf2d2b] active:scale-[.98] transition-all hover:text-white text-sm font-medium"

@@ -41,6 +41,7 @@ function Userstuff(): JSX.Element {
         displayName: auth.currentUser!.displayName,
         photoURL: auth.currentUser!.photoURL,
         subscribers: [],
+        uid: auth.currentUser!.uid,
       },
       { merge: true }
     );
