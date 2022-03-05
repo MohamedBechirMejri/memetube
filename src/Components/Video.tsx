@@ -79,7 +79,7 @@ function Video(): JSX.Element {
         <hr />
         <Details description={video.description} uploader={video.uploader.id} />
         <hr />
-        <Comments />
+        {/* <Comments /> */}
       </div>
       <RelatedVideos />
     </div>
