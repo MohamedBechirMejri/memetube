@@ -85,15 +85,17 @@ function Details({
             </p>
           </div>
         </Link>
-        <button
-          type="button"
-          className={`" border-[#cf2d2b] border-2 py-2 px-4 m-2 rounded-lg hover:bg-[#cf2d2b] ${
-            isSubscribed && "bg-[#cf2d2b] hover:bg-[#cf2e2b83] "
-          } active:scale-[.98] transition-all hover:text-white text-sm font-medium "`}
-          onClick={handleSubscribe}
-        >
-          {isSubscribed ? "Unsubscribe" : "Subscribe"}
-        </button>
+        {user && user.uid !== channel.uid && (
+          <button
+            type="button"
+            className={`" border-[#cf2d2b] border-2 py-2 px-4 m-2 rounded-lg hover:bg-[#cf2d2b] ${
+              isSubscribed && "bg-[#cf2d2b] hover:bg-[#cf2e2b83] "
+            } active:scale-[.98] transition-all hover:text-white text-sm font-medium "`}
+            onClick={handleSubscribe}
+          >
+            {isSubscribed ? "Unsubscribe" : "Subscribe"}
+          </button>
+        )}
       </div>
       <p className="px-20">{description}</p>
     </div>
