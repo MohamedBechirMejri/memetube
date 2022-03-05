@@ -75,6 +75,12 @@ function ToolBox({
     }
   };
 
+  const handleShare = (): void => {
+    // copy link to clipboard
+    navigator.clipboard.writeText(window.location.href);
+
+  };
+
   return (
     <div className="flex items-center gap-2">
       {" "}
@@ -113,6 +119,9 @@ function ToolBox({
       <button
         type="button"
         className="flex items-center gap-2 p-1 transition-all rounded hover:bg-slate-700 active:bg-slate-600"
+        onClick={() => {
+          handleShare();
+        }}
       >
         <MdOutlineShare /> Share
       </button>
