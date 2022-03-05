@@ -62,12 +62,7 @@ import turnNumerIntoWords from "../Utils/turnNumbersIntoWords";
 
 function User(): JSX.Element {
   const [videos, setVideos] = useState([] as any[]);
-  const [userData, setUserData] = useState({
-    displayName: "",
-    photoURL: "",
-    subscribers: [],
-    uid: "xvlvn3KIxNOnLvtuQwYgLLpNk8W2",
-  } as any);
+  const [userData, setUserData] = useState(null as any);
 
   useEffect(() => {
     const db = getFirestore();
@@ -89,7 +84,9 @@ function User(): JSX.Element {
     });
   }, []);
 
-  return (
+  return !userData ? (
+    <div>Loading...</div>
+  ) : (
     <div className="w-full py-10">
       <div className="relative">
         {/* <img
@@ -157,7 +154,7 @@ function User(): JSX.Element {
         </div>
       </div>{" "}
       <div className="flex flex-wrap items-center justify-start gap-2 p-10 overflow-x-hidden overflow-y-scroll">
-        {videos.map((video,i) => (
+        {videos.map((video, i) => (
           <div
             className={`" sm:w-[23em] hover:scale-[1.02] active:scale-[.995] transition-all animate-reveal opacity-0"`}
             key={video.id}
