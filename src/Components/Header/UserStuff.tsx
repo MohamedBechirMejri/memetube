@@ -13,6 +13,7 @@ import uniqid from "uniqid";
 import { MdLogout, MdOutlineAddBox } from "react-icons/md";
 import { Link } from "react-router-dom";
 import UserContext from "../../Utils/UserContext";
+import VideoData from "../../Types/VideoData";
 
 function Userstuff(): JSX.Element {
   const user = useContext(UserContext);
@@ -43,22 +44,7 @@ function Userstuff(): JSX.Element {
       { merge: true }
     );
   };
-  const addVideo = (videoData: {
-    id: string;
-    title: string;
-    description: string;
-    url: string;
-    uploader: {
-      displayName: string | null;
-      photoURL: string | null;
-      id: string;
-    };
-    likes: string[];
-    dislikes: string[];
-    comments: object[];
-    views: number;
-    date: string;
-  }): void => {
+  const addVideo = (videoData: VideoData): void => {
     setDoc(doc(db, "videos", videoId), {
       ...videoData,
     });
