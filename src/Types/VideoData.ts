@@ -1,4 +1,4 @@
-type VideoData = {
+interface VideoData {
   id: string;
   title: string;
   description: string;
@@ -13,5 +13,5 @@ type VideoData = {
   comments: object[];
   views: number;
   date: string;
-};
+}
 export default VideoData;
