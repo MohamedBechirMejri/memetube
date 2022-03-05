@@ -51,7 +51,7 @@ function Details({
           Subscribe
         </button>
       </div>
-      <p>{description}</p>
+      <p className="px-20">{description}</p>
     </div>
   );
 }
