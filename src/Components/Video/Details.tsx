@@ -18,6 +18,8 @@ function Details({
     photoURL: "",
     subscribers: [],
   } as any);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
   useEffect(() => {
     const db = getFirestore();
     const channelRef = doc(
@@ -25,33 +27,58 @@ function Details({
       `users`,
       uploader! || "xvlvn3KIxNOnLvtuQwYgLLpNk8W2"
     );
-    getDoc(channelRef).then(channelData =>
-      setChannel(channelData.data() as any)
-    );
+    getDoc(channelRef).then(channelData => {
+      setChannel(channelData.data() as any);
+      setIsSubscribed(channel.subscribers.includes(getAuth().currentUser!.uid));
+    });
   }, [uploader]);
-
 
   const handleSubscribe = (): void => {
     const db = getFirestore();
     const auth = getAuth();
-    const channelRef = doc(
-      db,
-      `users`,
-      uploader! || "xvlvn3KIxNOnLvtuQwYgLLpNk8W2"
-    );
-    getDoc(channelRef).then(channelData => {
-      const {subscribers} = channelData.data()!;
+    const user = auth.currentUser;
+    const channelRef = doc(db, `users`, uploader!);
+
+    if (user === null) {
+      return;
+    }
+
+    if (isSubscribed) {
       setDoc(
         channelRef,
         {
-          subscribers: [...subscribers, auth.currentUser!.uid],
+          subscribers: channel.subscribers.filter(
+            (subscriber: string) => subscriber !== user.uid
+          ),
         },
         { merge: true }
       );
-    });
+      setIsSubscribed(false);
+    } else {
+      setDoc(
+        channelRef,
+        {
+          subscribers: [...channel.subscribers, user.uid],
+        },
+        { merge: true }
+      );
+      setIsSubscribed(true);
+    }
   };
 
-
+  // getDoc(channelRef).then(channelData => {
+  //   const { subscribers } = channelData.data()!;
+  //   setIsSubscribed(subscribers.includes(auth.currentUser!.uid));
+  //   setDoc(
+  //     channelRef,
+  //     {
+  //       subscribers: isSubscribed
+  //         ? subscribers.filter((sub: string) => sub !== auth.currentUser!.uid)
+  //         : [...subscribers, auth.currentUser!.uid],
+  //     },
+  //     { merge: true }
+  //   );
+  // });
 
   return (
     <div className="flex flex-col gap-3 p-1">
@@ -72,8 +99,9 @@ function Details({
         <button
           type="button"
           className="border-[#cf2d2b] border-2 py-2 px-4 m-2 rounded-lg hover:bg-[#cf2d2b] active:scale-[.98] transition-all hover:text-white text-sm font-medium"
+          onClick={handleSubscribe}
         >
-          Subscribe
+          {isSubscribed ? "Unsubscribe" : "Subscribe"}
         </button>
       </div>
       <p className="px-20">{description}</p>
