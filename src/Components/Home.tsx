@@ -3,26 +3,10 @@ import { collection, getDocs, getFirestore } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
+import VideoData from "../Types/VideoData";
 
 function Home(): JSX.Element {
-  const [videosList, setVideosList] = useState(
-    [] as {
-      id: string;
-      title: string;
-      description: string;
-      url: string;
-      uploader: {
-        displayName: string;
-        photoURL: string;
-        id: string;
-      };
-      likes: string[];
-      dislikes: string[];
-      comments: object[];
-      views: number;
-      date: string;
-    }[]
-  );
+  const [videosList, setVideosList] = useState([] as VideoData[]);
 
   const db = getFirestore();
   const videosRef = collection(db, "videos");
@@ -30,22 +14,9 @@ function Home(): JSX.Element {
   useEffect(() => {
     getDocs(videosRef)
       .then(snapshot => {
-        const videos = snapshot.docs.map(docmnt => docmnt.data()) as {
-          id: string;
-          title: string;
-          description: string;
-          url: string;
-          uploader: {
-            displayName: string;
-            photoURL: string;
-            id: string;
-          };
-          likes: string[];
-          dislikes: string[];
-          comments: object[];
-          views: number;
-          date: string;
-        }[];
+        const videos = snapshot.docs.map(docmnt =>
+          docmnt.data()
+        ) as VideoData[];
 
         setVideosList(videos);
       })
