@@ -4,8 +4,8 @@ interface VideoData {
   description: string;
   url: string;
   uploader: {
-    displayName: string;
-    photoURL: string;
+    displayName: string | null;
+    photoURL: string | null;
     id: string;
   };
   likes: string[];
