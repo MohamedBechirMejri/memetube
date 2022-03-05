@@ -35,7 +35,7 @@ function Header({
         </span>
         <Link to="/">
           {" "}
-          <h1>BT</h1>
+          <h1 className="text-2xl font-extrabold">BT</h1>
         </Link>
       </div>
       <Searchbar />
