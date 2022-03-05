@@ -66,7 +66,7 @@ function Details({
     }
   };
 
-  return (
+  return channel && (
     <div className="flex flex-col gap-3 p-1">
       <div className="flex items-center justify-between">
         <Link
