@@ -12,6 +12,7 @@ import {
   // MdOutlineLibraryAdd,
   MdOutlineShare,
 } from "react-icons/md";
+import toast from "react-hot-toast";
 import VideoData from "../../Types/VideoData";
 
 function ToolBox({
@@ -76,9 +77,10 @@ function ToolBox({
   };
 
   const handleShare = (): void => {
+    const notify = (): string => toast("Copied to clipboard");
     // copy link to clipboard
     navigator.clipboard.writeText(window.location.href);
-
+    notify();
   };
 
   return (
