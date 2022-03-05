@@ -3,13 +3,15 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getDoc, getFirestore, doc } from "firebase/firestore";
+import { getDoc, getFirestore, doc, setDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 import Player from "./Video/Player";
 import RelatedVideos from "./Video/RelatedVideos";
 import ToolBox from "./Video/ToolBox";
 import Comments from "./Video/Comments";
 import Details from "./Video/Details";
 import addCommasToNumber from "../Utils/addCommasToNumber";
+import VideoData from "../Types/VideoData";
 
 function Video(): JSX.Element {
   const params = useParams();
@@ -28,17 +30,31 @@ function Video(): JSX.Element {
     comments: [],
     views: [],
     date: "",
-  });
+  } as VideoData);
+
+  const db = getFirestore();
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   const getVideoData = (): void => {
     const id = params.videoId;
-    const db = getFirestore();
     const videoRef = doc(db, `videos`, id!);
     getDoc(videoRef).then(videoData => setVideo(videoData.data() as any));
   };
 
   useEffect(() => {
     getVideoData();
+    if (user === null) {
+      return;
+    }
+    if (!video.views.includes(user.uid))
+      setDoc(
+        doc(db, "videos", video.id),
+        {
+          views: [...video.views, user!.uid],
+        },
+        { merge: true }
+      );
   }, []);
 
   return (
