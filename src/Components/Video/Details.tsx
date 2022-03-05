@@ -21,9 +21,10 @@ function Details({
     uid: "xvlvn3KIxNOnLvtuQwYgLLpNk8W2",
   } as any);
   const [isSubscribed, setIsSubscribed] = useState(false);
-
+  const db = getFirestore();
+  const auth = getAuth();
+  const user = auth.currentUser;
   useEffect(() => {
-    const db = getFirestore();
     const channelRef = doc(
       db,
       `users`,
@@ -31,14 +32,11 @@ function Details({
     );
     getDoc(channelRef).then(channelData => {
       setChannel(channelData.data() as any);
-      setIsSubscribed(channel.subscribers.includes(getAuth().currentUser!.uid));
+      setIsSubscribed(channel.subscribers.includes(user!.uid));
     });
   }, [uploader]);
 
   const handleSubscribe = (): void => {
-    const db = getFirestore();
-    const auth = getAuth();
-    const user = auth.currentUser;
     const channelRef = doc(db, `users`, uploader!);
 
     if (user === null) {
