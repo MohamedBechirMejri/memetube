@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import turnNumerIntoWords from "../../Utils/turnNumbersIntoWords";
 
@@ -28,6 +29,30 @@ function Details({
       setChannel(channelData.data() as any)
     );
   }, [uploader]);
+
+
+  const handleSubscribe = (): void => {
+    const db = getFirestore();
+    const auth = getAuth();
+    const channelRef = doc(
+      db,
+      `users`,
+      uploader! || "xvlvn3KIxNOnLvtuQwYgLLpNk8W2"
+    );
+    getDoc(channelRef).then(channelData => {
+      const {subscribers} = channelData.data()!;
+      setDoc(
+        channelRef,
+        {
+          subscribers: [...subscribers, auth.currentUser!.uid],
+        },
+        { merge: true }
+      );
+    });
+  };
+
+
+
   return (
     <div className="flex flex-col gap-3 p-1">
       <div className="flex items-center justify-between">
