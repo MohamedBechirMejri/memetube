@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getAuth } from "firebase/auth";
@@ -22,7 +23,7 @@ import ReactPlayer from "react-player";
 //   FaTwitch,
 //   FaTwitter,
 // } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import turnNumerIntoWords from "../Utils/turnNumbersIntoWords";
 
 // const socials = [
@@ -64,24 +65,26 @@ function User(): JSX.Element {
   const [videos, setVideos] = useState([] as any[]);
   const [userData, setUserData] = useState(null as any);
 
-  useEffect(() => {
+  const params = useParams();
+
+  const getData = async (): Promise<void> => {
     const db = getFirestore();
-    const auth = getAuth();
-    const user = auth.currentUser;
-    if (user === null) {
-      return;
-    }
-    const userRef = doc(db, `users`, user.uid);
+    const id = params.userId;
+
+    const userRef = doc(db, `users`, id!);
+    const videosRef = collection(db, `videos`);
     getDoc(userRef).then(usr => {
-      setUserData(usr.data() as any);
+      const usrData = usr.data();
+      setUserData(usrData as any);
+      const q = query(videosRef, where("uploader.id", "==", usrData!.uid));
+      getDocs(q).then(videoos => {
+        setVideos(videoos.docs.map(v => v.data()));
+      });
     });
-    const q = query(
-      collection(db, "videos"),
-      where("uploader.id", "==", userData.uid)
-    );
-    getDocs(q).then(videoos => {
-      setVideos(videoos.docs.map(v => v.data()));
-    });
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   return !userData ? (
