@@ -6,7 +6,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-import { getAuth, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 
 import uniqid from "uniqid";
@@ -29,24 +29,26 @@ function Userstuff(): JSX.Element {
   const videoId = uniqid();
 
   const auth = getAuth();
-
   const db = getFirestore();
 
   const logOut = (): void => {
     auth.signOut();
   };
   const signIn = (): void => {
-    signInWithRedirect(auth, new GoogleAuthProvider());
-    setDoc(
-      doc(db, "users", auth.currentUser!.uid),
-      {
-        displayName: auth.currentUser!.displayName,
-        photoURL: auth.currentUser!.photoURL,
-        subscribers: [],
-        uid: auth.currentUser!.uid,
-      },
-      { merge: true }
-    );
+    signInWithPopup(auth, new GoogleAuthProvider()).then(result => {
+      const userdata = result.user;
+
+      setDoc(
+        doc(db, "users", userdata.uid),
+        {
+          displayName: userdata.displayName,
+          photoURL: userdata.photoURL,
+          subscribers: [],
+          uid: userdata.uid,
+        },
+        { merge: true }
+      );
+    });
   };
   const addVideo = (videoData: VideoData): void => {
     setDoc(doc(db, "videos", videoId), {
