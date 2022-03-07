@@ -6,6 +6,7 @@ module.exports = {
         revealSidebar: "revealSidebar 0.5s ease-in-out forwards",
         hideSidebar: "hideSidebar 0.5s ease-in-out forwards",
         reveal: "reveal 0.45s  forwards",
+        revealAddVideo: "revealAddVideo 0.3s  forwards",
       },
       keyframes: {
         revealSidebar: {
@@ -43,6 +44,16 @@ module.exports = {
             transform: "translateY(-1%)",
             opacity: ".5",
           },
+          "100%": {
+            opacity: "1",
+          },
+        },
+        revealAddVideo: {
+          "0%": {
+            opacity: "0",
+            transform: "translate(-50%, -30%)",
+          },
+
           "100%": {
             opacity: "1",
           },

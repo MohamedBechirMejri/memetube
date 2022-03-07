@@ -123,7 +123,7 @@ function Userstuff(): JSX.Element {
       />
       {/* {user} */}
       {isAddVideoShown && (
-        <div className="fixed z-50 flex flex-col items-center justify-center gap-4 p-8 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg dark:bg-[#202124] inset-1/2 w-fit h-fit border border-[#202124] dark:border-white">
+        <div className="fixed z-50 flex flex-col items-center justify-center gap-4 p-8 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg dark:bg-[#202124] inset-1/2 w-fit h-fit border border-[#202124] dark:border-white animate-revealAddVideo ">
           {!isUploading ? (
             <>
               <label
