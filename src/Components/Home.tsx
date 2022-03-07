@@ -27,7 +27,7 @@ function Home(): JSX.Element {
   }, []);
 
   return (
-    <div className="flex flex-wrap items-start justify-start gap-2 p-10 overflow-x-hidden overflow-y-scroll ">
+    <div className="flex flex-wrap items-start justify-start gap-2 p-10 mx-auto overflow-x-hidden overflow-y-scroll ">
       {videosList.map((video, i) => (
         <div
           className={`" sm:w-[23em] hover:scale-[1.02] active:scale-[.995] transition-all animate-reveal opacity-0"`}
