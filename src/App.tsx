@@ -22,12 +22,12 @@ function App(): JSX.Element {
       // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={user}
     >
-      <div className="bg-white dark:bg-[#1f232c] min-h-screen w-screen dark:text-white flex flex-col items-start justify-start overflow-hidden">
+      <div className="  dark:bg-[#202124] min-h-screen w-screen dark:text-white flex flex-col items-start justify-start overflow-hidden">
         <Toaster
           position="bottom-right"
           toastOptions={{
             duration: 2000,
-            className: "bg-white dark:bg-[#1f232c] dark:text-white",
+            className: "  dark:bg-[#202124] dark:text-white",
           }}
         />
         <Header

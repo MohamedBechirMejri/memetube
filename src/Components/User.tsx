@@ -166,20 +166,17 @@ function User(): JSX.Element {
             }}
           >
             <Link to={`/video/${video.id}`}>
-              <div className="overflow-hidden bg-[#000000aa] rounded-lg shadow-lg">
+              <div className="overflow-hidden dark:bg-[#27242b] dark:text-white  rounded-lg shadow-lg ">
                 <ReactPlayer
                   url={video.url}
                   width="100%"
                   height="100%"
-                  className="overflow-hidden shadow-lg rounded-xl max-h-52"
+                  className="overflow-hidden shadow-lg max-h-52 "
                 />
                 <div className="p-4">
-                  <h3 className="mb-2 font-semibold md:text-xl">
+                  <h3 className="mb-2 font-semibold text-center md:text-xl">
                     {video.title}
                   </h3>
-                  <p className="text-sm text-gray-400">
-                    {video.uploader.displayName}
-                  </p>
                 </div>
               </div>
             </Link>
