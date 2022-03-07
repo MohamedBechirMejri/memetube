@@ -130,25 +130,25 @@ function Userstuff(): JSX.Element {
                 htmlFor="title"
                 className="flex flex-col items-start justify-start"
               >
-                Title
                 <input
                   type="text"
-                  className="bg-transparent border rounded-lg"
+                  className="bg-transparent border-b border-transparent focus:outline-none focus:border-transparent placeholder:text-center"
                   id="title"
                   value={title}
                   onChange={e => setTitle(e.target.value)}
+                  placeholder="Title"
                 />
               </label>
               <label
                 htmlFor="description"
-                className="flex flex-col items-start justify-start"
+                className="flex flex-col items-start justify-start "
               >
-                Description
                 <textarea
-                  className="bg-transparent border rounded-lg"
+                  className="bg-transparent border-b border-transparent focus:outline-none focus:border-transparent placeholder:text-center"
                   id="description"
                   value={description}
                   onChange={e => setDescription(e.target.value)}
+                  placeholder="Description"
                 />
               </label>{" "}
               <div>
