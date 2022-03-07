@@ -132,7 +132,7 @@ function Userstuff(): JSX.Element {
               >
                 <input
                   type="text"
-                  className="bg-transparent border-b border-transparent focus:outline-none focus:border-transparent placeholder:text-center"
+                  className="text-center bg-transparent outline-none placeholder:text-center focus:border-b"
                   id="title"
                   value={title}
                   onChange={e => setTitle(e.target.value)}
@@ -144,17 +144,17 @@ function Userstuff(): JSX.Element {
                 className="flex flex-col items-start justify-start "
               >
                 <textarea
-                  className="bg-transparent border-b border-transparent focus:outline-none focus:border-transparent placeholder:text-center"
+                  className="text-center bg-transparent outline-none placeholder:text-center focus:border-b"
                   id="description"
                   value={description}
                   onChange={e => setDescription(e.target.value)}
                   placeholder="Description"
                 />
               </label>{" "}
-              <div>
+              <div className="">
                 <label
                   htmlFor="video-file"
-                  className="px-4 py-2 font-bold text-white bg-red-500 rounded-lg cursor-pointer hover:bg-red-700"
+                  className="px-4 py-2 mx-4 font-bold text-white bg-red-500 rounded-lg cursor-pointer hover:bg-red-700"
                 >
                   <input
                     className="hidden"
