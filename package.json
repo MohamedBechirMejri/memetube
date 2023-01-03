@@ -44,7 +44,7 @@
   "devDependencies": {
     "@types/uniqid": "^5.3.2",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
-    "@typescript-eslint/parser": "^5.47.1",
+    "@typescript-eslint/parser": "^5.48.0",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.31.0",
     "eslint-config-airbnb": "^19.0.4",
