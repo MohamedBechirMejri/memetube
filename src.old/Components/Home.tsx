@@ -4,7 +4,7 @@ import { collection, getDocs, getFirestore } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
-import VideoData from "../Types/VideoData";
+import VideoData from "../../Types/VideoData";
 
 function Home(): JSX.Element {
   const [videosList, setVideosList] = useState([] as VideoData[]);
@@ -14,35 +14,35 @@ function Home(): JSX.Element {
 
   useEffect(() => {
     getDocs(videosRef)
-      .then(snapshot => {
-        const videos = snapshot.docs.map(docmnt =>
+      .then((snapshot) => {
+        const videos = snapshot.docs.map((docmnt) =>
           docmnt.data()
         ) as VideoData[];
 
         setVideosList(videos);
       })
-      .catch(err => {
+      .catch((err) => {
         // console.log(err.message);
       });
   }, []);
 
   return (
-    <div className="flex flex-wrap items-start justify-start gap-2 p-10 mx-auto overflow-x-hidden overflow-y-scroll ">
+    <div className="mx-auto flex flex-wrap items-start justify-start gap-2 overflow-x-hidden overflow-y-scroll p-10 ">
       {videosList.map((video, i) => (
         <div
-          className={`" sm:w-[23em] hover:scale-[1.02] active:scale-[.995] transition-all animate-reveal opacity-0"`}
+          className={`" animate-reveal opacity-0" transition-all hover:scale-[1.02] active:scale-[.995] sm:w-[23em]`}
           key={video.id}
           style={{
             animationDelay: `${i * 0.05}s`,
           }}
         >
           <Link to={`/video/${video.id}`}>
-            <div className="overflow-hidden dark:bg-[#27242b] dark:text-white  rounded-lg shadow-lg ">
+            <div className="overflow-hidden rounded-lg shadow-lg  dark:bg-[#27242b] dark:text-white ">
               <ReactPlayer
                 url={video.url}
                 width="100%"
                 height="100%"
-                className="overflow-hidden shadow-lg max-h-52 "
+                className="max-h-52 overflow-hidden shadow-lg "
               />
               <div className="p-4">
                 <h3 className="mb-2 font-semibold md:text-xl ">

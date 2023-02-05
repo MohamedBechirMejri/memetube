@@ -7,7 +7,7 @@ import Home from "./Components/Home";
 import Sidebar from "./Components/Sidebar";
 import User from "./Components/User";
 import Video from "./Components/Video";
-import UserContext from "./Utils/UserContext";
+import UserContext from "../lib/UserContext";
 
 function App(): JSX.Element {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -15,14 +15,14 @@ function App(): JSX.Element {
 
   const [user, setUser] = useState(null as object | null);
   const auth = getAuth();
-  onAuthStateChanged(auth, usr => setUser(usr));
+  onAuthStateChanged(auth, (usr) => setUser(usr));
 
   return (
     <UserContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={user}
     >
-      <div className="  dark:bg-[#202124] min-h-screen w-screen dark:text-white flex flex-col items-start justify-start overflow-hidden">
+      <div className="  flex min-h-screen w-screen flex-col items-start justify-start overflow-hidden dark:bg-[#202124] dark:text-white">
         <Toaster
           position="bottom-right"
           toastOptions={{

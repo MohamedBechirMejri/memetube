@@ -13,7 +13,7 @@ import {
   MdOutlineShare,
 } from "react-icons/md";
 import toast from "react-hot-toast";
-import VideoData from "../../Types/VideoData";
+import VideoData from "../../../Types/VideoData";
 
 function ToolBox({
   video,
@@ -36,7 +36,7 @@ function ToolBox({
       setDoc(
         doc(db, "videos", video.id),
         {
-          likes: likes.filter(uid => uid !== user.uid),
+          likes: likes.filter((uid) => uid !== user.uid),
         },
         { merge: true }
       );
@@ -45,7 +45,7 @@ function ToolBox({
         doc(db, "videos", video.id),
         {
           likes: [...likes, user.uid],
-          dislikes: dislikes.filter(uid => uid !== user.uid),
+          dislikes: dislikes.filter((uid) => uid !== user.uid),
         },
         { merge: true }
       );
@@ -60,7 +60,7 @@ function ToolBox({
       setDoc(
         doc(db, "videos", video.id),
         {
-          dislikes: dislikes.filter(uid => uid !== user.uid),
+          dislikes: dislikes.filter((uid) => uid !== user.uid),
         },
         { merge: true }
       );
@@ -69,7 +69,7 @@ function ToolBox({
         doc(db, "videos", video.id),
         {
           dislikes: [...dislikes, user.uid],
-          likes: likes.filter(uid => uid !== user.uid),
+          likes: likes.filter((uid) => uid !== user.uid),
         },
         { merge: true }
       );
@@ -90,7 +90,7 @@ function ToolBox({
         <>
           <button
             type="button"
-            className="flex items-center gap-2 p-1 transition-all rounded hover:bg-slate-700 active:bg-slate-600"
+            className="flex items-center gap-2 rounded p-1 transition-all hover:bg-slate-700 active:bg-slate-600"
             onClick={() => {
               handleLike();
               getVideoData();
@@ -101,7 +101,7 @@ function ToolBox({
           </button>
           <button
             type="button"
-            className="flex items-center gap-2 p-1 transition-all rounded hover:bg-slate-700 active:bg-slate-600"
+            className="flex items-center gap-2 rounded p-1 transition-all hover:bg-slate-700 active:bg-slate-600"
             onClick={() => {
               handleDislike();
               getVideoData();
@@ -124,7 +124,7 @@ function ToolBox({
       </button> */}
       <button
         type="button"
-        className="flex items-center gap-2 p-1 transition-all rounded hover:bg-slate-700 active:bg-slate-600"
+        className="flex items-center gap-2 rounded p-1 transition-all hover:bg-slate-700 active:bg-slate-600"
         onClick={() => {
           handleShare();
         }}

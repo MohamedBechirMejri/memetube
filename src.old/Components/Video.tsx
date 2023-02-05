@@ -12,7 +12,7 @@ import ToolBox from "./Video/ToolBox";
 import Comments from "./Video/Comments";
 import Details from "./Video/Details";
 import addCommasToNumber from "../Utils/addCommasToNumber";
-import VideoData from "../Types/VideoData";
+import VideoData from "../../Types/VideoData";
 
 function Video(): JSX.Element {
   const params = useParams();
@@ -40,7 +40,7 @@ function Video(): JSX.Element {
   const getVideoData = (): void => {
     const id = params.videoId;
     const videoRef = doc(db, `videos`, id!);
-    getDoc(videoRef).then(videoData => setVideo(videoData.data() as any));
+    getDoc(videoRef).then((videoData) => setVideo(videoData.data() as any));
   };
 
   useEffect(() => {
@@ -62,8 +62,8 @@ function Video(): JSX.Element {
   }, []);
 
   return (
-    <div className="flex justify-center w-full">
-      <div className="flex flex-col gap-4 max-w-[70em] w-screen">
+    <div className="flex w-full justify-center">
+      <div className="flex w-screen max-w-[70em] flex-col gap-4">
         <div className="p-2">
           <Player url={video.url} />
         </div>

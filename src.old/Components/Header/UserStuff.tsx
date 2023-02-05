@@ -12,8 +12,8 @@ import { doc, getFirestore, setDoc } from "firebase/firestore";
 import uniqid from "uniqid";
 import { MdLogout, MdOutlineAddBox } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
-import UserContext from "../../Utils/UserContext";
-import VideoData from "../../Types/VideoData";
+import UserContext from "../../../lib/UserContext";
+import VideoData from "../../../Types/VideoData";
 
 function Userstuff(): JSX.Element {
   const user = useContext(UserContext);
@@ -35,7 +35,7 @@ function Userstuff(): JSX.Element {
     auth.signOut();
   };
   const signIn = (): void => {
-    signInWithPopup(auth, new GoogleAuthProvider()).then(result => {
+    signInWithPopup(auth, new GoogleAuthProvider()).then((result) => {
       const userdata = result.user;
 
       setDoc(
@@ -66,7 +66,7 @@ function Userstuff(): JSX.Element {
 
     uploadTask.on(
       "state_changed",
-      snapshot => {
+      (snapshot) => {
         const progress = (
           (snapshot.bytesTransferred / snapshot.totalBytes) *
           100
@@ -81,11 +81,11 @@ function Userstuff(): JSX.Element {
             break;
         }
       },
-      error => {
+      (error) => {
         // Handle unsuccessful uploads
       },
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           const videoData = {
             id: videoId,
             title,
@@ -112,18 +112,18 @@ function Userstuff(): JSX.Element {
   };
 
   return (
-    <div className="flex items-center justify-center h-full gap-4 p-4 text-2xl select-none">
+    <div className="flex h-full select-none items-center justify-center gap-4 p-4 text-2xl">
       <MdOutlineAddBox
         onClick={() => {
           setIsAddVideoShown(!isAddVideoShown);
         }}
-        className={` text-3xl transition-all cursor-pointer hover:scale-105 active:scale-95 ${
+        className={` cursor-pointer text-3xl transition-all hover:scale-105 active:scale-95 ${
           isAddVideoShown && "rotate-[135deg]"
         } `}
       />
       {/* {user} */}
       {isAddVideoShown && (
-        <div className="fixed z-50 flex flex-col items-center justify-center gap-4 p-8 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg dark:bg-[#202124] inset-1/2 w-fit h-fit border border-[#202124] dark:border-white animate-revealAddVideo ">
+        <div className="animate-revealAddVideo fixed inset-1/2 z-50 flex h-fit w-fit -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-4 rounded-lg border border-[#202124] bg-white p-8 dark:border-white dark:bg-[#202124] ">
           {!isUploading ? (
             <>
               <label
@@ -132,10 +132,10 @@ function Userstuff(): JSX.Element {
               >
                 <input
                   type="text"
-                  className="text-center bg-transparent outline-none placeholder:text-center focus:border-b"
+                  className="bg-transparent text-center outline-none placeholder:text-center focus:border-b"
                   id="title"
                   value={title}
-                  onChange={e => setTitle(e.target.value)}
+                  onChange={(e) => setTitle(e.target.value)}
                   placeholder="Title"
                 />
               </label>
@@ -144,29 +144,29 @@ function Userstuff(): JSX.Element {
                 className="flex flex-col items-start justify-start "
               >
                 <textarea
-                  className="text-center bg-transparent outline-none placeholder:text-center focus:border-b"
+                  className="bg-transparent text-center outline-none placeholder:text-center focus:border-b"
                   id="description"
                   value={description}
-                  onChange={e => setDescription(e.target.value)}
+                  onChange={(e) => setDescription(e.target.value)}
                   placeholder="Description"
                 />
               </label>{" "}
               <div className="">
                 <label
                   htmlFor="video-file"
-                  className="px-4 py-2 mx-4 font-bold text-white bg-red-500 rounded-lg cursor-pointer hover:bg-red-700"
+                  className="mx-4 cursor-pointer rounded-lg bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700"
                 >
                   <input
                     className="hidden"
                     type="file"
-                    onChange={e => setVideo(e.target.files![0])}
+                    onChange={(e) => setVideo(e.target.files![0])}
                     id="video-file"
                   />
                   Select Video
                 </label>
                 <button
                   type="button"
-                  className="px-4 py-2 font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-700"
+                  className="rounded-lg bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
                   onClick={handleAddVideo}
                 >
                   Add Video
@@ -175,7 +175,7 @@ function Userstuff(): JSX.Element {
             </>
           ) : (
             <>
-              <h1 className="p-8 animate-pulse">
+              <h1 className="animate-pulse p-8">
                 {" "}
                 {uploadProgress}% uploaded.
               </h1>
@@ -207,19 +207,19 @@ function Userstuff(): JSX.Element {
       {!user ? (
         <button
           type="button"
-          className="px-4 py-2 w-max text-xl font-semibold border border-[#cf2d2b] mx-1 rounded-lg hover:bg-[#cf2d2b] transition-all active:scale-95"
+          className="mx-1 w-max rounded-lg border border-[#cf2d2b] px-4 py-2 text-xl font-semibold transition-all hover:bg-[#cf2d2b] active:scale-95"
           onClick={signIn}
         >
           Sign In
         </button>
       ) : (
-        <div className="flex items-center justify-center gap-4 mx-1 text-xl font-semibold rounded-lg w-max">
+        <div className="mx-1 flex w-max items-center justify-center gap-4 rounded-lg text-xl font-semibold">
           <Link
             to={`/user/${auth.currentUser!.uid}`}
-            className="transition-all rounded-full hover:ring w-max active:scale-95"
+            className="w-max rounded-full transition-all hover:ring active:scale-95"
           >
             <img
-              className="rounded-full max-h-9"
+              className="max-h-9 rounded-full"
               src={auth.currentUser!.photoURL || ""}
               alt="user"
             />
@@ -227,7 +227,7 @@ function Userstuff(): JSX.Element {
           <button
             type="button"
             onClick={logOut}
-            className="px-3 py-2 w-max border border-[#cf2d2b] mx-1 rounded-lg hover:bg-[#cf2d2b] transition-all active:scale-95"
+            className="mx-1 w-max rounded-lg border border-[#cf2d2b] px-3 py-2 transition-all hover:bg-[#cf2d2b] active:scale-95"
           >
             <MdLogout />
           </button>
