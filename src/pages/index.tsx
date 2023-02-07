@@ -1,8 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
 import type VideoData from "../../Types/VideoData";
 import { type NextPage } from "next";
 
@@ -17,10 +12,15 @@ const Home: NextPage = () => {
   const videosRef = collection(db, "videos");
 
   useEffect(() => {
-    getDocs(videosRef).then((snapshot) => {
-      const videos = snapshot.docs.map((doc) => doc.data()) as VideoData[];
-      setVideosList(videos);
-    });
+    getDocs(videosRef)
+      .then((snapshot) => {
+        const videos = snapshot.docs.map((doc) => doc.data()) as VideoData[];
+        setVideosList(videos);
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -30,14 +30,25 @@ const Home: NextPage = () => {
         <meta name="description" content="top memes around the web" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="grid h-full gap-8 overflow-y-scroll p-8 py-16 scrollbar-none">
+      <main className="grid h-full place-items-center gap-8 overflow-y-scroll p-8 font-[Nunito] capitalize scrollbar-none">
+        <h1 className="p-4 text-3xl">MemeTube</h1>
         {videosList.map((video) => (
           <div
             key={video.id}
-            className="elevation-12] grid h-max grid-rows-[auto,1fr,auto] place-items-center gap-4 rounded-xl py-8"
+            className="grid h-[min(35rem,70svh)] w-full cursor-pointer grid-rows-[auto,1fr,auto] overflow-hidden rounded-2xl border elevation-4 bg-white"
           >
-            <h1 className="">{video.title}</h1>
-            <video src={video.url} className="max-h-[75svh] w-full" />
+            <div className="p-4 elevation-4">
+              <h1 className="text-2xl font-bold">{video.title}</h1>
+              <p className="text-sm">{video.description}</p>
+            </div>
+            <div className="flex h-full bg-black justify-center items-center overflow-auto">
+              <video src={video.url} className="h-full"></video>
+            </div>
+            <div className="grid grid-cols-3">
+              <button className="p-4 text-sm">50 haha</button>
+              <button className="p-4 text-sm">10 comment</button>
+              <button className="p-4 text-sm">550 share</button>
+            </div>
           </div>
         ))}
       </main>

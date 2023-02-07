@@ -29,13 +29,13 @@ const App: AppType = ({ Component, pageProps }) => {
   const auth = getAuth();
   onAuthStateChanged(auth, (usr) => setUser(usr));
 
-  console.log(user)
+  console.log(user);
 
   return (
     <UserContext.Provider value={user}>
-      <div className="m-auto grid h-[100svh] w-screen grid-rows-[1fr,auto] overflow-hidden bg-slate-900 font-bold ">
+      <div className="m-auto grid h-[100svh] w-screen max-w-3xl grid-rows-[1fr,auto] overflow-hidden font-bold">
         <Component {...pageProps} />
-        <nav className="z-10 grid h-[5rem] grid-cols-5 place-items-center rounded-t-xl bg-blue-50 text-xl elevation-12">
+        <nav className="z-10 grid h-[5rem] grid-cols-5 place-items-center rounded-t-xl bg-blue-50 text-xl elevation-5">
           <Link href="/">
             <GrHomeOption />
           </Link>
