@@ -4,11 +4,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
 import { useInView } from "react-intersection-observer";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const Video = ({ src }: { src: string }) => {
   const ref = useRef();
+  const bgRef = useRef();
   const { ref: inViewRef, inView } = useInView();
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const setRefs = useCallback(
     (node: any) => {
@@ -20,16 +22,20 @@ const Video = ({ src }: { src: string }) => {
 
   useEffect(() => {
     // @ts-ignore
+    isPlaying ? bgRef.current.play() : bgRef.current.pause();
+  }, [isPlaying]);
+
+  useEffect(() => {
+    // @ts-ignore
     inView ? ref.current.play() : ref.current.pause();
   }, [inView, ref]);
 
   return (
     <div className="relative flex h-full items-center justify-center overflow-hidden rounded-3xl bg-black elevation-12">
       <video
+        ref={bgRef}
         muted
-        autoPlay
         loop
-        playsInline
         src={src}
         className="absolute h-full w-full object-fill blur-3xl"
       />
@@ -37,6 +43,9 @@ const Video = ({ src }: { src: string }) => {
         ref={setRefs}
         src={src}
         controls
+        loop
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
         className="relative z-10 h-full elevation-8"
       />
     </div>
