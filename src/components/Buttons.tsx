@@ -20,7 +20,7 @@ const Buttons = ({
 }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-  const [value, copy] = useCopyToClipboard();
+  const copy = useCopyToClipboard()[1];
 
   return (
     <div className="grid grid-cols-4 gap-4 pt-4">
