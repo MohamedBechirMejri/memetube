@@ -1,15 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getStorage } from "firebase/storage";
+
 import { type AppType } from "next/dist/shared/lib/utils";
-import Link from "next/link";
-import { useState } from "react";
-import { AiOutlineUser } from "react-icons/ai";
-import { GrAdd, GrChat, GrHomeOption, GrSearch } from "react-icons/gr";
+
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+} from "firebase/auth";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+import { useCallback, useState } from "react";
+
 import UserContext from "../../lib/UserContext";
+
+import Link from "next/link";
+import { AiOutlineUser } from "react-icons/ai";
 
 import "../styles/globals.scss";
 
@@ -27,8 +36,27 @@ getStorage();
 
 const App: AppType = ({ Component, pageProps }) => {
   const [user, setUser] = useState(null as object | null);
+
+  const db = getFirestore();
   const auth = getAuth();
   onAuthStateChanged(auth, (usr) => setUser(usr));
+
+  const signIn = useCallback((): void => {
+    void signInWithPopup(auth, new GoogleAuthProvider()).then((result) => {
+      const userdata = result.user;
+
+      void setDoc(
+        doc(db, "users", userdata.uid),
+        {
+          displayName: userdata.displayName,
+          photoURL: userdata.photoURL,
+          subscribers: [],
+          uid: userdata.uid,
+        },
+        { merge: true }
+      );
+    });
+  }, [auth, db]);
 
   console.log(user);
 
@@ -44,12 +72,12 @@ const App: AppType = ({ Component, pageProps }) => {
           {user ? (
             <div>user</div>
           ) : (
-            <Link
-              href="/login"
+            <button
               className="grid h-10 w-10 place-items-center rounded-full border border-current text-3xl text-fuchsia-500"
+              onClick={signIn}
             >
               <AiOutlineUser />
-            </Link>
+            </button>
           )}
         </nav>
         <Component {...pageProps} />
