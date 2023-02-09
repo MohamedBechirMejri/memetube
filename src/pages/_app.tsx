@@ -7,6 +7,7 @@ import { getStorage } from "firebase/storage";
 import { type AppType } from "next/dist/shared/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
+import { AiOutlineUser } from "react-icons/ai";
 import { GrAdd, GrChat, GrHomeOption, GrSearch } from "react-icons/gr";
 import UserContext from "../../lib/UserContext";
 
@@ -40,9 +41,16 @@ const App: AppType = ({ Component, pageProps }) => {
               Meme Archive
             </h1>
           </Link>
-          <Link href="/@me">
-            <div className="h-10 w-10 rounded-full bg-black"></div>
-          </Link>
+          {user ? (
+            <div>user</div>
+          ) : (
+            <Link
+              href="/login"
+              className="grid h-10 w-10 place-items-center rounded-full border border-current text-3xl text-fuchsia-500"
+            >
+              <AiOutlineUser />
+            </Link>
+          )}
         </nav>
         <Component {...pageProps} />
       </div>
