@@ -16,26 +16,34 @@ const Nav = ({ user, signIn }: { user: any; signIn: any }) => {
           Meme Archive
         </h1>
       </Link>
-      {user ? (
-        <Link href={`/me`}>
-          <Image
-            width={44}
-            height={44}
-            alt="user"
-            className="relative top-0 right-0 z-10 grid h-11 w-11 place-items-center rounded-full text-3xl transition-all hover:elevation-2"
-            // @ts-ignore
-            src={user.photoURL}
-            draggable={false}
-          />
+
+      <div className="grid w-max grid-cols-[auto,auto] place-items-center gap-4">
+        <Link href="/upload">
+          <button className="rounded-2xl border bg-[antiquewhite] px-4 py-2">
+            Upload
+          </button>
         </Link>
-      ) : (
-        <button
-          className="grid h-10 w-10 place-items-center rounded-full border border-current text-3xl text-fuchsia-500"
-          onClick={signIn}
-        >
-          <AiOutlineUser />
-        </button>
-      )}
+        {user ? (
+          <Link href={`/me`}>
+            <Image
+              width={44}
+              height={44}
+              alt="user"
+              className="relative z-10 h-11 w-11 rounded-full text-3xl transition-all hover:elevation-2"
+              // @ts-ignore
+              src={user.photoURL}
+              draggable={false}
+            />
+          </Link>
+        ) : (
+          <button
+            className="grid h-10 w-10 place-items-center rounded-full border border-current text-3xl text-fuchsia-500"
+            onClick={signIn}
+          >
+            <AiOutlineUser />
+          </button>
+        )}
+      </div>
     </nav>
   );
 };
