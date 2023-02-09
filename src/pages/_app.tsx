@@ -33,28 +33,18 @@ const App: AppType = ({ Component, pageProps }) => {
 
   return (
     <UserContext.Provider value={user}>
-      <div className="m-auto grid h-[100svh] w-screen max-w-3xl grid-rows-[1fr,auto] overflow-hidden font-bold">
-        <Component {...pageProps} />
-        <nav className="z-10 grid h-[5rem] grid-cols-5 place-items-center rounded-t-xl bg-blue-50 text-xl elevation-5">
+      <div className="relative m-auto h-[100svh] w-[100svw] max-w-3xl overflow-hidden font-bold">
+        <nav className="absolute z-50 flex h-[5rem] w-full items-center justify-between px-8 text-xl">
           <Link href="/">
-            <GrHomeOption />
-          </Link>
-          <Link href="/search">
-            <GrSearch />
-          </Link>
-          <Link
-            href="/upload"
-            className="-mt-16 grid h-16 w-16 place-items-center rounded-full bg-blue-300 elevation-5"
-          >
-            <GrAdd />
-          </Link>
-          <Link href="/chat">
-            <GrChat />
+            <h1 className="text-center text-[#000] [text-shadow:3px_-2px_0_#fb00ff]">
+              Meme Archive
+            </h1>
           </Link>
           <Link href="/@me">
-            <div className="h-6 w-6 rounded-full bg-black"></div>
+            <div className="h-10 w-10 rounded-full bg-black"></div>
           </Link>
         </nav>
+        <Component {...pageProps} />
       </div>
     </UserContext.Provider>
   );

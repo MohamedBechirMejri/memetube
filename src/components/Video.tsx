@@ -24,7 +24,7 @@ const Video = ({ src }: { src: string }) => {
   }, [inView, ref]);
 
   return (
-    <div className="relative flex h-full items-center justify-center overflow-hidden bg-black">
+    <div className="relative flex h-full items-center justify-center overflow-hidden rounded-3xl bg-black elevation-12">
       <video
         muted
         autoPlay

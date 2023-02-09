@@ -5,6 +5,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import Video from "../components/Video";
+import Buttons from "../components/Buttons";
 
 const Home: NextPage = () => {
   const [videosList, setVideosList] = useState([] as VideoData[]);
@@ -110,22 +111,17 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="grid h-full place-items-center overflow-y-scroll font-[Nunito] capitalize scrollbar-none">
-        {/* <h1 className="p-4 text-3xl">MemeTube</h1> */}
         {videosList.map((video) => (
           <div
             key={video.id}
-            className="relative grid h-[100svh] w-full cursor-pointer overflow-hidden bg-black pb-[5rem] elevation-4"
+            className="grid h-[calc(100svh)] w-full grid-rows-[auto,1fr,auto] overflow-hidden bg-white p-4 py-14"
           >
-            <div className="absolute p-4">
+            <div className="p-4">
               <h1 className="text-2xl font-bold">{video.title}</h1>
               <p className="text-sm">{video.description}</p>
             </div>
             <Video src={video.url} />
-            <div className="absolute bottom-[10rem] right-2 z-40 grid grid-rows-3 gap-4 text-white">
-              <button className="p-4 text-sm">50 haha</button>
-              <button className="p-4 text-sm">10 comment</button>
-              <button className="p-4 text-sm">550 share</button>
-            </div>
+            <Buttons />
           </div>
         ))}
       </main>
