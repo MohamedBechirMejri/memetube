@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import Video from "../components/Video";
 import Buttons from "../components/Buttons";
+import Link from "next/link";
 
 const Home: NextPage = () => {
   const [videosList, setVideosList] = useState([] as VideoData[]);
@@ -118,7 +119,12 @@ const Home: NextPage = () => {
           >
             <div className="p-4">
               <h1 className="text-2xl font-bold">{video.title}</h1>
-              <p className="text-sm">{video.description}</p>
+              <Link
+                href={"/u/" + video.uploader.id}
+                className="text-sm contrast-[.25] hover:underline"
+              >
+                {video.uploader.displayName}
+              </Link>
             </div>
             <Video src={video.url} />
             <Buttons />
