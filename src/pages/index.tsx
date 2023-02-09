@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     const videos = [
       {
-        url: "https://firebasestorage.googleapis.com/v0/b/beautube-fc973.appspot.com/o/videos%2Fl0gfjamx?alt=media&token=de4f7282-e7f9-4875-920c-37bab9a15887",
+        url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
         views: [],
         dislikes: [],
         uploader: {
@@ -49,7 +49,7 @@ const Home: NextPage = () => {
           id: "xvlvn3KIxNOnLvtuQwYgLLpNk8W2",
         },
         likes: [],
-        url: "https://firebasestorage.googleapis.com/v0/b/beautube-fc973.appspot.com/o/videos%2Fl0gfllab?alt=media&token=5295af3c-0c6d-4401-a351-adaa8d1ad457",
+        url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
         views: [],
       },
       {
@@ -58,7 +58,7 @@ const Home: NextPage = () => {
         description: "Test 3 ",
         id: "l0gfziys",
         date: "2022-03-07T08:29:31.215Z",
-        url: "https://firebasestorage.googleapis.com/v0/b/beautube-fc973.appspot.com/o/videos%2Fl0gfziys?alt=media&token=e94f8202-4ca1-42ee-8bab-04cb259a6eda",
+        url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
         title: "Glace wel bira3",
         views: [],
         dislikes: [],
@@ -75,7 +75,7 @@ const Home: NextPage = () => {
         views: [],
         dislikes: [],
         comments: [],
-        url: "https://firebasestorage.googleapis.com/v0/b/beautube-fc973.appspot.com/o/videos%2Fl0gnyohw?alt=media&token=4ffc8b74-30ee-4dfc-92c4-b6bbef5c5620",
+        url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
         uploader: {
           displayName: "Mohamed Bechir Mejri",
           photoURL:
@@ -109,19 +109,19 @@ const Home: NextPage = () => {
         <meta name="description" content="Top memes around the web" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="grid h-full place-items-center gap-8 overflow-y-scroll p-8 font-[Nunito] capitalize scrollbar-none">
-        <h1 className="p-4 text-3xl">MemeTube</h1>
+      <main className="grid h-full place-items-center overflow-y-scroll font-[Nunito] capitalize scrollbar-none">
+        {/* <h1 className="p-4 text-3xl">MemeTube</h1> */}
         {videosList.map((video) => (
           <div
             key={video.id}
-            className="grid h-[min(35rem,70svh)] w-full cursor-pointer grid-rows-[auto,1fr,auto] overflow-hidden rounded-2xl border bg-white elevation-4"
+            className="relative grid h-[100svh] w-full cursor-pointer overflow-hidden bg-black pb-[5rem] elevation-4"
           >
-            <div className="p-4">
+            <div className="absolute p-4">
               <h1 className="text-2xl font-bold">{video.title}</h1>
               <p className="text-sm">{video.description}</p>
             </div>
             <Video src={video.url} />
-            <div className="grid grid-cols-3">
+            <div className="absolute bottom-[10rem] right-2 z-40 grid grid-rows-3 gap-4 text-white">
               <button className="p-4 text-sm">50 haha</button>
               <button className="p-4 text-sm">10 comment</button>
               <button className="p-4 text-sm">550 share</button>

@@ -1170,3 +1170,7 @@ body.video-react-full-window .video-react-fullscreen {
 .video-react .video-react-control-bar {
   background-color: transparent;
 }
+
+.video-react {
+    z-index: 20;
+}
