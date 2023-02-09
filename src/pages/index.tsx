@@ -127,7 +127,11 @@ const Home: NextPage = () => {
               </Link>
             </div>
             <Video src={video.url} />
-            <Buttons id={video.id} />
+            <Buttons
+              id={video.id}
+              likes={video.likes}
+              comments={video.comments}
+            />
           </div>
         ))}
       </main>
