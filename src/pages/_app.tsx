@@ -17,10 +17,8 @@ import { useCallback, useState } from "react";
 
 import UserContext from "../../lib/UserContext";
 
-import Link from "next/link";
-import { AiOutlineUser } from "react-icons/ai";
-
 import "../styles/globals.scss";
+import Nav from "../components/Nav";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -63,23 +61,7 @@ const App: AppType = ({ Component, pageProps }) => {
   return (
     <UserContext.Provider value={user}>
       <div className="relative m-auto h-[100svh] w-[100svw] max-w-3xl overflow-hidden font-bold">
-        <nav className="absolute z-50 flex h-[5rem] w-full items-center justify-between px-8 text-xl">
-          <Link href="/">
-            <h1 className="text-center text-[#000] [text-shadow:3px_-2px_0_#fb00ff]">
-              Meme Archive
-            </h1>
-          </Link>
-          {user ? (
-            <div>user</div>
-          ) : (
-            <button
-              className="grid h-10 w-10 place-items-center rounded-full border border-current text-3xl text-fuchsia-500"
-              onClick={signIn}
-            >
-              <AiOutlineUser />
-            </button>
-          )}
-        </nav>
+        <Nav user={user} signIn={signIn} />
         <Component {...pageProps} />
       </div>
     </UserContext.Provider>
