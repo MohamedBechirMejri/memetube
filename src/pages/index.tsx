@@ -127,7 +127,7 @@ const Home: NextPage = () => {
               </Link>
             </div>
             <Video src={video.url} />
-            <Buttons />
+            <Buttons id={video.id} />
           </div>
         ))}
       </main>

@@ -7,10 +7,12 @@ import {
   AiTwotoneHeart,
 } from "react-icons/ai";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import { useCopyToClipboard } from "usehooks-ts";
 
-const Buttons = () => {
+const Buttons = ({ id }: { id: string }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [value, copy] = useCopyToClipboard();
 
   return (
     <div className="grid grid-cols-4 gap-4">
@@ -42,6 +44,7 @@ const Buttons = () => {
           )}
         </AnimatePresence>
       </motion.button>
+
       <motion.button
         initial={{ scale: 0.75, opacity: 0, y: 12 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -52,16 +55,20 @@ const Buttons = () => {
       >
         <AiOutlineComment />
       </motion.button>
+
       <motion.button
         initial={{ scale: 0.75, opacity: 0, y: 12 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         whileTap={{ scale: 0.9 }}
         transition={{ type: "spring", damping: 10, stiffness: 100 }}
         className="mt-6 grid place-items-center text-4xl"
-        onClick={() => setIsLiked(!isLiked)}
+        onClick={() => {
+          void copy("https://beautube.vercel.app/v/" + id); // add toast
+        }}
       >
         <AiOutlineShareAlt />
       </motion.button>
+
       <motion.button
         initial={{ scale: 0.75, opacity: 0, y: 12 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
