@@ -17,7 +17,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     const videos = [
       {
-        url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        url: "/v.mp4",
         views: [],
         dislikes: [],
         uploader: {
@@ -51,7 +51,7 @@ const Home: NextPage = () => {
           id: "xvlvn3KIxNOnLvtuQwYgLLpNk8W2",
         },
         likes: [],
-        url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        url: "/v.mp4",
         views: [],
       },
       {
@@ -60,7 +60,7 @@ const Home: NextPage = () => {
         description: "Test 3 ",
         id: "l0gfziys",
         date: "2022-03-07T08:29:31.215Z",
-        url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        url: "/v.mp4",
         title: "Glace wel bira3",
         views: [],
         dislikes: [],
@@ -77,7 +77,7 @@ const Home: NextPage = () => {
         views: [],
         dislikes: [],
         comments: [],
-        url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        url: "/v.mp4",
         uploader: {
           displayName: "Mohamed Bechir Mejri",
           photoURL:
@@ -107,7 +107,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>MemeArchive</title>
+        <title>Meme Museum</title>
         <meta name="description" content="Top memes around the web" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

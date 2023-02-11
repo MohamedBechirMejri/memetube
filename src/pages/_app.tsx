@@ -60,7 +60,7 @@ const App: AppType = ({ Component, pageProps }) => {
 
   return (
     <UserContext.Provider value={user}>
-      <div className="relative m-auto h-[100svh] w-[100svw] max-w-3xl overflow-hidden font-bold">
+      <div className="relative m-auto h-[100svh] w-[100svw] max-w-3xl overflow-hidden font-bold font-[Nunito]">
         <Nav user={user} signIn={signIn} />
         <Component {...pageProps} />
       </div>

@@ -12,14 +12,14 @@ const Nav = ({ user, signIn }: { user: any; signIn: any }) => {
   return (
     <nav className="absolute z-50 flex h-[5rem] w-full items-center justify-between px-8 text-xl">
       <Link href="/">
-        <h1 className="text-center text-[#000] [text-shadow:3px_-2px_0_#fb00ff]">
-          Meme Archive
+        <h1 className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text font-extrabold uppercase text-transparent">
+          memetube
         </h1>
       </Link>
 
       <div className="grid w-max grid-cols-[auto,auto] place-items-center gap-4">
         <Link href="/upload">
-          <button className="rounded-2xl border bg-[antiquewhite] px-4 py-2">
+          <button className="bg-gradient-to-r from-blue-400 to-teal-600 bg-clip-text font-extrabold text-transparent">
             Upload
           </button>
         </Link>
