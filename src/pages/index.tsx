@@ -3,16 +3,14 @@ import { type NextPage } from "next";
 
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { collection, getFirestore, onSnapshot } from "firebase/firestore";
 import Video from "../components/Video";
 import Buttons from "../components/Buttons";
 import Link from "next/link";
 
 const Home: NextPage = () => {
   const [videosList, setVideosList] = useState([] as VideoData[]);
-
-  const db = getFirestore();
-  const videosRef = collection(db, "videos");
+  const [db] = useState(getFirestore());
 
   useEffect(() => {
     const videos = [
@@ -89,20 +87,16 @@ const Home: NextPage = () => {
         likes: ["l2ysXX5DPnT5kj43DPOB5SBLPGp1"],
       },
     ];
-
     setVideosList(videos);
 
-    // getDocs(videosRef)
-    //   .then((snapshot) => {
-    //     const videos = snapshot.docs.map((doc) => doc.data()) as VideoData[];
+    // const videosRef = collection(db, "videos");
+    // const unsubscribe = onSnapshot(videosRef, (snapshot) => {
+    //   const videos = snapshot.docs.map((doc) => doc.data()) as VideoData[];
+    //   setVideosList(videos);
+    // });
 
-    //     setVideosList(videos);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting documents: ", error);
-    //   });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // return () => unsubscribe();
+  }, [db]);
 
   return (
     <>
@@ -131,6 +125,7 @@ const Home: NextPage = () => {
               id={video.id}
               likes={video.likes}
               comments={video.comments}
+              db={db}
             />
           </div>
         ))}
