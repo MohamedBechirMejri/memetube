@@ -1,5 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+
+import { doc, updateDoc } from "firebase/firestore";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   AiOutlineComment,
   AiOutlineHeart,
@@ -8,19 +15,49 @@ import {
 } from "react-icons/ai";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { useCopyToClipboard } from "usehooks-ts";
+import UserContext from "../../lib/UserContext";
 
 const Buttons = ({
   id,
   likes,
   comments,
+  db,
 }: {
   id: string;
   likes: string[];
   comments: object[];
+  db: any;
 }) => {
+  const [user] = useContext(UserContext);
+
   const [isLiked, setIsLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const copy = useCopyToClipboard()[1];
+
+  const videoRef = doc(db, "videos", id);
+
+  useEffect(() => {
+    if (!user) return;
+    // @ts-ignore
+    if (likes.includes(user.uid)) setIsLiked(true);
+    else setIsLiked(false);
+  }, [likes, user]);
+
+  const handleLike = async () => {
+    if (!user) return;
+
+    if (isLiked) {
+      await updateDoc(videoRef, {
+        // @ts-ignore
+        likes: likes.filter((like) => like !== user.uid),
+      });
+    } else {
+      await updateDoc(videoRef, {
+        // @ts-ignore
+        likes: [...likes, user.uid],
+      });
+    }
+  };
 
   return (
     <div className="grid grid-cols-4 gap-4 pt-4">
@@ -30,7 +67,9 @@ const Buttons = ({
         whileTap={{ scale: 0.9 }}
         transition={{ type: "spring", damping: 10, stiffness: 100 }}
         className="relative grid place-items-center text-4xl"
-        onClick={() => setIsLiked(!isLiked)}
+        onClick={() => {
+          void handleLike();
+        }}
       >
         <AnimatePresence>
           {isLiked ? (

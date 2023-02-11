@@ -13,89 +13,89 @@ const Home: NextPage = () => {
   const [db] = useState(getFirestore());
 
   useEffect(() => {
-    const videos = [
-      {
-        url: "/v.mp4",
-        views: [],
-        dislikes: [],
-        uploader: {
-          id: "xvlvn3KIxNOnLvtuQwYgLLpNk8W2",
-          photoURL:
-            "https://lh3.googleusercontent.com/a/AATXAJw8kD3q5WR2l50wOH6pwk25Xi_XoW9CI90WDp3s=s96-c",
-          displayName: "Mohamed Bechir Mejri",
-        },
-        comments: [],
-        description: "first video",
-        title: "ahom ahom",
-        id: "l0gfjamx",
-        date: "2022-03-07T08:17:26.929Z",
-        likes: [
-          "l2ysXX5DPnT5kj43DPOB5SBLPGp1",
-          "xvlvn3KIxNOnLvtuQwYgLLpNk8W2",
-          "ZFQCf3r7ysOrT4f7pqOeiste8tn1",
-        ],
-      },
-      {
-        description: "second test video",
-        title: "i'm gay i'm gay",
-        date: "2022-03-07T08:18:42.475Z",
-        dislikes: [],
-        id: "l0gfllab",
-        comments: [],
-        uploader: {
-          displayName: "Mohamed Bechir Mejri",
-          photoURL:
-            "https://lh3.googleusercontent.com/a/AATXAJw8kD3q5WR2l50wOH6pwk25Xi_XoW9CI90WDp3s=s96-c",
-          id: "xvlvn3KIxNOnLvtuQwYgLLpNk8W2",
-        },
-        likes: [],
-        url: "/v.mp4",
-        views: [],
-      },
-      {
-        comments: [],
-        likes: ["xvlvn3KIxNOnLvtuQwYgLLpNk8W2", "l2ysXX5DPnT5kj43DPOB5SBLPGp1"],
-        description: "Test 3 ",
-        id: "l0gfziys",
-        date: "2022-03-07T08:29:31.215Z",
-        url: "/v.mp4",
-        title: "Glace wel bira3",
-        views: [],
-        dislikes: [],
-        uploader: {
-          photoURL:
-            "https://lh3.googleusercontent.com/a/AATXAJwTIYWhFFJ0Pij0yY5XcM0Io49QrU8Rn1Bj-5x5=s96-c",
-          displayName: "Mohamed Bechir Mejri",
-          id: "l2ysXX5DPnT5kj43DPOB5SBLPGp1",
-        },
-      },
-      {
-        id: "l0gnyohw",
-        date: "2022-03-07T12:12:59.625Z",
-        views: [],
-        dislikes: [],
-        comments: [],
-        url: "/v.mp4",
-        uploader: {
-          displayName: "Mohamed Bechir Mejri",
-          photoURL:
-            "https://lh3.googleusercontent.com/a/AATXAJwTIYWhFFJ0Pij0yY5XcM0Io49QrU8Rn1Bj-5x5=s96-c",
-          id: "l2ysXX5DPnT5kj43DPOB5SBLPGp1",
-        },
-        description: "Lol",
-        title: ".",
-        likes: ["l2ysXX5DPnT5kj43DPOB5SBLPGp1"],
-      },
-    ];
-    setVideosList(videos);
+    // const videos = [
+    //   {
+    //     url: "/v.mp4",
+    //     views: [],
+    //     dislikes: [],
+    //     uploader: {
+    //       id: "xvlvn3KIxNOnLvtuQwYgLLpNk8W2",
+    //       photoURL:
+    //         "https://lh3.googleusercontent.com/a/AATXAJw8kD3q5WR2l50wOH6pwk25Xi_XoW9CI90WDp3s=s96-c",
+    //       displayName: "Mohamed Bechir Mejri",
+    //     },
+    //     comments: [],
+    //     description: "first video",
+    //     title: "ahom ahom",
+    //     id: "l0gfjamx",
+    //     date: "2022-03-07T08:17:26.929Z",
+    //     likes: [
+    //       "l2ysXX5DPnT5kj43DPOB5SBLPGp1",
+    //       "xvlvn3KIxNOnLvtuQwYgLLpNk8W2",
+    //       "ZFQCf3r7ysOrT4f7pqOeiste8tn1",
+    //     ],
+    //   },
+    //   {
+    //     description: "second test video",
+    //     title: "i'm gay i'm gay",
+    //     date: "2022-03-07T08:18:42.475Z",
+    //     dislikes: [],
+    //     id: "l0gfllab",
+    //     comments: [],
+    //     uploader: {
+    //       displayName: "Mohamed Bechir Mejri",
+    //       photoURL:
+    //         "https://lh3.googleusercontent.com/a/AATXAJw8kD3q5WR2l50wOH6pwk25Xi_XoW9CI90WDp3s=s96-c",
+    //       id: "xvlvn3KIxNOnLvtuQwYgLLpNk8W2",
+    //     },
+    //     likes: [],
+    //     url: "/v.mp4",
+    //     views: [],
+    //   },
+    //   {
+    //     comments: [],
+    //     likes: ["xvlvn3KIxNOnLvtuQwYgLLpNk8W2", "l2ysXX5DPnT5kj43DPOB5SBLPGp1"],
+    //     description: "Test 3 ",
+    //     id: "l0gfziys",
+    //     date: "2022-03-07T08:29:31.215Z",
+    //     url: "/v.mp4",
+    //     title: "Glace wel bira3",
+    //     views: [],
+    //     dislikes: [],
+    //     uploader: {
+    //       photoURL:
+    //         "https://lh3.googleusercontent.com/a/AATXAJwTIYWhFFJ0Pij0yY5XcM0Io49QrU8Rn1Bj-5x5=s96-c",
+    //       displayName: "Mohamed Bechir Mejri",
+    //       id: "l2ysXX5DPnT5kj43DPOB5SBLPGp1",
+    //     },
+    //   },
+    //   {
+    //     id: "l0gnyohw",
+    //     date: "2022-03-07T12:12:59.625Z",
+    //     views: [],
+    //     dislikes: [],
+    //     comments: [],
+    //     url: "/v.mp4",
+    //     uploader: {
+    //       displayName: "Mohamed Bechir Mejri",
+    //       photoURL:
+    //         "https://lh3.googleusercontent.com/a/AATXAJwTIYWhFFJ0Pij0yY5XcM0Io49QrU8Rn1Bj-5x5=s96-c",
+    //       id: "l2ysXX5DPnT5kj43DPOB5SBLPGp1",
+    //     },
+    //     description: "Lol",
+    //     title: ".",
+    //     likes: ["l2ysXX5DPnT5kj43DPOB5SBLPGp1"],
+    //   },
+    // ];
+    // setVideosList(videos);
 
-    // const videosRef = collection(db, "videos");
-    // const unsubscribe = onSnapshot(videosRef, (snapshot) => {
-    //   const videos = snapshot.docs.map((doc) => doc.data()) as VideoData[];
-    //   setVideosList(videos);
-    // });
+    const videosRef = collection(db, "videos");
+    const unsubscribe = onSnapshot(videosRef, (snapshot) => {
+      const videos = snapshot.docs.map((doc) => doc.data()) as VideoData[];
+      setVideosList(videos);
+    });
 
-    // return () => unsubscribe();
+    return () => unsubscribe();
   }, [db]);
 
   return (
