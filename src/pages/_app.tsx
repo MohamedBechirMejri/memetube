@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -11,9 +12,9 @@ import {
   onAuthStateChanged,
   signInWithPopup,
 } from "firebase/auth";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { doc, getFirestore, onSnapshot, setDoc } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import UserContext from "../../lib/UserContext";
 
@@ -34,9 +35,10 @@ getStorage();
 
 const App: AppType = ({ Component, pageProps }) => {
   const [user, setUser] = useState(null as object | null);
+  const [profile, setProfile] = useState(null as object | null);
+  const [db] = useState(getFirestore());
+  const [auth] = useState(getAuth());
 
-  const db = getFirestore();
-  const auth = getAuth();
   onAuthStateChanged(auth, (usr) => setUser(usr));
 
   const signIn = useCallback((): void => {
@@ -56,12 +58,21 @@ const App: AppType = ({ Component, pageProps }) => {
     });
   }, [auth, db]);
 
-  console.log(user);
+  useEffect(() => {
+    if (!user) return;
+    // @ts-ignore
+    const unsub = onSnapshot(doc(db, "users", user.uid), (doc) => {
+      setProfile(doc.data());
+    });
+    return unsub;
+  }, [db, user]);
+
+  console.log(profile);
 
   return (
-    <UserContext.Provider value={user}>
-      <div className="relative m-auto h-[100svh] w-[100svw] max-w-3xl overflow-hidden font-bold font-[Nunito]">
-        <Nav user={user} signIn={signIn} />
+    <UserContext.Provider value={[profile, setProfile]}>
+      <div className="relative m-auto h-[100svh] w-[100svw] max-w-3xl overflow-hidden font-[Nunito] font-bold">
+        <Nav user={profile} signIn={signIn} />
         <Component {...pageProps} />
       </div>
     </UserContext.Provider>
