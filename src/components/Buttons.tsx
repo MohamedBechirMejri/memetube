@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -36,13 +38,6 @@ const Buttons = ({
 
   const videoRef = doc(db, "videos", id);
 
-  useEffect(() => {
-    if (!user) return;
-    // @ts-ignore
-    if (likes.includes(user.uid)) setIsLiked(true);
-    else setIsLiked(false);
-  }, [likes, user]);
-
   const handleLike = async () => {
     if (!user) return;
 
@@ -58,6 +53,39 @@ const Buttons = ({
       });
     }
   };
+
+  const handleSave = async () => {
+    if (!user) return;
+
+    // @ts-ignore
+    const userRef = doc(db, "users", user.uid);
+
+    if (isSaved) {
+      await updateDoc(userRef, {
+        // @ts-ignore
+        saved: user.saved.filter((video) => video !== id),
+      });
+    } else {
+      await updateDoc(userRef, {
+        // @ts-ignore
+        saved: [...user.saved, id],
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (!user) return;
+    // @ts-ignore
+    if (likes.includes(user.uid)) setIsLiked(true);
+    else setIsLiked(false);
+  }, [likes, user]);
+
+  useEffect(() => {
+    if (!user) return;
+    // @ts-ignore
+    if (user.saved.includes(id)) setIsSaved(true);
+    else setIsSaved(false);
+  }, [id, user]);
 
   return (
     <div className="grid grid-cols-4 gap-4 pt-4">
@@ -129,7 +157,9 @@ const Buttons = ({
         whileTap={{ scale: 0.9 }}
         transition={{ type: "spring", damping: 10, stiffness: 100 }}
         className="grid place-items-center text-3xl"
-        onClick={() => setIsSaved(!isSaved)}
+        onClick={() => {
+          void handleSave();
+        }}
       >
         <AnimatePresence>
           {isSaved ? (
