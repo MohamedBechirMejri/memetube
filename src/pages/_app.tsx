@@ -57,6 +57,10 @@ const App: AppType = ({ Component, pageProps }) => {
     });
   }, [auth, db]);
 
+  const signOut = useCallback((): void => {
+    void auth.signOut();
+  }, [auth]);
+
   useEffect(() => {
     if (!user) return;
     // @ts-ignore
@@ -69,7 +73,7 @@ const App: AppType = ({ Component, pageProps }) => {
   return (
     <UserContext.Provider value={[profile, setProfile]}>
       <div className="relative m-auto h-[100svh] w-[100svw] max-w-3xl overflow-hidden font-[Nunito] font-bold">
-        <Nav user={profile} signIn={signIn} />
+        <Nav user={profile} signIn={signIn} signOut={signOut} />
         <Component {...pageProps} />
       </div>
     </UserContext.Provider>

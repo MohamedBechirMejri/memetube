@@ -12,7 +12,15 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Upload from "./Upload";
 
-const Nav = ({ user, signIn }: { user: any; signIn: any }) => {
+const Nav = ({
+  user,
+  signIn,
+  signOut,
+}: {
+  user: any;
+  signIn: any;
+  signOut: any;
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUploadOpen, setIsUploadOpen] = useState(false);
 
@@ -79,7 +87,10 @@ const Nav = ({ user, signIn }: { user: any; signIn: any }) => {
                         <FaRegBookmark />
                       </Link>
 
-                      <button className="p-4 transition-all hover:text-red-500">
+                      <button
+                        className="p-4 transition-all hover:text-red-500"
+                        onClick={signOut}
+                      >
                         <AiOutlineLogout />
                       </button>
                     </motion.ul>
