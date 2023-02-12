@@ -50,7 +50,6 @@ const App: AppType = ({ Component, pageProps }) => {
         {
           displayName: userdata.displayName,
           photoURL: userdata.photoURL,
-          subscribers: [],
           uid: userdata.uid,
         },
         { merge: true }
