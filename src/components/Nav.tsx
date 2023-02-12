@@ -9,6 +9,7 @@ import Image from "next/image";
 import { AiOutlineLogout, AiOutlineUser } from "react-icons/ai";
 import { FaRegBookmark } from "react-icons/fa";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Nav = ({ user, signIn }: { user: any; signIn: any }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,43 +34,42 @@ const Nav = ({ user, signIn }: { user: any; signIn: any }) => {
               width={44}
               height={44}
               alt="user"
-              className="relative z-10 h-11 w-11 cursor-pointer rounded-full text-3xl transition-all hover:elevation-2"
+              className="relative z-10 h-11 w-11 cursor-pointer rounded-full text-3xl transition-all ease-in-out hover:scale-95 hover:elevation-2 active:scale-90"
               // @ts-ignore
               src={user.photoURL}
               draggable={false}
               onClick={() => setIsMenuOpen((prev) => !prev)}
             />
-
-            {isMenuOpen && (
-              <ul
-                className="absolute right-full top-full grid-rows-3 overflow-hidden rounded-2xl bg-white elevation-4  group-focus:grid"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <li>
+            <AnimatePresence>
+              {isMenuOpen && (
+                <motion.ul
+                  initial={{ opacity: 0, width: "0rem" }}
+                  animate={{ opacity: 1, width: "12rem" }}
+                  exit={{ opacity: 0, width: "0rem" }}
+                  transition={{ type: "spring", damping: 10, stiffness: 100 }}
+                  className="absolute right-0 top-[125%] grid origin-right grid-cols-3 place-items-center overflow-hidden rounded-2xl bg-white elevation-4"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   <Link
                     href={`/u/${user.uid}`}
-                    className="grid grid-cols-[2rem,4.5rem] place-items-center gap-2 p-2 px-4 transition-all hover:text-green-500 "
+                    className="p-4 transition-all hover:text-green-500"
                   >
                     <AiOutlineUser />
-                    Profile
                   </Link>
-                </li>
-                <li>
+
                   <Link
                     href="/saved"
-                    className="grid grid-cols-[2rem,4.5rem] place-items-center gap-2 p-2 px-4 transition-all hover:text-blue-500 "
+                    className="p-4 transition-all hover:text-blue-500"
                   >
-                    <FaRegBookmark /> Saved
+                    <FaRegBookmark />
                   </Link>
-                </li>
-                <li>
-                  <button className="grid grid-cols-[2rem,4.5rem] place-items-center gap-2 p-2 px-4 transition-all hover:text-red-500 ">
+
+                  <button className="p-4 transition-all hover:text-red-500">
                     <AiOutlineLogout />
-                    Logout
                   </button>
-                </li>
-              </ul>
-            )}
+                </motion.ul>
+              )}
+            </AnimatePresence>
           </div>
         ) : (
           <button
