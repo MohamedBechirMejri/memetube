@@ -23,8 +23,9 @@ const Nav = ({ user, signIn }: { user: any; signIn: any }) => {
       </AnimatePresence>
       <nav className="absolute z-50 flex h-[5rem] w-full items-center justify-between px-8 text-xl">
         <Link href="/">
-          <h1 className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text font-extrabold uppercase text-transparent">
+          <h1 className="group bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text font-extrabold uppercase text-transparent">
             memetube
+            <div className="h-[3px] w-full rounded-2xl bg-gradient-to-r from-purple-400 to-pink-600 opacity-0 transition-all group-hover:opacity-100" />
           </h1>
         </Link>
 
@@ -34,7 +35,7 @@ const Nav = ({ user, signIn }: { user: any; signIn: any }) => {
             onClick={() => setIsUploadOpen(true)}
           >
             Upload
-            <div className="h-[3px] w-full bg-gradient-to-r from-blue-400 to-teal-600 opacity-0 transition-all group-hover:opacity-100" />
+            <div className="h-[3px] w-full rounded-2xl bg-gradient-to-r from-blue-400 to-teal-600 opacity-0 transition-all group-hover:opacity-100" />
           </button>
 
           {user ? (
