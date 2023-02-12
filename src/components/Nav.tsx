@@ -42,32 +42,42 @@ const Nav = ({ user, signIn }: { user: any; signIn: any }) => {
             />
             <AnimatePresence>
               {isMenuOpen && (
-                <motion.ul
-                  initial={{ opacity: 0, width: "0rem" }}
-                  animate={{ opacity: 1, width: "12rem" }}
-                  exit={{ opacity: 0, width: "0rem" }}
-                  transition={{ type: "spring", damping: 10, stiffness: 100 }}
-                  className="absolute right-0 top-[125%] grid origin-right grid-cols-3 place-items-center overflow-hidden rounded-2xl bg-white elevation-4"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Link
-                    href={`/u/${user.uid}`}
-                    className="p-4 transition-all hover:text-green-500"
+                <>
+                  <motion.ul
+                    initial={{ opacity: 0, width: "0rem" }}
+                    animate={{ opacity: 1, width: "12rem" }}
+                    exit={{ opacity: 0, width: "0rem" }}
+                    transition={{ type: "spring", damping: 10, stiffness: 100 }}
+                    className="absolute right-0 top-[125%] z-50 grid origin-right grid-cols-3 place-items-center overflow-hidden rounded-2xl bg-gradient-to-br from-gray-500 to-slate-900 text-white elevation-4"
+                    onClick={() => setIsMenuOpen(false)}
                   >
-                    <AiOutlineUser />
-                  </Link>
+                    <Link
+                      href={`/u/${user.uid}`}
+                      className="p-4 transition-all hover:text-green-500"
+                    >
+                      <AiOutlineUser />
+                    </Link>
 
-                  <Link
-                    href="/saved"
-                    className="p-4 transition-all hover:text-blue-500"
-                  >
-                    <FaRegBookmark />
-                  </Link>
+                    <Link
+                      href="/saved"
+                      className="p-4 transition-all hover:text-blue-500"
+                    >
+                      <FaRegBookmark />
+                    </Link>
 
-                  <button className="p-4 transition-all hover:text-red-500">
-                    <AiOutlineLogout />
-                  </button>
-                </motion.ul>
+                    <button className="p-4 transition-all hover:text-red-500">
+                      <AiOutlineLogout />
+                    </button>
+                  </motion.ul>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ type: "spring", damping: 10, stiffness: 100 }}
+                    className="fixed left-0 top-0 h-screen w-screen bg-[#00000054]"
+                    onClick={() => setIsMenuOpen(false)}
+                  />
+                </>
               )}
             </AnimatePresence>
           </div>
