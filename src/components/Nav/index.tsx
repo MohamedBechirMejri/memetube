@@ -18,7 +18,9 @@ const Nav = ({ user, signIn }: { user: any; signIn: any }) => {
 
   return (
     <>
-      {isUploadOpen && <Upload setIsUploadOpen={setIsUploadOpen} />}
+      <AnimatePresence>
+        {isUploadOpen && <Upload setIsUploadOpen={setIsUploadOpen} />}
+      </AnimatePresence>
       <nav className="absolute z-50 flex h-[5rem] w-full items-center justify-between px-8 text-xl">
         <Link href="/">
           <h1 className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text font-extrabold uppercase text-transparent">
@@ -41,7 +43,7 @@ const Nav = ({ user, signIn }: { user: any; signIn: any }) => {
                 width={44}
                 height={44}
                 alt="user"
-                className="relative z-10 h-11 w-11 cursor-pointer rounded-full text-3xl transition-all ease-in-out hover:scale-95 hover:elevation-2 active:scale-90"
+                className="relative z-10 h-11 w-11 cursor-pointer rounded-full text-3xl transition-all active:brightness-75"
                 // @ts-ignore
                 src={user.photoURL}
                 draggable={false}
