@@ -23,11 +23,11 @@ const Nav = ({ user, signIn }: { user: any; signIn: any }) => {
       </Link>
 
       <div className="grid w-max grid-cols-[auto,auto] place-items-center gap-4">
-        <Link href="/upload">
-          <button className="bg-gradient-to-r from-blue-400 to-teal-600 bg-clip-text font-extrabold text-transparent">
-            Upload
-          </button>
-        </Link>
+        <button className="group bg-gradient-to-r from-blue-400 to-teal-600 bg-clip-text font-extrabold text-transparent">
+          Upload
+          <div className="h-[3px] w-full bg-gradient-to-r from-blue-400 to-teal-600 opacity-0 transition-all group-hover:opacity-100" />
+        </button>
+
         {user ? (
           <div className="relative">
             <Image
