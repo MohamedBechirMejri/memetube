@@ -66,8 +66,6 @@ const App: AppType = ({ Component, pageProps }) => {
     return unsub;
   }, [db, user]);
 
-  console.log(profile);
-
   return (
     <UserContext.Provider value={[profile, setProfile]}>
       <div className="relative m-auto h-[100svh] w-[100svw] max-w-3xl overflow-hidden font-[Nunito] font-bold">
