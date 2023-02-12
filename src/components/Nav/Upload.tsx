@@ -8,9 +8,9 @@ const Upload = ({
   setIsUploadOpen: (arg: boolean) => void;
 }) => {
   return (
-    <div className="fixed top-0 left-0 z-[70] h-[100svh] w-[100svw] p-4 backdrop-brightness-50">
+    <div className="fixed top-0 left-1/2 z-[70] h-[100svh] w-[100svw] max-w-3xl -translate-x-1/2 p-4 backdrop-brightness-90 transition-all">
       <motion.div
-        initial={{ y: "-100%", opacity: 0 }}
+        initial={{ y: "-100%", opacity: 0, x: "0" }}
         animate={{ y: "0%", opacity: 1 }}
         exit={{ y: "-100%", opacity: 0, transition: { duration: 0.3 } }}
         transition={{ type: "spring", damping: 10, stiffness: 55 }}
