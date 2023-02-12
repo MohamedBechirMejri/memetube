@@ -24,7 +24,7 @@ const Nav = ({ user, signIn }: { user: any; signIn: any }) => {
           </button>
         </Link>
         {user ? (
-          <Link href={`/me`}>
+          <Link href={`/u/${user.uid}`}>
             <Image
               width={44}
               height={44}
