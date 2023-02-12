@@ -60,6 +60,11 @@ const Buttons = ({
     // @ts-ignore
     const userRef = doc(db, "users", user.uid);
 
+    // @ts-ignore
+    if (user.saved === undefined) {
+      await updateDoc(userRef, { saved: [] });
+    }
+
     if (isSaved) {
       await updateDoc(userRef, {
         // @ts-ignore
