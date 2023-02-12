@@ -103,7 +103,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Meme Museum</title>
         <meta name="description" content="Top memes around the web" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <main className="grid h-full place-items-center overflow-y-scroll font-[Nunito] capitalize scrollbar-none">
         {videosList.map((video) => (
