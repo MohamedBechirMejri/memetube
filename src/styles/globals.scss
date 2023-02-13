@@ -21,3 +21,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #33343d7e;
 }
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
