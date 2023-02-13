@@ -3,7 +3,13 @@ import { type NextPage } from "next";
 
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { collection, getFirestore, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  getFirestore,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import Video from "../components/Video";
 import Buttons from "../components/Buttons";
 import Link from "next/link";
@@ -14,10 +20,13 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     const videosRef = collection(db, "videos");
-    const unsubscribe = onSnapshot(videosRef, (snapshot) => {
-      const videos = snapshot.docs.map((doc) => doc.data()) as VideoData[];
-      setVideosList(videos);
-    });
+    const unsubscribe = onSnapshot(
+      query(videosRef, orderBy("date", "desc")),
+      (snapshot) => {
+        const videos = snapshot.docs.map((doc) => doc.data()) as VideoData[];
+        setVideosList(videos);
+      }
+    );
 
     return () => unsubscribe();
   }, [db]);
