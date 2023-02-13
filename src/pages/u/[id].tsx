@@ -47,7 +47,6 @@ const User = ({ profile }) => {
         <meta name="description" content="Top memes around the web" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      (
       <div className="flex h-full flex-col items-center gap-4 overflow-y-scroll py-12 pt-24 scrollbar-none">
         <Image
           width={96}
