@@ -60,7 +60,7 @@ const User = ({ profile }) => {
           draggable={false}
         />
         <h1 className="text-2xl">{profile.displayName}</h1>
-        {videos.reverse().map((video) => (
+        {videos.map((video) => (
           <div
             key={video.id}
             className="grid h-[100svh] w-full shrink-0 grid-rows-[auto,1fr,auto] overflow-hidden bg-white p-4"

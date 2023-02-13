@@ -30,7 +30,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <main className="grid h-full place-items-center overflow-y-scroll font-[Nunito] scrollbar-none">
-        {videosList.reverse().map((video) => (
+        {videosList.map((video) => (
           <div
             key={video.id}
             className="grid h-[calc(100svh)] w-full grid-rows-[auto,1fr,auto] overflow-hidden bg-white p-4 py-14"

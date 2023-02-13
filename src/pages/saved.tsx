@@ -31,7 +31,7 @@ const Saved: NextPage = ({ user }: { user: { saved: string[] } }) => {
       </Head>
       <main className="grid h-full place-items-center overflow-y-scroll font-[Nunito] scrollbar-none">
         {user && user.saved && user.saved.length > 0 ? (
-          videosList.reverse().map((video) =>
+          videosList.map((video) =>
             user.saved.includes(video.id) ? (
               <div
                 key={video.id}
