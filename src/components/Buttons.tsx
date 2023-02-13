@@ -73,7 +73,7 @@ const Buttons = ({
     } else {
       await updateDoc(userRef, {
         // @ts-ignore
-        saved: [...user.saved, id],
+        saved: [...(user.saved ?? []), id],
       });
     }
   };
@@ -88,7 +88,7 @@ const Buttons = ({
   useEffect(() => {
     if (!user) return;
     // @ts-ignore
-    if (user.saved.includes(id)) setIsSaved(true);
+    if (user.saved && user.saved.includes(id)) setIsSaved(true);
     else setIsSaved(false);
   }, [id, user]);
 
