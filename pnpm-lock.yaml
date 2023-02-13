@@ -16,6 +16,7 @@ specifiers:
   eslint-config-next: 13.1.6
   firebase: ^9.17.1
   framer-motion: ^9.0.2
+  nanoid: ^4.0.1
   next: 13.1.6
   postcss: ^8.4.14
   prettier: ^2.8.1
@@ -35,6 +36,7 @@ specifiers:
 dependencies:
   firebase: 9.17.1
   framer-motion: 9.0.2_biqbaboplfbrettd7655fr4n2y
+  nanoid: 4.0.1
   next: 13.1.6_5mhhrw5dq6gnbuirj2awdzvyuu
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -2555,6 +2557,12 @@ packages:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /nanoid/4.0.1:
+    resolution: {integrity: sha512-udKGtCCUafD3nQtJg9wBhRP3KMbPglUsgV5JVsXhvyBs/oefqb4sqMEhKBBgqZncYowu58p1prsZQBYvAj/Gww==}
+    engines: {node: ^14 || ^16 || >=18}
+    hasBin: true
+    dev: false
 
   /natural-compare-lite/1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}
