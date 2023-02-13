@@ -160,7 +160,7 @@ const Buttons = ({
         transition={{ type: "spring", damping: 10, stiffness: 100 }}
         className="grid place-items-center text-4xl"
         onClick={() => {
-          void copy("https://beautube.vercel.app/v/" + id);
+          void copy("https://memetube.vercel.app/v/" + id);
           toast.success("Link Copied!");
         }}
       >
