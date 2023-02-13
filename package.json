@@ -9,6 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@vercel/analytics": "^0.1.8",
     "firebase": "^9.17.1",
     "framer-motion": "^9.0.2",
     "nanoid": "^4.0.1",

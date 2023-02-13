@@ -16,6 +16,7 @@ import { doc, getFirestore, onSnapshot, setDoc } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { useCallback, useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
+import { Analytics } from "@vercel/analytics/react";
 
 import UserContext from "../../lib/UserContext";
 
@@ -116,6 +117,7 @@ const App: AppType = ({ Component, pageProps }) => {
         <Component {...pageProps} user={profile} />
         <Toaster position="top-left" />
       </div>
+      <Analytics />
     </UserContext.Provider>
   );
 };
