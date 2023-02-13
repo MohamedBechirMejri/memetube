@@ -27,7 +27,7 @@ const Nav = ({
   return (
     <>
       <AnimatePresence>
-        {isUploadOpen && <Upload setIsUploadOpen={setIsUploadOpen} />}
+        {isUploadOpen && <Upload setIsUploadOpen={setIsUploadOpen} user={user} />}
       </AnimatePresence>
       <nav className="absolute z-50 flex h-[5rem] w-full items-center justify-between px-8 text-xl">
         <Link href="/">
