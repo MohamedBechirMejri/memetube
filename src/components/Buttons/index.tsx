@@ -111,6 +111,7 @@ const Buttons = ({
         transition={{ type: "spring", damping: 10, stiffness: 100 }}
         className="relative grid place-items-center text-4xl"
         onClick={() => {
+          if (!user) return toast.error("You need to Login!");
           void handleLike();
         }}
       >
@@ -145,7 +146,10 @@ const Buttons = ({
         whileTap={{ scale: 0.9 }}
         transition={{ type: "spring", damping: 10, stiffness: 100 }}
         className="relative grid place-items-center text-4xl"
-        onClick={() => setIsCommentsShown(true)}
+        onClick={() => {
+          if (!user) toast.error(" You need to Login to comment!");
+          setIsCommentsShown(true);
+        }}
       >
         <AiOutlineComment />
         {comments.length > 0 && (
@@ -174,6 +178,7 @@ const Buttons = ({
         transition={{ type: "spring", damping: 10, stiffness: 100 }}
         className="grid place-items-center text-3xl"
         onClick={() => {
+          if (!user) return toast.error("You need to Login!");
           void handleSave();
         }}
       >

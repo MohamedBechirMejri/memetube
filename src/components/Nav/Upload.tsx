@@ -10,6 +10,7 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { RiVideoUploadLine } from "react-icons/ri";
 import { nanoid } from "nanoid";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
+import toast from "react-hot-toast";
 // import { useRouter } from "next/router";
 
 const Upload = ({
@@ -33,6 +34,8 @@ const Upload = ({
   // const router = useRouter();
 
   const addVideo = () => {
+    if (!user) return toast.error("You can't upload until you Login!");
+
     if (!videoData) return;
 
     const { id, url } = videoData;
