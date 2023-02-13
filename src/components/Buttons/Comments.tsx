@@ -6,8 +6,9 @@ import { doc, getFirestore, updateDoc } from "firebase/firestore";
 import { motion } from "framer-motion";
 import { nanoid } from "nanoid";
 import { useState } from "react";
-import Image from "next/image";
 import { AiOutlineCloseCircle, AiOutlineSend } from "react-icons/ai";
+import Image from "next/image";
+import ScrollToBottom from "react-scroll-to-bottom";
 
 const Comments = ({
   id,
@@ -72,7 +73,7 @@ const Comments = ({
             <AiOutlineCloseCircle />
           </button>
         </div>
-        <div className="overflow-y-scroll p-4">
+        <ScrollToBottom className="overflow-y-scroll p-4 scrollbar-none">
           <div className="flex flex-col items-stretch justify-end gap-4">
             {comments.map((comment) => (
               <motion.div
@@ -115,7 +116,7 @@ const Comments = ({
               </motion.div>
             ))}
           </div>
-        </div>
+        </ScrollToBottom>
         <div className="grid w-full grid-cols-[1fr,auto] place-items-center gap-4 px-4">
           <input
             type="text"
