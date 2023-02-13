@@ -1,4 +1,4 @@
-import type VideoData from "../../Types/VideoData";
+import type VideoData from "../../types/VideoData";
 import { type NextPage } from "next";
 
 import Head from "next/head";
