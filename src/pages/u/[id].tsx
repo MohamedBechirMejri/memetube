@@ -8,7 +8,6 @@ import {
   collection,
   doc,
   getDoc,
-  getDocs,
   getFirestore,
   onSnapshot,
   query,
@@ -44,7 +43,10 @@ const User = ({ profile }) => {
     <>
       <Head>
         <title>{profile.displayName} | MemeTube</title>
-        <meta name="description" content="Top memes around the web" />
+        <meta
+          name="description"
+          content="Collection of the best memes around the world"
+        />
         <link rel="icon" href="/favicon.png" />
       </Head>
       <div className="flex h-full flex-col items-center gap-4 overflow-y-scroll py-12 pt-24 scrollbar-none">
