@@ -10,7 +10,16 @@ interface VideoData {
   };
   likes: string[];
   dislikes: string[];
-  comments: object[];
+  comments: {
+    id: string;
+    comment: string;
+    user: {
+      displayName: string;
+      photoURL: string;
+      id: string;
+    };
+    date: string;
+  }[];
   views: string[];
   date: string;
 }
