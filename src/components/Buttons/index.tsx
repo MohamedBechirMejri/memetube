@@ -9,6 +9,7 @@
 import { doc, updateDoc } from "firebase/firestore";
 import { AnimatePresence, motion } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import {
   AiOutlineComment,
   AiOutlineHeart,
@@ -77,11 +78,13 @@ const Buttons = ({
         // @ts-ignore
         saved: user.saved.filter((video) => video !== id),
       });
+      toast.success("Unsaved!");
     } else {
       await updateDoc(userRef, {
         // @ts-ignore
         saved: [...(user.saved ?? []), id],
       });
+      toast.success("Saved!");
     }
   };
 
@@ -158,6 +161,7 @@ const Buttons = ({
         className="grid place-items-center text-4xl"
         onClick={() => {
           void copy("https://beautube.vercel.app/v/" + id);
+          toast.success("Link Copied!");
         }}
       >
         <AiOutlineShareAlt />

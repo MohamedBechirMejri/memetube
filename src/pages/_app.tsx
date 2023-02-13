@@ -15,6 +15,7 @@ import {
 import { doc, getFirestore, onSnapshot, setDoc } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { useCallback, useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 import UserContext from "../../lib/UserContext";
 
@@ -75,6 +76,7 @@ const App: AppType = ({ Component, pageProps }) => {
       <div className="relative m-auto h-[100svh] w-[100svw] max-w-3xl overflow-hidden font-[Nunito] font-bold">
         <Nav user={profile} signIn={signIn} signOut={signOut} />
         <Component {...pageProps} user={profile} />
+        <Toaster position="top-left" />
       </div>
     </UserContext.Provider>
   );
