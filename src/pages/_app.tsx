@@ -74,7 +74,7 @@ const App: AppType = ({ Component, pageProps }) => {
     <UserContext.Provider value={[profile, setProfile]}>
       <div className="relative m-auto h-[100svh] w-[100svw] max-w-3xl overflow-hidden font-[Nunito] font-bold">
         <Nav user={profile} signIn={signIn} signOut={signOut} />
-        <Component {...pageProps} />
+        <Component {...pageProps} user={profile} />
       </div>
     </UserContext.Provider>
   );

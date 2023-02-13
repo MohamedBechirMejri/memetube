@@ -25,7 +25,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Meme Museum</title>
+        <title>MemeTube</title>
         <meta name="description" content="Top memes around the web" />
         <link rel="icon" href="/favicon.png" />
       </Head>
