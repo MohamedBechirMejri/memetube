@@ -17,7 +17,8 @@ import {
 } from "react-icons/ai";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { useCopyToClipboard } from "usehooks-ts";
-import UserContext from "../../lib/UserContext";
+import UserContext from "../../../lib/UserContext";
+import Comments from "./Comments";
 
 const Buttons = ({
   id,
@@ -27,13 +28,19 @@ const Buttons = ({
 }: {
   id: string;
   likes: string[];
-  comments: object[];
+  comments: {
+    id: string;
+    comment: string;
+    user: { displayName: string; photoURL: string; id: string };
+    date: string;
+  }[];
   db: any;
 }) => {
   const [user] = useContext(UserContext);
 
   const [isLiked, setIsLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [isCommentsShown, setIsCommentsShown] = useState(false);
   const copy = useCopyToClipboard()[1];
 
   const videoRef = doc(db, "videos", id);
@@ -135,7 +142,7 @@ const Buttons = ({
         whileTap={{ scale: 0.9 }}
         transition={{ type: "spring", damping: 10, stiffness: 100 }}
         className="relative grid place-items-center text-4xl"
-        onClick={() => setIsLiked(!isLiked)}
+        onClick={() => setIsCommentsShown(true)}
       >
         <AiOutlineComment />
         {comments.length > 0 && (
@@ -150,7 +157,7 @@ const Buttons = ({
         transition={{ type: "spring", damping: 10, stiffness: 100 }}
         className="grid place-items-center text-4xl"
         onClick={() => {
-          void copy("https://beautube.vercel.app/v/" + id); // add toast
+          void copy("https://beautube.vercel.app/v/" + id);
         }}
       >
         <AiOutlineShareAlt />
@@ -186,6 +193,17 @@ const Buttons = ({
           )}
         </AnimatePresence>
       </motion.button>
+
+      <AnimatePresence>
+        {isCommentsShown && (
+          <Comments
+            id={id}
+            comments={comments}
+            user={user}
+            setIsCommentsShown={setIsCommentsShown}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
