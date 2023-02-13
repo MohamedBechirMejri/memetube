@@ -36,6 +36,7 @@ const Video = ({ src }: { src: string }) => {
         ref={bgRef}
         muted
         loop
+        playsInline
         src={src}
         className="absolute h-full w-full object-fill blur-3xl"
       />
@@ -44,6 +45,7 @@ const Video = ({ src }: { src: string }) => {
         src={src}
         controls
         loop
+        playsInline
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
         className="relative z-10 h-full elevation-8"
