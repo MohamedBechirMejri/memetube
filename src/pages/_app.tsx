@@ -21,6 +21,7 @@ import UserContext from "../../lib/UserContext";
 
 import "../styles/globals.scss";
 import Nav from "../components/Nav";
+import Head from "next/head";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -73,6 +74,36 @@ const App: AppType = ({ Component, pageProps }) => {
 
   return (
     <UserContext.Provider value={[profile, setProfile]}>
+      <Head>
+        <meta name="application-name" content="MemeTube" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="MemeTube" />
+        <meta name="description" content="Best PWA App in the world" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-TileColor" content="#2B5797" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="theme-color" content="#000000" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="512x512"
+          href="/icons/favicon.png"
+        />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="shortcut icon" href="/favicon.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="MemeTube" />
+        <meta name="twitter:creator" content="@MohamedBechirMe" />
+        <meta property="og:image" content="/favicon.png" />
+        <link
+          rel="apple-touch-startup-image"
+          href="/favicon.png"
+          sizes="2048x2732"
+        />
+      </Head>
       <div className="relative m-auto h-[100svh] w-[100svw] max-w-3xl overflow-hidden font-[Nunito] font-bold">
         <Nav user={profile} signIn={signIn} signOut={signOut} />
         <Component {...pageProps} user={profile} />
