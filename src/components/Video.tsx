@@ -9,7 +9,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const Video = ({ src }: { src: string }) => {
   const ref = useRef();
   const bgRef = useRef();
-  const { ref: inViewRef, inView } = useInView();
+  const { ref: inViewRef, inView } = useInView({threshold: 0.75});
   const [isPlaying, setIsPlaying] = useState(false);
 
   const setRefs = useCallback(
