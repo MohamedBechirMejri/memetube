@@ -73,19 +73,19 @@ const Comments = ({
             <AiOutlineCloseCircle />
           </button>
         </div>
-        <ScrollToBottom className="overflow-y-scroll p-4 scrollbar-none">
+        <ScrollToBottom className="overflow-x-hidden overflow-y-scroll p-4 scrollbar-none">
           <div className="flex flex-col items-stretch justify-end gap-4">
             {comments.map((comment) => (
               <motion.div
                 initial={{
                   opacity: 0,
-                  x: comment.user.id === user.uid ? "-50%" : "50%",
+                  x: user && comment.user.id === user.uid ? "-50%" : "50%",
                 }}
                 animate={{ opacity: 1, x: "0" }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 key={comment.id}
                 className={`flex gap-2 ${
-                  comment.user.id === user.uid
+                  user && comment.user.id === user.uid
                     ? "flex-row-reverse items-center"
                     : "flex-row items-start"
                 }`}
@@ -98,14 +98,15 @@ const Comments = ({
                   className="h-6 w-6 rounded-full"
                 />
                 <div className="flex flex-col">
-                  {comment.user.id !== user.uid && (
-                    <h1 className="text-xs font-medium">
-                      {comment.user.displayName}
-                    </h1>
-                  )}
+                  {!user ||
+                    (comment.user.id !== user.uid && (
+                      <h1 className="text-xs font-medium">
+                        {comment.user.displayName}
+                      </h1>
+                    ))}
                   <p
                     className={`rounded-2xl p-2 px-4 font-semibold ${
-                      comment.user.id === user.uid
+                      user && comment.user.id === user.uid
                         ? "bg-gradient-to-br from-pink-500 via-purple-500 to-blue-500 text-white"
                         : "bg-gray-300"
                     }`}
