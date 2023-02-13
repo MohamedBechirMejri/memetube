@@ -14,6 +14,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Buttons from "../../components/Buttons";
@@ -40,33 +41,42 @@ const User = ({ profile }) => {
   }, [db, profile.uid]);
 
   return (
-    <div className="flex h-full flex-col items-center gap-4 overflow-y-scroll py-12 pt-24 scrollbar-none">
-      <Image
-        width={96}
-        height={96}
-        alt="user"
-        className="relative z-10 h-24 w-24 rounded-full text-3xl transition-all hover:elevation-2"
-        // @ts-ignore
-        src={profile.photoURL}
-        draggable={false}
-      />
-      <h1 className="text-2xl">{profile.displayName}</h1>
-      {videos.map((video) => (
-        <div
-          key={video.id}
-          className="grid h-[100svh] w-full shrink-0 grid-rows-[auto,1fr,auto] overflow-hidden bg-white p-4"
-        >
-          <h1 className="p-4 text-2xl font-bold">{video.title}</h1>
-          <Video src={video.url} />
-          <Buttons
-            id={video.id}
-            likes={video.likes}
-            comments={video.comments}
-            db={db}
-          />
-        </div>
-      ))}
-    </div>
+    <>
+      <Head>
+        <title>{profile.displayName} | MemeTube</title>
+        <meta name="description" content="Top memes around the web" />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
+      (
+      <div className="flex h-full flex-col items-center gap-4 overflow-y-scroll py-12 pt-24 scrollbar-none">
+        <Image
+          width={96}
+          height={96}
+          alt="user"
+          className="relative z-10 h-24 w-24 rounded-full text-3xl transition-all hover:elevation-2"
+          // @ts-ignore
+          src={profile.photoURL}
+          draggable={false}
+        />
+        <h1 className="text-2xl">{profile.displayName}</h1>
+        {videos.map((video) => (
+          <div
+            key={video.id}
+            className="grid h-[100svh] w-full shrink-0 grid-rows-[auto,1fr,auto] overflow-hidden bg-white p-4"
+          >
+            <h1 className="p-4 text-2xl font-bold">{video.title}</h1>
+            <Video src={video.url} />
+            <Buttons
+              id={video.id}
+              likes={video.likes}
+              comments={video.comments}
+              db={db}
+            />
+          </div>
+        ))}
+      </div>
+      )
+    </>
   );
 };
 
