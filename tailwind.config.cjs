@@ -7,9 +7,7 @@ module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms"),
-    require("@tailwindcss/line-clamp"),
     require("@tailwindcss/aspect-ratio"),
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     require("tailwindcss-elevation")(["responsive"]),
     require("tailwindcss-no-scrollbar"),
   ],
