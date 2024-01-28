@@ -51,7 +51,7 @@ export default function Add() {
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {
           console.log(res);
-          addVideo(res);
+          addVideo(res[0]);
         }}
         onUploadError={(error: Error) => {
           console.log(error);
