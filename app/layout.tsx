@@ -16,7 +16,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={
+          inter.className +
+          " flex h-[100svh] w-[100svw] flex-col items-center justify-between bg-slate-950 text-white"
+        }
+      >
+        <main className="grid h-[100svh] w-full max-w-[38rem] grid-rows-[minmax(0,1fr),auto] bg-black">
+          {children}
+          <nav className="grid w-full grid-cols-5 place-items-center py-6">
+            <div>home</div>
+            <div>favs</div>
+            <div>+</div>
+            <div>profile</div>
+            <div>settings</div>
+          </nav>
+        </main>
+      </body>
     </html>
   );
 }
