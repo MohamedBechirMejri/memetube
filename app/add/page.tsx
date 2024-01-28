@@ -12,7 +12,7 @@ export default function Add() {
       <input
         type="text"
         placeholder="something relevant"
-        className="mb-4 w-full rounded-xl border border-slate-700 bg-transparent p-4 text-xl outline-none py-2"
+        className="mb-4 w-full rounded-xl border border-slate-700 bg-transparent p-4 py-2 text-xl outline-none"
       />
       <UploadDropzone
         endpoint="imageUploader"
