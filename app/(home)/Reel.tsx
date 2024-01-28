@@ -11,8 +11,10 @@ export default function Reel({ video }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (isInView) videoRef.current?.play();
-    else videoRef.current?.pause();
+    if (isInView) {
+      videoRef.current?.play();
+      ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else videoRef.current?.pause();
   }, [isInView]);
 
   return (
