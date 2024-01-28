@@ -11,3 +11,7 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+
+label[for="file-upload"] {
+  color: #fff !important;
+}
