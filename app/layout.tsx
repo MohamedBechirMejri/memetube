@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,10 +25,10 @@ export default function RootLayout({
       >
         <main className="grid h-[100svh] w-full max-w-[38rem] grid-rows-[minmax(0,1fr),auto] bg-black">
           {children}
-          <nav className="grid w-full grid-cols-5 place-items-center h-20">
-            <div>home</div>
+          <nav className="grid h-20 w-full grid-cols-5 place-items-center">
+            <Link href={"/"}>home</Link>
             <div>favs</div>
-            <div>+</div>
+            <Link href="/add">+</Link>
             <div>profile</div>
             <div>settings</div>
           </nav>
