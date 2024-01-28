@@ -25,12 +25,10 @@ export default function RootLayout({
       >
         <main className="grid h-[100svh] w-full max-w-[38rem] grid-rows-[minmax(0,1fr),auto] bg-black">
           {children}
-          <nav className="grid h-20 w-full grid-cols-5 place-items-center">
+          <nav className="grid h-20 w-full grid-cols-3 place-items-center">
             <Link href={"/"}>home</Link>
-            <div>favs</div>
             <Link href="/add">+</Link>
-            <div>profile</div>
-            <div>settings</div>
+            <div>favs</div>
           </nav>
         </main>
       </body>
