@@ -1,25 +1,36 @@
 "use client";
 
-import Reel from "./(home)/Reel";
+import { getDatabase, ref, onValue, get } from "firebase/database";
+import { useState, useRef, useEffect } from "react";
 
-const videos = [
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/Sintel.jpg",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
-];
+import Reel from "./(home)/Reel";
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "~/lib/firebase";
+
+initializeApp(firebaseConfig);
 
 export default function Home() {
+  const [videos, setVideos] = useState<any[]>([]);
+  const videosSnapshotRef = useRef(null);
+
+  useEffect(() => {
+    const db = getDatabase();
+    const videosRef = ref(db, "videos");
+    get(videosRef)
+      .then((snapshot) => {
+        const data = snapshot.val();
+        if (!data) return;
+        const videos = Object.values(data);
+        setVideos(videos);
+        console.log(videos);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <main className="h-full w-full snap-y snap-mandatory overflow-y-scroll">
       {videos.map((video) => (
-        <Reel key={video} video={video} />
+        <Reel key={video.key} video={video} />
       ))}
     </main>
   );
