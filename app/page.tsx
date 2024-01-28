@@ -1,5 +1,7 @@
 "use client";
 
+import Reel from "./(home)/Reel";
+
 const videos = [
   "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
   "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
@@ -17,9 +19,7 @@ export default function Home() {
   return (
     <main className="h-full overflow-y-scroll">
       {videos.map((video) => (
-        <div key={video} className="flex h-[calc(100svh-5rem)] items-center">
-          <video src={video} className="max-h-full max-w-full" />
-        </div>
+        <Reel key={video} video={video} />
       ))}
     </main>
   );
