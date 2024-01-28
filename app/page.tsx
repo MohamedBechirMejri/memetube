@@ -17,7 +17,7 @@ const videos = [
 
 export default function Home() {
   return (
-    <main className="h-full overflow-y-scroll">
+    <main className="h-full snap-y overflow-y-scroll">
       {videos.map((video) => (
         <Reel key={video} video={video} />
       ))}
