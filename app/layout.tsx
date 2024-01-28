@@ -28,7 +28,7 @@ export default function RootLayout({
           <nav className="grid h-20 w-full grid-cols-3 place-items-center">
             <Link href={"/"}>home</Link>
             <Link href="/add">+</Link>
-            <div>favs</div>
+            <Link href="/favorites">favs</Link>
           </nav>
         </main>
       </body>
