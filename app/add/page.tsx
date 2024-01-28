@@ -23,11 +23,9 @@ export default function Add() {
         id,
         title,
         likes: 0,
-        comments: [],
+        comments: [""],
         ...res,
       });
-
-      console.log(video);
 
       setTitle("");
       router.push("/");
