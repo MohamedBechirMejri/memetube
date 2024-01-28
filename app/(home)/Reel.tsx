@@ -19,7 +19,7 @@ export default function Reel({ video }: Props) {
     <div
       ref={ref}
       key={video}
-      className="relative flex h-[calc(100svh-5rem)] snap-proximity snap-center items-center"
+      className="relative flex h-[calc(100svh-5rem)] snap-center items-center mb-8 w-full"
     >
       <video ref={videoRef} src={video} className="max-h-full max-w-full" />
       <p className="absolute bottom-0 left-4">video name.mp4</p>
