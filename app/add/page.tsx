@@ -20,6 +20,7 @@ export default function Add() {
       const db = getDatabase();
 
       const video = await set(ref(db, "videos/" + id), {
+        id,
         title,
         likes: 0,
         comments: [],
