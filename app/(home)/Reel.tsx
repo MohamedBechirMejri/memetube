@@ -18,7 +18,7 @@ export default function Reel({ video }: Props) {
   return (
     <div
       ref={ref}
-      key={video}
+      key={video.url}
       className="relative flex h-[calc(100svh-5rem)] snap-center items-center mb-8 w-full"
     >
       <video ref={videoRef} src={video} className="max-h-full max-w-full" />
