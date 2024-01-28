@@ -24,7 +24,7 @@ export default function RootLayout({
       >
         <main className="grid h-[100svh] w-full max-w-[38rem] grid-rows-[minmax(0,1fr),auto] bg-black">
           {children}
-          <nav className="grid w-full grid-cols-5 place-items-center py-6">
+          <nav className="grid w-full grid-cols-5 place-items-center h-20">
             <div>home</div>
             <div>favs</div>
             <div>+</div>
