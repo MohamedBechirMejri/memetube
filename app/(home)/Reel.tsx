@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 type Props = {
   video: string;
@@ -8,7 +8,12 @@ type Props = {
 export default function Reel({ video }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { amount: 0.5 });
-  const videoRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (isInView) videoRef.current?.play();
+    else videoRef.current?.pause();
+  }, [isInView]);
 
   return (
     <div
