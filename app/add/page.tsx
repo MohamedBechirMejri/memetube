@@ -4,7 +4,7 @@ import { UploadDropzone } from "~/utils/uploadthing";
 
 export default function Add() {
   return (
-    <main className="flex h-full flex-col items-center justify-center p-24">
+    <main className="flex h-full flex-col items-center justify-center">
       <UploadDropzone
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {
@@ -16,7 +16,7 @@ export default function Add() {
           // Do something with the error.
           alert(`ERROR! ${error.message}`);
         }}
-        className="rounded-lg border-2 border-slate-500 bg-slate-950 p-4 text-white"
+        className="h-full w-full rounded-lg bg-slate-950 p-4 text-white"
       />
     </main>
   );
