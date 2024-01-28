@@ -1,36 +1,35 @@
 "use client";
 
+import { initializeApp } from "firebase/app";
 import { child, get, getDatabase, ref, set } from "firebase/database";
+import { nanoid } from "nanoid";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
+import { firebaseConfig } from "~/lib/firebase";
 import { UploadDropzone } from "~/utils/uploadthing";
 
 export default function Add() {
   const [title, setTitle] = useState("");
   const router = useRouter();
 
-  const addVideo = useCallback(
-    (res: any) => {
-      const dbRef = ref(getDatabase());
-      get(child(dbRef, `videos/`))
-        .then(async (snapshot) => {
-          if (snapshot.exists()) {
-            const id = new Crypto().randomUUID();
-            const db = await getDatabase();
+  initializeApp(firebaseConfig);
 
-            await set(ref(db, "videos/" + id), {
-              title,
-              likes: 0,
-              comments: [],
-              ...res,
-            });
-          }
-        })
-        .then(() => {
-          setTitle("");
-          router.push("/");
-        })
-        .catch((error) => console.error(error));
+  const addVideo = useCallback(
+    async (res: any) => {
+      const id = nanoid(6);
+      const db = getDatabase();
+
+      const video = await set(ref(db, "videos/" + id), {
+        title,
+        likes: 0,
+        comments: [],
+        ...res,
+      });
+
+      console.log(video);
+
+      setTitle("");
+      router.push("/");
     },
     [router, title],
   );
@@ -50,8 +49,14 @@ export default function Add() {
       />
       <UploadDropzone
         endpoint="imageUploader"
-        onClientUploadComplete={(res) => addVideo(res)}
-        onUploadError={(error: Error) => alert(`ERROR! ${error.message}`)}
+        onClientUploadComplete={(res) => {
+          console.log(res);
+          addVideo(res);
+        }}
+        onUploadError={(error: Error) => {
+          console.log(error);
+          alert(`ERROR! ${error.message}`);
+        }}
         className="h-full w-full rounded-lg bg-slate-950 p-4 text-white"
       />
     </main>
