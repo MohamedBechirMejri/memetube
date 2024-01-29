@@ -20,7 +20,7 @@ export default function Home() {
       .then((snapshot) => {
         const data = snapshot.val();
         if (!data) return;
-        const videos = Object.values(data).reverse();
+        const videos = Object.values(data);
         setVideos(videos);
       })
       .catch((error) => console.error(error));
