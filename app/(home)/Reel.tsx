@@ -33,15 +33,26 @@ export default function Reel({ video }: Props) {
     }
   }, [isInView]);
 
+  const togglePlay = () => {
+    if (videoRef.current?.paused) {
+      videoRef.current?.play();
+      videoRef2.current?.play();
+    } else {
+      videoRef.current?.pause();
+      videoRef2.current?.pause();
+    }
+  };
+
   return (
     <div
       ref={ref}
       className="relative mb-8 flex h-[calc(100svh-5rem)] w-full snap-center items-center"
+      onClick={togglePlay}
     >
       <video
         ref={videoRef2}
         src={url}
-        className="absolute inset-0 w-full h-full scale-[2] blur-2xl brightness-50"
+        className="absolute inset-0 h-full w-full scale-[2] blur-2xl brightness-50"
         muted
       />
       <video
