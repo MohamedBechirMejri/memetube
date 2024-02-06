@@ -48,7 +48,7 @@ export default function RootLayout({
             </Link>
             <Link href={"/profile"} className="flex flex-col items-center ">
               <TbUser />
-              Search
+              Profile
             </Link>
           </nav>
         </main>
