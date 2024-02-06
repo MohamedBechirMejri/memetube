@@ -20,7 +20,9 @@ export default function Home() {
       .then((snapshot) => {
         const data = snapshot.val();
         if (!data) return;
-        const videos = Object.values(data);
+        const videos = Object.values(data).sort(
+          (a: any, b: any) => b.createdAt - a.createdAt,
+        );
         setVideos(videos);
       })
       .catch((error) => console.error(error));
