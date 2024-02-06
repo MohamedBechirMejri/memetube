@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { TbPlayerPauseFilled, TbPlayerPlayFilled } from "react-icons/tb";
 
 type Props = {
   video: {
@@ -66,6 +67,16 @@ export default function Reel({ video }: Props) {
       <p className="absolute bottom-4 left-4 z-50">
         {new Date(createdAt).toDateString()}
       </p>
+
+      {status === "stopped" ? (
+        <motion.div>
+          <TbPlayerPauseFilled className="absolute bottom-4 right-4 z-50" />
+        </motion.div>
+      ) : (
+        <motion.div>
+          <TbPlayerPlayFilled className="absolute bottom-4 right-4 z-50" />
+        </motion.div>
+      )}
     </div>
   );
 }
