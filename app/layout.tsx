@@ -3,7 +3,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import { TbBrandGoogleHome, TbPlus, TbSearch, TbStar, TbUser } from "react-icons/tb";
+import {
+  TbBrandGoogleHome,
+  TbPlus,
+  TbSearch,
+  TbStar,
+  TbUser,
+} from "react-icons/tb";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +31,9 @@ export default function RootLayout({
           " flex h-[100svh] w-[100svw] flex-col items-center justify-between bg-slate-950 text-white"
         }
       >
-        <main className="grid h-[100svh] w-full max-w-[38rem] grid-rows-[minmax(0,1fr),auto] bg-black">
+        <main className="relative grid h-[100svh] w-full max-w-[38rem] grid-rows-[minmax(0,1fr),auto] bg-black">
+          <h1 className="absolute left-4 top-4 text-2xl font-bold ghosting-text">MemeTube</h1>
+
           {children}
           <nav className="relative z-50 grid h-20 w-full grid-cols-5 place-items-center">
             <Link href={"/"} className="flex flex-col items-center ">
