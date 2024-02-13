@@ -15,3 +15,9 @@
 label[for="file-upload"] {
   color: #fff !important;
 }
+
+.ghosting-text {
+  text-shadow:
+    -5px 0px 1px #00b8ff,
+    5px 0px 1px #ff0000;
+}
