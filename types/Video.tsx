@@ -10,8 +10,9 @@ export type Video = {
   comments: Comment[];
   languages: string[];
   tags: Tag[];
-  createdAt: firebase.firestore.Timestamp;
-  updatedAt: firebase.firestore.Timestamp;
+  createdAt: number;
+  updatedAt: number;
+  serverData: any; // TODO: fix this
 };
 
 export type Comment = {
@@ -19,8 +20,8 @@ export type Comment = {
   body: string;
   likes: string[];
   replies: Comment[];
-  createdAt: firebase.firestore.Timestamp;
-  updatedAt: firebase.firestore.Timestamp;
+  createdAt: number;
+  updatedAt: number;
 };
 
 export type Tag = {
