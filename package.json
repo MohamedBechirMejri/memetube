@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@preact/signals-react": "^2.0.0",
     "@uploadthing/react": "^6.2.3",
     "firebase": "^10.8.0",
     "framer-motion": "^11.0.5",
