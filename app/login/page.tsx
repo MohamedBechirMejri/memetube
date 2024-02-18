@@ -1,5 +1,6 @@
 "use client";
 
+import { initializeApp } from "firebase/app";
 import {
   GoogleAuthProvider,
   browserLocalPersistence,
@@ -10,13 +11,15 @@ import {
 } from "firebase/auth";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { useCallback } from "react";
-import { userSig } from "~/lib/signals/user";
+import { firebaseConfig } from "~/lib/firebase";
+import { UID, userSig } from "~/lib/signals/user";
 
 export default function Login() {
-  const auth = getAuth();
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
   setPersistence(auth, browserLocalPersistence);
-  onAuthStateChanged(auth, (u) => (userSig.value = u));
+  onAuthStateChanged(auth, (u) => (UID.value = u?.uid || null));
 
   const signIn = useCallback(async () => {
     const db = getFirestore();
