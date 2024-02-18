@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { doc, getFirestore, onSnapshot } from "firebase/firestore";
 import { firebaseConfig } from "../firebase";
+import { create } from "zustand";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -15,6 +16,12 @@ effect(() => {
   if (UID.value)
     onSnapshot(doc(db, "users", UID.value), (doc) => {
       if (doc.exists()) userSig.value = doc.data();
+      else userSig.value = null;
     });
   else userSig.value = null;
 });
+
+export const useUserStore = create((set) => ({
+  user: null,
+  updateUser: (user: any) => set({ user }),
+}));
