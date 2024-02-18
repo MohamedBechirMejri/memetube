@@ -2,17 +2,20 @@
 
 import {
   GoogleAuthProvider,
+  browserLocalPersistence,
   getAuth,
   onAuthStateChanged,
+  setPersistence,
   signInWithPopup,
 } from "firebase/auth";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { useCallback } from "react";
-import { authSig, userSig } from "~/lib/signals/user";
+import {   userSig } from "~/lib/signals/user";
 
 export default function Login() {
   const auth = getAuth();
-  authSig.value = auth;
+
+  setPersistence(auth, browserLocalPersistence);
 
   onAuthStateChanged(auth, (u) => (userSig.value = u));
 
