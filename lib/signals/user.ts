@@ -1,7 +1,7 @@
 import { effect, signal } from "@preact/signals-react";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { doc, getFirestore, onSnapshot } from "firebase/firestore";
 import { firebaseConfig } from "../firebase";
 
 const app = initializeApp(firebaseConfig);
@@ -13,10 +13,8 @@ export const UID = signal<string | null>(auth.currentUser?.uid || null);
 
 effect(() => {
   if (UID.value)
-    getDoc(doc(db, "users", UID.value)).then((doc) => {
-      if (doc.exists()) {
-        userSig.value = doc.data();
-      }
+    onSnapshot(doc(db, "users", UID.value), (doc) => {
+      userSig.value = doc.data();
     });
   else userSig.value = null;
 });
