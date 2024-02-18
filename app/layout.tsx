@@ -1,3 +1,8 @@
+"use client";
+
+import { effect } from "@preact/signals-react";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import {
@@ -7,6 +12,8 @@ import {
   TbStar,
   TbUser,
 } from "react-icons/tb";
+import { firebaseConfig } from "~/lib/firebase";
+import { UID } from "~/lib/signals/user";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,6 +25,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  effect(async () => {
+    await auth.authStateReady();
+    UID.value = auth.currentUser?.uid || null;
+  });
+
   return (
     <html lang="en">
       <body
