@@ -1,7 +1,6 @@
-import { authSig } from "../signals/user";
-
-const auth = authSig.value;
+import { getAuth } from "firebase/auth";
 
 export const signOut = () => {
-  if (auth) auth.signOut();
+  const auth = getAuth();
+  auth.signOut();
 };
