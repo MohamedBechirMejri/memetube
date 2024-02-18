@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { firebaseConfig, getCollection } from "~/lib/firebase";
-import { userSig } from "~/lib/signals/user";
+import { userSig } from "~/lib/globals/user";
 import Reel from "./(home)/Reel";
 
 export default function Home() {
