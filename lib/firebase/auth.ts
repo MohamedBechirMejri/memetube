@@ -15,6 +15,7 @@ export const signIn = async () => {
 
   const result = await signInWithPopup(auth, new GoogleAuthProvider());
   const userData = result.user;
+  console.log(userData);
 
   await setDoc(
     doc(db, "users", userData.uid),
