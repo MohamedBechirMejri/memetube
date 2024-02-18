@@ -12,7 +12,7 @@ import {
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { useCallback } from "react";
 import { firebaseConfig } from "~/lib/firebase";
-import { UID } from "~/lib/signals/user";
+import { UID } from "~/lib/globals/user";
 
 export default function Login() {
   const app = initializeApp(firebaseConfig);
