@@ -5,6 +5,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import Image from "next/image";
 import {
   TbBrandGoogleHome,
   TbPlus,
@@ -13,8 +14,10 @@ import {
   TbUser,
 } from "react-icons/tb";
 import { firebaseConfig } from "~/lib/firebase";
-import { UID } from "~/lib/signals/user";
+import { UID, useUserStore, userSig } from "~/lib/globals/user";
 import "./globals.css";
+import { useForceUpdate } from "framer-motion";
+import Nav from "./Nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +36,8 @@ export default function RootLayout({
     UID.value = auth.currentUser?.uid || null;
   });
 
+  console.log(userSig.value);
+
   return (
     <html lang="en">
       <body
@@ -47,30 +52,7 @@ export default function RootLayout({
           </h1>
 
           {children}
-          <nav className="relative z-50 grid h-20 w-full grid-cols-5 place-items-center">
-            <Link href={"/"} className="flex flex-col items-center ">
-              <TbBrandGoogleHome />
-              Home
-            </Link>
-            <Link href={"/search"} className="flex flex-col items-center ">
-              <TbSearch />
-              Search
-            </Link>
-            <Link
-              href="/add"
-              className="-mt-2 flex flex-col items-center rounded-full bg-white p-2 px-6 text-black"
-            >
-              <TbPlus className="text-3xl" />
-            </Link>
-            <Link href="/favorites" className="flex flex-col items-center ">
-              <TbStar />
-              Favorites
-            </Link>
-            <Link href={"/profile"} className="flex flex-col items-center ">
-              <TbUser />
-              Profile
-            </Link>
-          </nav>
+          <Nav user={userSig.value} />
         </main>
       </body>
     </html>
