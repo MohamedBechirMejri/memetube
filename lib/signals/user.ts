@@ -1,13 +1,6 @@
 import { signal } from "@preact/signals-react";
-import {
-  GoogleAuthProvider,
-  getAuth,
-  onAuthStateChanged,
-  signInWithPopup,
-} from "firebase/auth";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 export const userSig = signal<any>({});
 
 export const authSig = signal(getAuth());
-
