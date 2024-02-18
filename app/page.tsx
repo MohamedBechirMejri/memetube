@@ -5,10 +5,13 @@ import { useEffect, useRef, useState } from "react";
 
 import { getCollection } from "~/lib/firebase";
 import Reel from "./(home)/Reel";
+import { userSig } from "~/lib/signals/user";
 
 export default function Home() {
   const [videos, setVideos] = useState<any[]>([]);
   const videosSnapshotRef = useRef(null);
+
+  console.log(userSig.value);
 
   getCollection("videos").then((querySnapshot) => {
     const videos = querySnapshot.docs.map((doc) => doc.data());
