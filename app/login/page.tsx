@@ -12,17 +12,17 @@ import {
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { useCallback } from "react";
 import { firebaseConfig } from "~/lib/firebase";
-import { UID, userSig } from "~/lib/signals/user";
+import { UID } from "~/lib/signals/user";
 
 export default function Login() {
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+  const db = getFirestore(app);
 
-  setPersistence(auth, browserLocalPersistence);
   onAuthStateChanged(auth, (u) => (UID.value = u?.uid || null));
 
   const signIn = useCallback(async () => {
-    const db = getFirestore();
+    await setPersistence(auth, browserLocalPersistence);
 
     const result = await signInWithPopup(auth, new GoogleAuthProvider());
     const userData = result.user;
@@ -37,7 +37,7 @@ export default function Login() {
       },
       { merge: true },
     );
-  }, [auth]);
+  }, [auth, db]);
 
   return (
     <main className="flex h-full flex-col items-center justify-center p-4">
