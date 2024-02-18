@@ -18,7 +18,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
-    "uploadthing": "^6.4.0"
+    "uploadthing": "^6.4.0",
+    "zustand": "^4.5.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.19",
