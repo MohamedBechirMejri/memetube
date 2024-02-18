@@ -3,17 +3,21 @@
 import { get, getDatabase, ref } from "firebase/database";
 import { useEffect, useRef, useState } from "react";
 
-import { getCollection } from "~/lib/firebase";
-import Reel from "./(home)/Reel";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { firebaseConfig, getCollection } from "~/lib/firebase";
 import { userSig } from "~/lib/signals/user";
+import Reel from "./(home)/Reel";
 
 export default function Home() {
   const [videos, setVideos] = useState<any[]>([]);
   const videosSnapshotRef = useRef(null);
 
   console.log(userSig.value);
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-  getCollection("videos").then((querySnapshot) => {
+  getCollection(db, "videos").then((querySnapshot) => {
     const videos = querySnapshot.docs.map((doc) => doc.data());
     // setVideos(videos);
     console.log(videos);
