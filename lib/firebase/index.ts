@@ -1,4 +1,3 @@
-import { signal } from "@preact/signals-react";
 import { initializeApp } from "firebase/app";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 // import { getAnalytics } from "firebase/analytics";
@@ -18,9 +17,7 @@ export const firebaseConfig = {
 export const firebaseApp = initializeApp(firebaseConfig);
 // export const analytics = getAnalytics(firebaseApp);
 
-export const dbSig = signal(getFirestore(firebaseApp));
-
-const db = dbSig.value;
+export const db = getFirestore(firebaseApp);
 
 export const getCollection = async (collectionName: string) => {
   return await getDocs(collection(db, collectionName));
