@@ -1,22 +1,16 @@
 "use client";
 
-import { getDatabase, ref, onValue, get } from "firebase/database";
-import { useState, useRef, useEffect } from "react";
+import { get, getDatabase, ref } from "firebase/database";
+import { useEffect, useRef, useState } from "react";
 
+import { getCollection } from "~/lib/firebase";
 import Reel from "./(home)/Reel";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig, getCollection } from "~/lib/firebase";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
-
-const app = initializeApp(firebaseConfig);
 
 export default function Home() {
-  const db = getFirestore(app);
-
   const [videos, setVideos] = useState<any[]>([]);
   const videosSnapshotRef = useRef(null);
 
-  getCollection(db, "videos").then((querySnapshot) => {
+  getCollection("videos").then((querySnapshot) => {
     const videos = querySnapshot.docs.map((doc) => doc.data());
     // setVideos(videos);
     console.log(videos);
