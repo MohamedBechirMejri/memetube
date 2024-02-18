@@ -26,13 +26,13 @@ export default function Login() {
 
     const result = await signInWithPopup(auth, new GoogleAuthProvider());
     const userData = result.user;
-    console.log(userData);
 
     await setDoc(
       doc(db, "users", userData.uid),
       {
-        displayName: userData.displayName,
-        photoURL: userData.photoURL,
+        email: userData.email,
+        name: userData.displayName,
+        image: userData.photoURL,
         uid: userData.uid,
       },
       { merge: true },
