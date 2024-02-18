@@ -1,6 +1,6 @@
 "use client";
 
-import { userSig } from "~/lib/signals/user";
+import { userSig } from "~/lib/globals/user";
 
 export default function Profile() {
   return (
