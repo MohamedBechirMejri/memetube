@@ -1,5 +1,3 @@
-import { signal } from "@preact/signals-react";
-import { getAuth } from "firebase/auth";
+import { signal } from "@preact/signals-react"; 
 
 export const userSig = signal<any>({});
-export const authSig = signal<any>(null);
