@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
+import { initializeApp } from "firebase/app";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import Link from "next/link";
 import {
   TbBrandGoogleHome,
@@ -10,6 +11,9 @@ import {
   TbStar,
   TbUser,
 } from "react-icons/tb";
+import { firebaseConfig } from "~/lib/firebase";
+import { userSig } from "~/lib/signals/user";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +27,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  initializeApp(firebaseConfig);
+  const auth = getAuth();
+
+  onAuthStateChanged(auth, (u) => (userSig.value = u));
   return (
     <html lang="en">
       <body
