@@ -32,7 +32,9 @@ export default function RootLayout({
         }
       >
         <main className="relative grid h-[100svh] w-full max-w-[38rem] grid-rows-[minmax(0,1fr),auto] bg-black">
-          <h1 className="absolute left-4 top-4 text-2xl font-bold ghosting-text">MemeTube</h1>
+          <h1 className="ghosting-text absolute left-4 top-4 text-2xl font-bold">
+            MemeTube
+          </h1>
 
           {children}
           <nav className="relative z-50 grid h-20 w-full grid-cols-5 place-items-center">
