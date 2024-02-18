@@ -14,7 +14,7 @@ export const UID = signal<string | null>(auth.currentUser?.uid || null);
 effect(() => {
   if (UID.value)
     onSnapshot(doc(db, "users", UID.value), (doc) => {
-      userSig.value = doc.data();
+      if (doc.exists()) userSig.value = doc.data();
     });
   else userSig.value = null;
 });
