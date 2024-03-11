@@ -13,6 +13,7 @@ export const userSig = signal<any>(null);
 export const UID = signal<string | null>(auth.currentUser?.uid || null);
 
 effect(() => {
+  console.log("triggered:" + UID.value);
   if (UID.value)
     onSnapshot(doc(db, "users", UID.value), (doc) => {
       if (doc.exists()) userSig.value = doc.data();
@@ -20,8 +21,3 @@ effect(() => {
     });
   else userSig.value = null;
 });
-
-export const useUserStore = create((set) => ({
-  user: null,
-  updateUser: (user: any) => set({ user }),
-}));
