@@ -1,23 +1,12 @@
 "use client";
 
-import { effect } from "@preact/signals-react";
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Inter } from "next/font/google";
-import Link from "next/link";
-import Image from "next/image";
-import {
-  TbBrandGoogleHome,
-  TbPlus,
-  TbSearch,
-  TbStar,
-  TbUser,
-} from "react-icons/tb";
 import { firebaseConfig } from "~/lib/firebase";
-import { UID, useUserStore, userSig } from "~/lib/globals/user";
-import "./globals.css";
-import { useForceUpdate } from "framer-motion";
+import { UID, userSig } from "~/lib/globals/user";
 import Nav from "./Nav";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,12 +20,16 @@ export default function RootLayout({
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  effect(async () => {
-    await auth.authStateReady();
+  onAuthStateChanged(auth, (u) => {
+    UID.value = u?.uid || null;
+  });
+  auth.authStateReady().then(() => {
+    console.log(auth.currentUser);
     UID.value = auth.currentUser?.uid || null;
   });
 
   console.log(userSig.value);
+  console.log(UID.value ?? " ");
 
   return (
     <html lang="en">
@@ -52,7 +45,7 @@ export default function RootLayout({
           </h1>
 
           {children}
-          <Nav user={userSig.value} />
+          <Nav />
         </main>
       </body>
     </html>
