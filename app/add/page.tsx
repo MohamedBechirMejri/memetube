@@ -1,7 +1,9 @@
 "use client";
 
+import type { Video } from "~/types/Video";
+
 import { initializeApp } from "firebase/app";
-import { child, get, getDatabase, ref, set } from "firebase/database";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { nanoid } from "nanoid";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
@@ -12,26 +14,32 @@ export default function Add() {
   const [title, setTitle] = useState("");
   const router = useRouter();
 
-  initializeApp(firebaseConfig);
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
   const addVideo = useCallback(
     async (res: any) => {
-      const id = nanoid(6);
-      const db = getDatabase();
+      const id = nanoid(8);
 
-      const video = await set(ref(db, "videos/" + id), {
+      await setDoc(doc(db, "videos", id), {
+        name: title,
+        url: res.url,
+        uploadedBy: "user",
+        categories: [],
+        views: [],
+        likes: [],
+        comments: [],
+        languages: [],
+        tags: [],
         createdAt: Date.now(),
-        id,
-        title,
-        likes: 0,
-        comments: [""],
-        ...res,
-      });
+        updatedAt: Date.now(),
+        serverData: res,
+      } as Video);
 
       setTitle("");
-      router.push("/");
+      router.push(`/v${id}`);
     },
-    [router, title],
+    [db, router, title],
   );
 
   return (
