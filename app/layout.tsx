@@ -4,9 +4,11 @@ import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Inter } from "next/font/google";
 import { firebaseConfig } from "~/lib/firebase";
-import { UID, userSig } from "~/lib/globals/user";
 import Nav from "./Nav";
 import "./globals.css";
+import { useUserStore } from "~/lib/globals/user";
+import { useEffect } from "react";
+import { doc, getFirestore, onSnapshot } from "firebase/firestore";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,17 +21,24 @@ export default function RootLayout({
 }>) {
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+  const db = getFirestore(app);
 
-  onAuthStateChanged(auth, (u) => {
-    UID.value = u?.uid || null;
-  });
-  auth.authStateReady().then(() => {
-    console.log(auth.currentUser);
-    UID.value = auth.currentUser?.uid || null;
-  });
+  const { setUID, setUser, uid, user } = useUserStore();
 
-  console.log(userSig.value);
-  console.log(UID.value ?? " ");
+  useEffect(() => {
+    onAuthStateChanged(auth, (u) => setUID(u?.uid || null));
+
+    auth.authStateReady().then(() => setUID(auth.currentUser?.uid || null));
+  }, [auth, setUID]);
+
+  useEffect(() => {
+    if (uid)
+      onSnapshot(doc(db, "users", uid), (doc) => {
+        if (doc.exists()) setUser(doc.data());
+        else setUser(null);
+      });
+    else setUser(null);
+  }, [db, setUser, uid]);
 
   return (
     <html lang="en">
