@@ -12,14 +12,16 @@ import {
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { useCallback } from "react";
 import { firebaseConfig } from "~/lib/firebase";
-import { UID } from "~/lib/globals/user";
+import { useUserStore } from "~/lib/globals/user";
 
 export default function Login() {
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  onAuthStateChanged(auth, (u) => (UID.value = u?.uid || null));
+  const { setUID } = useUserStore();
+
+  onAuthStateChanged(auth, (u) => setUID(u?.uid || null));
 
   const signIn = useCallback(async () => {
     await setPersistence(auth, browserLocalPersistence);
