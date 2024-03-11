@@ -1,23 +1,15 @@
-import { effect, signal } from "@preact/signals-react";
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { doc, getFirestore, onSnapshot } from "firebase/firestore";
-import { firebaseConfig } from "../firebase";
 import { create } from "zustand";
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+type UserStore = {
+  uid: string | null;
+  setUID: (uid: string | null) => void;
+  user: any;
+  setUser: (user: any) => void;
+};
 
-export const userSig = signal<any>(null);
-export const UID = signal<string | null>(auth.currentUser?.uid || null);
-
-effect(() => {
-  console.log("triggered:" + UID.value);
-  if (UID.value)
-    onSnapshot(doc(db, "users", UID.value), (doc) => {
-      if (doc.exists()) userSig.value = doc.data();
-      else userSig.value = null;
-    });
-  else userSig.value = null;
-});
+export const useUserStore = create<UserStore>((set) => ({
+  uid: null,
+  setUID: (uid) => set({ uid }),
+  user: null,
+  setUser: (user) => set({ user }),
+}));
