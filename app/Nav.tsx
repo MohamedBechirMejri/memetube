@@ -9,14 +9,13 @@ import {
   TbUser,
 } from "react-icons/tb";
 import Image from "next/image";
+import { userSig } from "~/lib/globals/user";
 
-type Props = {
-  user: any;
-};
-
-export default function Nav({ user }: Props) {
+export default function Nav() {
+  const user = userSig.value;
+  console.log(user);
   return (
-    <nav className="relative z-50 grid h-16 w-full grid-cols-5 place-items-center grid-rows-1 ">
+    <nav className="relative z-50 grid h-16 w-full grid-cols-5 grid-rows-1 place-items-center ">
       <Link href={"/"} className="flex flex-col items-center justify-between ">
         <TbBrandGoogleHome />
         Home
