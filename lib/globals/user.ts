@@ -1,9 +1,10 @@
 import { create } from "zustand";
+import { User } from "~/types/User";
 
 type UserStore = {
   uid: string | null;
   setUID: (uid: string | null) => void;
-  user: any;
+  user: User | null;
   setUser: (user: any) => void;
 };
 
