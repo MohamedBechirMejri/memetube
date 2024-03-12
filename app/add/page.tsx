@@ -66,6 +66,39 @@ export default function Add() {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
+
+      <label className="flex w-full flex-col gap-2">Tags:</label>
+
+      <div className="flex flex-wrap w-full">
+        {tags.map((tag, i) => (
+          <span
+            key={"tag" + i + tag}
+            className="m-1 rounded-xl bg-slate-950 p-2 text-white"
+          >
+            {tag.name}
+          </span>
+        ))}
+      </div>
+
+      <input
+        type="text"
+        placeholder="tag"
+        value={tag}
+        onChange={(e) => setTag(e.target.value)}
+        className="mb-4 w-full rounded-xl border border-slate-700 bg-transparent p-4 py-2 text-xl outline-none"
+      />
+      <button
+        className="mb-4 w-full rounded-xl bg-slate-950 p-4 text-white"
+        onClick={() => {
+          if (tag) {
+            setTags([...tags, { name: tag }]);
+            setTag("");
+          }
+        }}
+      >
+        Add tag
+      </button>
+
       <UploadDropzone
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {
