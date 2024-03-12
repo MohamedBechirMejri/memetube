@@ -9,10 +9,15 @@ import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { firebaseConfig } from "~/lib/firebase";
 import { UploadDropzone } from "~/utils/uploadthing";
+import { useUserStore } from "~/lib/globals/user";
 
 export default function Add() {
   const [title, setTitle] = useState("");
   const router = useRouter();
+
+  const { user } = useUserStore();
+
+  console.log(user)
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
