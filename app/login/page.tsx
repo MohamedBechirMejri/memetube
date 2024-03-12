@@ -10,7 +10,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
-import { useCallback } from "react";
+import { useEffect } from "react";
 import { firebaseConfig } from "~/lib/firebase";
 import { useUserStore } from "~/lib/globals/user";
 
@@ -21,9 +21,11 @@ export default function Login() {
 
   const { setUID } = useUserStore();
 
-  onAuthStateChanged(auth, (u) => setUID(u?.uid || null));
+  useEffect(() => {
+    onAuthStateChanged(auth, (u) => setUID(u?.uid || null));
+  }, [auth, setUID]);
 
-  const signIn = useCallback(async () => {
+  const signIn = async () => {
     await setPersistence(auth, browserLocalPersistence);
 
     const result = await signInWithPopup(auth, new GoogleAuthProvider());
@@ -39,7 +41,7 @@ export default function Login() {
       },
       { merge: true },
     );
-  }, [auth, db]);
+  };
 
   return (
     <main className="flex h-full flex-col items-center justify-center p-4">
