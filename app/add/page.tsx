@@ -37,7 +37,7 @@ export default function Add() {
       } as Video);
 
       setTitle("");
-      router.push(`/v${id}`);
+      router.push(`/v/${id}`);
     },
     [db, router, title],
   );
