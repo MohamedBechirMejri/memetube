@@ -17,19 +17,21 @@ export default function Add() {
 
   const { user } = useUserStore();
 
-  console.log(user)
+  console.log(user);
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
   const addVideo = useCallback(
     async (res: any) => {
+      if (!user) return router.push("/login");
+
       const id = nanoid(8);
 
       await setDoc(doc(db, "videos", id), {
         name: title,
         url: res.url,
-        uploadedBy: "user",
+        uploadedBy: user.uid,
         categories: [],
         views: [],
         likes: [],
@@ -44,7 +46,7 @@ export default function Add() {
       setTitle("");
       router.push(`/v/${id}`);
     },
-    [db, router, title],
+    [db, router, title, user],
   );
 
   return (
