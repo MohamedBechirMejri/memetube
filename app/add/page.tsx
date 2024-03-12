@@ -1,6 +1,6 @@
 "use client";
 
-import type { Video } from "~/types/Video";
+import type { Tag, Video } from "~/types/Video";
 
 import { initializeApp } from "firebase/app";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
@@ -13,6 +13,13 @@ import { useUserStore } from "~/lib/globals/user";
 
 export default function Add() {
   const [title, setTitle] = useState("");
+  const [tag, setTag] = useState("");
+  const [tags, setTags] = useState<Tag[]>([]);
+  const [language, setLanguage] = useState("");
+  const [languages, setLanguages] = useState<string[]>([]);
+  const [category, setCategory] = useState("");
+  const [categories, setCategories] = useState<string[]>([]);
+
   const router = useRouter();
 
   const { user } = useUserStore();
@@ -22,32 +29,29 @@ export default function Add() {
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  const addVideo = useCallback(
-    async (res: any) => {
-      if (!user) return router.push("/login");
+  const addVideo = async (res: any) => {
+    if (!user) return router.push("/login");
 
-      const id = nanoid(8);
+    const id = nanoid(8);
 
-      await setDoc(doc(db, "videos", id), {
-        name: title,
-        url: res.url,
-        uploadedBy: user.uid,
-        categories: [],
-        views: [],
-        likes: [],
-        comments: [],
-        languages: [],
-        tags: [],
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
-        serverData: res,
-      } as Video);
+    await setDoc(doc(db, "videos", id), {
+      name: title,
+      url: res.url,
+      uploadedBy: user.uid,
+      categories,
+      views: [],
+      likes: [],
+      comments: [],
+      languages,
+      tags,
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+      serverData: res,
+    } as Video);
 
-      setTitle("");
-      router.push(`/v/${id}`);
-    },
-    [db, router, title, user],
-  );
+    setTitle("");
+    router.push(`/v/${id}`);
+  };
 
   return (
     <main className="flex h-full flex-col items-center justify-center p-4">
