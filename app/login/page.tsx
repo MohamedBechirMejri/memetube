@@ -9,10 +9,11 @@ import {
   setPersistence,
   signInWithPopup,
 } from "firebase/auth";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import { useEffect } from "react";
 import { firebaseConfig } from "~/lib/firebase";
 import { useUserStore } from "~/lib/globals/user";
+import { User } from "~/types/User";
 
 export default function Login() {
   const app = initializeApp(firebaseConfig);
@@ -31,6 +32,21 @@ export default function Login() {
     const result = await signInWithPopup(auth, new GoogleAuthProvider());
     const userData = result.user;
 
+    const currentData = await getDoc(doc(db, "users", userData.uid));
+    let favorites,
+      history,
+      likes,
+      uploads = [];
+    let createdAt = Date.now();
+
+    if (currentData.exists()) {
+      favorites = currentData.data().favorites;
+      history = currentData.data().history;
+      likes = currentData.data().likes;
+      uploads = currentData.data().uploads;
+      createdAt = currentData.data().createdAt;
+    }
+
     await setDoc(
       doc(db, "users", userData.uid),
       {
@@ -38,7 +54,15 @@ export default function Login() {
         name: userData.displayName,
         image: userData.photoURL,
         uid: userData.uid,
-      },
+        favorites,
+        history,
+        likes,
+        uploads,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+        displayName: userData.displayName,
+        photoURL: userData.photoURL,
+      } as User,
       { merge: true },
     );
   };
