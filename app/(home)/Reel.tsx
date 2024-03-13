@@ -53,7 +53,6 @@ export default function Reel({ video }: Props) {
         src={url}
         className="relative z-10 max-h-full w-full max-w-full"
       />
-      {/* <p className="absolute bottom-0 left-4">{title || name}</p> */}
       <p className="absolute bottom-4 left-4 z-50 font-semibold">
         {name}
         <br />
