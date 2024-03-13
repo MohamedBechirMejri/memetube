@@ -1,6 +1,8 @@
+import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import { motion, useInView } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { TbPlayerPauseFilled, TbPlayerPlayFilled } from "react-icons/tb";
+import { useUserStore } from "~/lib/globals/user";
 import { Video } from "~/types/Video";
 
 type Props = {
@@ -8,7 +10,9 @@ type Props = {
 };
 
 export default function Reel({ video }: Props) {
-  const { url, createdAt, name, views } = video;
+  const { url, createdAt, name, id } = video;
+
+  const { user } = useUserStore();
 
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { amount: 0.5 });
@@ -35,6 +39,27 @@ export default function Reel({ video }: Props) {
       videoRef2.current?.play();
     }
   }, [status]);
+
+  useEffect(() => {
+    const db = getFirestore();
+
+    const updateViews = async () => {
+      const latestData = (await getDoc(doc(db, "videos", id))).data();
+
+      const { views } = latestData!;
+
+      const newViews =
+        !user || views.includes(user?.uid) ? views : [...views, user?.uid];
+
+      await setDoc(
+        doc(db, "videos", id),
+        { ...latestData, views: newViews },
+        { merge: true },
+      );
+    };
+
+    updateViews();
+  }, [id]);
 
   return (
     <div
