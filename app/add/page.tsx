@@ -106,7 +106,7 @@ export default function Add() {
         {LANGUAGES.map((lang, i) => (
           <button
             key={"lang" + i + lang}
-            className="m-1 rounded-xl bg-slate-950 p-2 text-white"
+            className="m-1 rounded-xl bg-slate-950 p-2 text-white capitalize"
             onClick={() => {
               setLanguages([lang]);
             }}
