@@ -26,9 +26,14 @@ export default function Home() {
 
   return (
     <main className="h-full w-full snap-y snap-mandatory overflow-y-scroll">
-      {videos.map((video) => (
-        <Reel key={video.id} video={video} />
-      ))}
+      {videos
+        .filter((v) => {
+          if (!user) return true;
+          return !user.history.includes("videos/" + v.id);
+        })
+        .map((video) => (
+          <Reel key={video.id} video={video} />
+        ))}
     </main>
   );
 }
