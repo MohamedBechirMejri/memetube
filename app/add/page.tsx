@@ -53,12 +53,12 @@ export default function Add() {
   return (
     <main className="flex h-full flex-col items-center justify-center overflow-y-scroll p-4">
       <h1 className="p-2 text-2xl capitalize">Upload a new meme</h1>
-      <label className="mb-3 mt-4 w-full px-2 text-left capitalize">
+      <label className="mb-3 mt-4 w-full px-2 text-left">
         Add a title:
       </label>
       <input
         type="text"
-        placeholder="something relevant"
+        placeholder="Something relevant"
         className="mb-4 w-full rounded-xl border border-slate-700 bg-transparent p-4 py-2 text-xl outline-none"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
@@ -80,7 +80,7 @@ export default function Add() {
       <div className="flex w-full gap-4">
         <input
           type="text"
-          placeholder="tag"
+          placeholder="jump scare, weird, old tiktokers, nsfw, etc..."
           value={tag}
           onChange={(e) => setTag(e.target.value)}
           className="mb-4 w-full rounded-xl border border-slate-700 bg-transparent p-4 py-2 text-xl outline-none"
