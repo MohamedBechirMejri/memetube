@@ -18,8 +18,6 @@ export default function Add() {
   const [tag, setTag] = useState("");
   const [tags, setTags] = useState<Tag[]>([]);
   const [languages, setLanguages] = useState<string[]>([LANGUAGES[0]]);
-  const [category, setCategory] = useState("");
-  const [categories, setCategories] = useState<string[]>([]);
 
   const router = useRouter();
 
@@ -39,7 +37,7 @@ export default function Add() {
       name: title,
       url: res.url,
       uploadedBy: user.uid,
-      categories,
+      categories: [],
       views: [],
       likes: [],
       comments: [],
