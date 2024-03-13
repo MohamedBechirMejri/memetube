@@ -1,6 +1,7 @@
 import firebase from "firebase/compat/app";
 
 export type Video = {
+  id: string; 
   name: string;
   url: string;
   uploadedBy: string;

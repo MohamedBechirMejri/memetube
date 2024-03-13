@@ -32,6 +32,7 @@ export default function Add() {
     const id = nanoid(8);
 
     await setDoc(doc(db, "videos", id), {
+      id,
       name: title,
       url: res.url,
       uploadedBy: user.uid,
