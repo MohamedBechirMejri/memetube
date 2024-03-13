@@ -1,24 +1,14 @@
 import { motion, useInView } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { TbPlayerPauseFilled, TbPlayerPlayFilled } from "react-icons/tb";
+import { Video } from "~/types/Video";
 
 type Props = {
-  video: {
-    key: string;
-    likes: number;
-    name: string;
-    serverData: {
-      uploadedBy: string;
-    };
-    size: number;
-    title: string;
-    url: string;
-    createdAt: number;
-  };
+  video: Video;
 };
 
 export default function Reel({ video }: Props) {
-  const { name, title, url, createdAt } = video;
+  const { url, createdAt, name, views } = video;
 
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { amount: 0.5 });
@@ -64,8 +54,12 @@ export default function Reel({ video }: Props) {
         className="relative z-10 max-h-full w-full max-w-full"
       />
       {/* <p className="absolute bottom-0 left-4">{title || name}</p> */}
-      <p className="absolute bottom-4 left-4 z-50">
-        {new Date(createdAt).toDateString()}
+      <p className="absolute bottom-4 left-4 z-50 font-semibold">
+        {name}
+        <br />
+        <span className="text-sm font-normal opacity-70">
+          {new Date(createdAt).toDateString()}
+        </span>
       </p>
 
       {status === "stopped" ? (
