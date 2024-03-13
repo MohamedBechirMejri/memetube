@@ -11,12 +11,13 @@ import { firebaseConfig } from "~/lib/firebase";
 import { UploadDropzone } from "~/utils/uploadthing";
 import { useUserStore } from "~/lib/globals/user";
 
+const LANGUAGES = ["arabic", "english"];
+
 export default function Add() {
   const [title, setTitle] = useState("");
   const [tag, setTag] = useState("");
   const [tags, setTags] = useState<Tag[]>([]);
-  const [language, setLanguage] = useState("");
-  const [languages, setLanguages] = useState<string[]>([]);
+  const [languages, setLanguages] = useState<string[]>([LANGUAGES[0]]);
   const [category, setCategory] = useState("");
   const [categories, setCategories] = useState<string[]>([]);
 
@@ -54,7 +55,7 @@ export default function Add() {
   };
 
   return (
-    <main className="flex h-full flex-col items-center justify-center p-4">
+    <main className="flex h-full flex-col items-center justify-center overflow-y-scroll p-4">
       <h1 className="p-2 text-2xl capitalize">Upload a new meme</h1>
       <label className="mb-3 mt-4 w-full px-2 text-left capitalize">
         Add a title:
@@ -69,7 +70,7 @@ export default function Add() {
 
       <label className="mb-2 w-full">Tags:</label>
 
-      <div className="flex flex-wrap w-full">
+      <div className="flex w-full flex-wrap">
         {tags.map((tag, i) => (
           <span
             key={"tag" + i + tag}
@@ -81,25 +82,42 @@ export default function Add() {
       </div>
 
       <div className="flex w-full gap-4">
-      <input
-        type="text"
-        placeholder="tag"
-        value={tag}
-        onChange={(e) => setTag(e.target.value)}
-        className="mb-4 w-full rounded-xl border border-slate-700 bg-transparent p-4 py-2 text-xl outline-none"
-      />
-      <button
-        className="mb-4 w-32 rounded-xl bg-slate-950 p-4 text-white"
-        onClick={() => {
-          if (tag) {
-            setTags([...tags, { name: tag }]);
-            setTag("");
-          }
-        }}
-      >
-        Add tag
-      </button>
-</div>
+        <input
+          type="text"
+          placeholder="tag"
+          value={tag}
+          onChange={(e) => setTag(e.target.value)}
+          className="mb-4 w-full rounded-xl border border-slate-700 bg-transparent p-4 py-2 text-xl outline-none"
+        />
+        <button
+          className="mb-4 w-32 rounded-xl bg-slate-950 p-4 text-white"
+          onClick={() => {
+            if (tag) {
+              setTags([...tags, { name: tag }]);
+              setTag("");
+            }
+          }}
+        >
+          Add tag
+        </button>
+      </div>
+
+      <label className="mb-2 w-full">Language:</label>
+
+      <div className="flex w-full gap-4">
+        {LANGUAGES.map((lang, i) => (
+          <button
+            key={"lang" + i + lang}
+            className="m-1 rounded-xl bg-slate-950 p-2 text-white"
+            onClick={() => {
+              setLanguages([lang]);
+            }}
+          >
+            {lang}
+          </button>
+        ))}
+      </div>
+
       <UploadDropzone
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {
