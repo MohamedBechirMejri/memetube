@@ -51,14 +51,25 @@ export default function Reel({ video }: Props) {
       const newViews =
         !user || views.includes(user?.uid) ? views : [...views, user?.uid];
 
+      await setDoc(doc(db, "videos", id), { views: newViews }, { merge: true });
+    };
+
+    const updateHistory = async () => {
+      if (!user) return;
+
+      const { history } = user!;
+
+      const newHistory = history.includes(id) ? history : [id, ...history];
+
       await setDoc(
-        doc(db, "videos", id),
-        { ...latestData, views: newViews },
+        doc(db, "users", user.uid),
+        { history: newHistory },
         { merge: true },
       );
     };
 
     updateViews();
+    updateHistory();
   }, [id]);
 
   return (
