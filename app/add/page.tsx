@@ -6,7 +6,7 @@ import { initializeApp } from "firebase/app";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { nanoid } from "nanoid";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { firebaseConfig } from "~/lib/firebase";
 import { UploadDropzone } from "~/utils/uploadthing";
 import { useUserStore } from "~/lib/globals/user";
@@ -22,8 +22,6 @@ export default function Add() {
   const router = useRouter();
 
   const { user } = useUserStore();
-
-  console.log(user);
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
@@ -106,7 +104,7 @@ export default function Add() {
         {LANGUAGES.map((lang, i) => (
           <button
             key={"lang" + i + lang}
-            className="m-1 rounded-xl bg-slate-950 p-2 text-white capitalize"
+            className="m-1 rounded-xl bg-slate-950 p-2 capitalize text-white"
             onClick={() => {
               setLanguages([lang]);
             }}
