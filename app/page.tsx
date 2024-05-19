@@ -28,6 +28,7 @@ export default function Home() {
     <main className="h-full w-full snap-y snap-mandatory overflow-y-scroll">
       {videos
         .filter((v) => {
+          return true;
           if (!user) return true;
           return !user.history.includes("videos/" + v.id);
         })

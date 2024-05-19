@@ -14,7 +14,7 @@ export default function Profile() {
   }, [router, user]);
 
   return (
-    <main className="flex h-full flex-col items-center justify-between p-4 pb-8 pt-20">
+    <main className="flex h-full flex-col items-center justify-between p-4 pb-8">
       <h1 className="self-start text-2xl font-semibold">
         Hello, {user?.name.split(" ")[0]}
       </h1>
