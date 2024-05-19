@@ -45,7 +45,7 @@ export default function RootLayout({
       <body
         className={
           inter.className +
-          " flex h-[100svh] w-[100svw] flex-col items-center justify-between bg-slate-950 text-white"
+          " flex h-[100svh] w-[100svw] flex-col items-center justify-between bg-slate-950 text-white antialiased"
         }
       >
         <main className="relative grid h-[100svh] w-full max-w-[38rem] grid-rows-[minmax(0,1fr),auto] bg-black">
