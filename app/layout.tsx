@@ -48,8 +48,8 @@ export default function RootLayout({
           " flex h-[100svh] w-[100svw] flex-col items-center justify-between bg-slate-950 text-white antialiased"
         }
       >
-        <main className="relative grid h-[100svh] w-full max-w-[38rem] grid-rows-[minmax(0,1fr),auto] bg-black">
-          <h1 className="ghosting-text absolute left-4 top-4 text-2xl font-bold">
+        <main className="relative grid h-[100svh] w-full max-w-[38rem] grid-rows-[auto,minmax(0,1fr),auto] bg-black">
+          <h1 className="ghosting-text relative z-50 py-4 text-center text-2xl font-bold">
             MemeTube
           </h1>
 
