@@ -14,9 +14,14 @@ export default function Profile() {
   }, [router, user]);
 
   return (
-    <main className="flex h-full flex-col items-center justify-center p-4">
-      Soon...
-      {user?.name}
+    <main className="flex h-full flex-col items-center justify-between p-4 pb-8 pt-20">
+      <h1 className="self-start text-2xl font-semibold">
+        Hello, {user?.name.split(" ")[0]}
+      </h1>
+
+      <button className="rounded-2xl bg-rose-500 bg-opacity-15 p-2 px-8 text-rose-500">
+        Logout
+      </button>
     </main>
   );
 }
