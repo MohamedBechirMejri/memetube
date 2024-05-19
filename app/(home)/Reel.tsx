@@ -76,7 +76,7 @@ export default function Reel({ video }: Props) {
 
     updateViews();
     updateHistory();
-  }, [id]);
+  }, [id, user]);
 
   return (
     <div
