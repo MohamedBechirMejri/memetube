@@ -25,7 +25,7 @@ export default function Home() {
   }, [db, user]);
 
   return (
-    <main className="h-full w-full snap-y snap-mandatory overflow-y-scroll">
+    <main className="h-full w-full snap-y snap-mandatory overflow-y-scroll overflow-hidden">
       {videos
         .filter((v) => {
           return true;
