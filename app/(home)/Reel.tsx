@@ -81,7 +81,7 @@ export default function Reel({ video }: Props) {
   return (
     <div
       ref={ref}
-      className="relative mb-8 flex h-[calc(100svh-5rem)] w-full snap-center items-center"
+      className="relative mb-8 flex h-full w-full snap-center items-center"
       onClick={togglePlay}
     >
       <video
