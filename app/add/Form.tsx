@@ -25,7 +25,7 @@ type Props = {
   onBack: () => void;
 };
 
-export default function Form({ user, videoData }: Props) {
+export default function Form({ user, videoData, onBack }: Props) {
   const [title, setTitle] = useState("");
   const [languages, setLanguages] = useState<string[]>([LANGUAGES[0]]);
   const [nsfw, setNsfw] = useState(false);
@@ -67,13 +67,13 @@ export default function Form({ user, videoData }: Props) {
       className="flex h-full w-full flex-col gap-4"
       onSubmit={(e) => e.preventDefault()}
     >
-      <button className="p-4 pb-0 text-3xl text-gray-500">
+      <button className="z-50 p-4 pb-0 text-3xl text-gray-500" onClick={onBack}>
         <TbX />
       </button>
 
       <textarea
         placeholder="Describe your meme"
-        className="relative mb-4 h-40 w-full resize-none border-y border-slate-800 bg-transparent p-4 outline-none"
+        className="relative mb-4 h-40 w-full shrink-0 resize-none border-y border-slate-800 bg-transparent p-4 outline-none"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
@@ -136,12 +136,15 @@ export default function Form({ user, videoData }: Props) {
       </div>
 
       <div className="flex h-full w-full items-end p-8 pb-12 ">
-        <button
-          className="w-full rounded-2xl bg-rose-500 bg-opacity-15 p-2 px-8 text-rose-500"
+        <motion.button
+          initial={{ paddingBlock: "0.5rem" }}
+          animate={{ paddingBlock: "0.5rem" }}
+          whileHover={{ paddingBlock: "0.75rem" }}
+          className="w-full select-none rounded-2xl bg-orange-500 bg-opacity-15 p-2 px-8 text-orange-500"
           onClick={addVideo}
         >
           Save Meme
-        </button>
+        </motion.button>
       </div>
     </form>
   );
