@@ -3,9 +3,9 @@
 - [x] setup auth
 - [ ] add categories
 - [ ] add search by tags
-- [ ] add select preferred languages
+- [x] add select preferred languages
 - [ ] add user profile
-- [ ] add history
+- [x] add history
 - [ ] add bookmarks
 - [ ] add comments
 - [ ] add likes
