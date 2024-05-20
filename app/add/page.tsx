@@ -23,19 +23,23 @@ export default function Add() {
   return (
     <main className="relative flex h-full flex-col items-center justify-center overflow-y-scroll p-4">
       {videoData ? (
-        <Form videoData={videoData} user={user!} onBack={() => setVideoData(null)} />
+        <Form
+          videoData={videoData}
+          user={user!}
+          onBack={() => setVideoData(null)}
+        />
       ) : (
         <UploadDropzone
           endpoint="imageUploader"
+          className="h-full w-full rounded-lg bg-slate-950 p-4 text-white"
           onClientUploadComplete={(res) => {
-            console.log(res);
+            // console.log(res);
             setVideoData(res[0]);
           }}
           onUploadError={(error: Error) => {
             console.log(error);
             alert(`ERROR! ${error.message}`);
           }}
-          className="h-full w-full rounded-lg bg-slate-950 p-4 text-white"
         />
       )}
     </main>
