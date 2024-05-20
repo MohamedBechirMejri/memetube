@@ -6,7 +6,7 @@ import { nanoid } from "nanoid";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "~/lib/firebase";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { User } from "~/types/User";
 
 const LANGUAGES = ["arabic", "english"];
