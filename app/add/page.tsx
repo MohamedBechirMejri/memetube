@@ -52,7 +52,7 @@ export default function Add() {
   };
 
   return (
-    <main className="flex h-full flex-col items-center justify-center overflow-y-scroll p-4">
+    <main className="flex h-full flex-col items-center justify-center overflow-y-scroll p-4 pt-16">
       <h1 className="p-2 text-2xl capitalize">Upload a new meme</h1>
       <label className="mb-3 mt-4 w-full px-2 text-left">
         Add a title:

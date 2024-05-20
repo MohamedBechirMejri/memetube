@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { firebaseConfig, getCollection } from "~/lib/firebase";
-import Reel from "./(home)/Reel";
+import Reel from "./_components/Reel";
 import { useUserStore } from "~/lib/globals/user";
 
 export default function Home() {
