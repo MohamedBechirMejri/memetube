@@ -1,17 +1,18 @@
-import type { Tag, Video } from "~/types/Video";
+import type { Video } from "~/types/Video";
 
-import { useState } from "react";
-import { ClientUploadedFileData } from "uploadthing/types";
-import { nanoid } from "nanoid";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "~/lib/firebase";
-import { useRouter } from "next/navigation";
-import { User } from "~/types/User";
-import { LiaCheckSolid, LiaHashtagSolid } from "react-icons/lia";
-import { GrLanguage } from "react-icons/gr";
-import { MdBlock } from "react-icons/md";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { motion } from "framer-motion";
+import { nanoid } from "nanoid";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { GrLanguage } from "react-icons/gr";
+import { LiaCheckSolid, LiaHashtagSolid } from "react-icons/lia";
+import { MdBlock, MdCategory } from "react-icons/md";
+import { TbX } from "react-icons/tb";
+import { ClientUploadedFileData } from "uploadthing/types";
+import { firebaseConfig } from "~/lib/firebase";
+import { User } from "~/types/User";
 import Toggle from "../_components/Toggle";
 
 const LANGUAGES = ["arabic", "english", "other"];
@@ -63,17 +64,21 @@ export default function Form({ user, videoData }: Props) {
 
   return (
     <form
-      className="flex h-full w-full flex-col gap-4 pt-16"
+      className="flex h-full w-full flex-col gap-4"
       onSubmit={(e) => e.preventDefault()}
     >
+      <button className="p-4 pb-0 text-3xl text-gray-500">
+        <TbX />
+      </button>
+
       <textarea
         placeholder="Describe your meme"
-        className="relative mb-4 h-40 w-full resize-none border-y border-slate-700 bg-transparent p-4 py-2 text-xl outline-none"
+        className="relative mb-4 h-40 w-full resize-none border-y border-slate-800 bg-transparent p-4 outline-none"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
 
-      <div className="relative top-[-4rem] -mt-4 ml-4 flex w-max items-center gap-1 rounded-2xl border p-1 px-3 text-xs font-medium">
+      <div className="relative top-[-2rem] -mt-12 ml-4 flex w-max select-none items-center gap-1 rounded-2xl bg-white bg-opacity-30 p-1 px-2 text-xs font-medium opacity-90">
         <LiaHashtagSolid /> Hashtags
       </div>
 
@@ -113,13 +118,30 @@ export default function Form({ user, videoData }: Props) {
         </div>
       </div>
 
-      <div className="flex w-full items-center justify-between px-4">
+      <div className="my-4 flex w-full items-center justify-between px-4">
         <label className="flex items-center gap-4 text-gray-400">
           <MdBlock />
           NSFW
         </label>
 
         <Toggle checked={nsfw} setChecked={setNsfw} />
+      </div>
+
+      <div className="flex w-full items-center justify-between px-4 opacity-40">
+        <label className="flex items-center gap-4 text-gray-400">
+          <MdCategory />
+          Categories
+        </label>
+        Soon..
+      </div>
+
+      <div className="flex h-full w-full items-end p-8 pb-12 ">
+        <button
+          className="w-full rounded-2xl bg-rose-500 bg-opacity-15 p-2 px-8 text-rose-500"
+          onClick={addVideo}
+        >
+          Save Meme
+        </button>
       </div>
     </form>
   );
