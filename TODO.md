@@ -1,4 +1,6 @@
-- [ ] setup auth
+# TODO
+
+- [x] setup auth
 - [ ] add categories
 - [ ] add search by tags
 - [ ] add select preferred languages
@@ -12,6 +14,6 @@
 - [ ] add notifications
 - [ ] add settings
 - [ ] add history
-- [ ] setup webapp
+- [ ] setup PWA
 - [ ] add admin panel
 - [ ] add tracking
