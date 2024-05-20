@@ -21,7 +21,7 @@ export default function Add() {
   }, [user, router]);
 
   return (
-    <main className="relative flex h-full flex-col items-center justify-center overflow-y-scroll p-4">
+    <main className="relative flex h-full flex-col items-center justify-center overflow-y-scroll">
       {videoData ? (
         <Form
           videoData={videoData}

@@ -25,12 +25,12 @@ export default function Home() {
   }, [db, user]);
 
   return (
-    <main className="h-full w-full snap-y snap-mandatory overflow-y-scroll overflow-hidden">
+    <main className="h-full w-full snap-y snap-mandatory overflow-hidden overflow-y-scroll">
       {videos
         .filter((v) => {
           return true;
-          if (!user) return true;
-          return !user.history.includes("videos/" + v.id);
+          // if (!user) return true;
+          // return !user.history.includes("videos/" + v.id);
         })
         .map((video) => (
           <Reel key={video.id} video={video} />
