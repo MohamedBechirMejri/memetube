@@ -12,6 +12,7 @@ import { LiaCheckSolid, LiaHashtagSolid } from "react-icons/lia";
 import { GrLanguage } from "react-icons/gr";
 import { MdBlock } from "react-icons/md";
 import { motion } from "framer-motion";
+import Toggle from "../_components/Toggle";
 
 const LANGUAGES = ["arabic", "english", "other"];
 
@@ -52,6 +53,7 @@ export default function Form({ user, videoData }: Props) {
         .map((tag) => ({ name: tag })),
       createdAt: Date.now(),
       updatedAt: Date.now(),
+      nsfw,
       serverData: videoData,
     } as Video);
 
@@ -107,22 +109,7 @@ export default function Form({ user, videoData }: Props) {
           NSFW
         </label>
 
-        <button
-          className="ri ng relative flex h-8 w-16 gap-4 rounded-full bg-gray-500 bg-opacity-30"
-          onClick={() => setNsfw(!nsfw)}
-        >
-          <motion.span
-            initial={{
-              x: nsfw ? "100%" : "0%",
-              backgroundColor: nsfw ? "#14b8a6" : "#f43f5e",
-            }}
-            animate={{
-              x: nsfw ? "100%" : "0%",
-              backgroundColor: nsfw ? "#14b8a6" : "#f43f5e",
-            }}
-            className="absolute size-8 rounded-full shadow-md"
-          />
-        </button>
+        <Toggle checked={nsfw} setChecked={setNsfw} />
       </div>
     </form>
   );
