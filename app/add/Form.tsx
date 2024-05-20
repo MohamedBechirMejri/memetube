@@ -84,22 +84,32 @@ export default function Form({ user, videoData }: Props) {
         </label>
 
         <div className="flex gap-4">
-          {LANGUAGES.map((lang, i) => (
-            <button
-              key={"lang" + i + lang}
-              className={
-                "flex items-center gap-2 rounded-xl p-2 capitalize" +
-                (languages.includes(lang)
-                  ? " border border-current text-rose-400"
-                  : "")
-              }
-              onClick={() => {
-                setLanguages([lang]);
-              }}
-            >
-              {lang} {languages.includes(lang) && <LiaCheckSolid />}
-            </button>
-          ))}
+          {LANGUAGES.map((lang, i) => {
+            const isSelected = languages.includes(lang);
+            const buttonAnimation = {
+              color: isSelected ? "#14b8a6" : "#fff",
+              backgroundColor: isSelected ? "#14b8a633" : "#ffffff00",
+            };
+            const tickAnimation = {
+              width: isSelected ? "max-content" : 0,
+              opacity: isSelected ? 1 : 0,
+            };
+
+            return (
+              <motion.button
+                initial={buttonAnimation}
+                animate={buttonAnimation}
+                key={"lang" + i + lang}
+                className="flex items-center gap-2 rounded-xl p-2 capitalize"
+                onClick={() => setLanguages([lang])}
+              >
+                {lang}
+                <motion.span initial={tickAnimation} animate={tickAnimation}>
+                  <LiaCheckSolid />
+                </motion.span>
+              </motion.button>
+            );
+          })}
         </div>
       </div>
 
