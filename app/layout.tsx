@@ -9,6 +9,7 @@ import "./globals.css";
 import { useUserStore } from "~/lib/globals/user";
 import { useEffect } from "react";
 import { doc, getFirestore, onSnapshot } from "firebase/firestore";
+import { usePathname } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,18 @@ export default function RootLayout({
   const db = getFirestore(app);
 
   const { setUID, setUser, uid, user } = useUserStore();
+
+  const pathname = usePathname();
+
+  let page;
+
+  switch (pathname) {
+    case "/add":
+      page = "New Meme";
+      break;
+    default:
+      page = "MemeTube";
+  }
 
   useEffect(() => {
     onAuthStateChanged(auth, (u) => setUID(u?.uid || null));
@@ -50,7 +63,7 @@ export default function RootLayout({
       >
         <div className="relative grid h-[100svh] w-full max-w-[38rem] grid-rows-[minmax(0,1fr),auto]">
           <h1 className="ghosting-text absolute z-50 w-full py-4 text-center text-2xl font-bold">
-            MemeTube
+            {page}
           </h1>
           {children}
           <Nav />
