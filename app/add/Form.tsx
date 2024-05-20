@@ -38,6 +38,16 @@ export default function Form({ user, videoData, onBack }: Props) {
   const addVideo = async () => {
     const id = nanoid(8);
 
+    const tags = title.split(" ").reduce(
+      (acc, word) => {
+        if (word.startsWith("#") && !acc.some((tag) => tag.name === word)) {
+          acc.push({ name: word });
+        }
+        return acc;
+      },
+      [] as { name: string }[],
+    );
+
     await setDoc(doc(db, "videos", id), {
       id,
       name: title,
@@ -48,10 +58,7 @@ export default function Form({ user, videoData, onBack }: Props) {
       likes: [],
       comments: [],
       languages,
-      tags: title
-        .split(" ")
-        .filter((word) => word.startsWith("#"))
-        .map((tag) => ({ name: tag })),
+      tags,
       createdAt: Date.now(),
       updatedAt: Date.now(),
       nsfw,
