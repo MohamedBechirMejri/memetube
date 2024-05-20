@@ -16,6 +16,7 @@ type Props = {
   videoData: ClientUploadedFileData<{
     uploadedBy: string;
   }>;
+  onBack: () => void;
 };
 
 export default function Form({ user, videoData }: Props) {
