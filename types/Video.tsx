@@ -1,7 +1,7 @@
-import firebase from "firebase/compat/app";
+import { ClientUploadedFileData } from "uploadthing/types";
 
 export type Video = {
-  id: string; 
+  id: string;
   name: string;
   url: string;
   uploadedBy: string;
@@ -13,7 +13,10 @@ export type Video = {
   tags: Tag[];
   createdAt: number;
   updatedAt: number;
-  serverData: any; // TODO: fix this
+  nsfw: boolean;
+  serverData: ClientUploadedFileData<{
+    uploadedBy: string;
+  }>;
 };
 
 export type Comment = {
