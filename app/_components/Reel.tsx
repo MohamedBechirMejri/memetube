@@ -95,10 +95,9 @@ export default function Reel({ video }: Props) {
         src={url}
         className="relative z-10 max-h-full w-full max-w-full"
       />
-      <p className="absolute bottom-4 left-4 z-50 font-semibold">
-        {name}
-        <br />
-        <span className="text-sm font-normal opacity-70">
+      <p className="absolute bottom-0 left-0 z-50 w-full bg-gradient-to-t from-slate-950 p-4 font-semibold">
+        <span className="line-clamp-1 w-[65%]"> {name}</span>
+        <span className="text-sm font-normal opacity-80">
           {new Date(createdAt).toDateString()}
         </span>
       </p>
