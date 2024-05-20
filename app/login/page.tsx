@@ -28,38 +28,41 @@ export default function Login() {
     await setPersistence(auth, browserLocalPersistence);
 
     const result = await signInWithPopup(auth, new GoogleAuthProvider());
-    const userData = result.user;
+    const { email, displayName, photoURL, uid } = result.user;
 
-    const currentData = await getDoc(doc(db, "users", userData.uid));
+    const currentData = await getDoc(doc(db, "users", uid));
     let favorites,
       history,
       likes,
       uploads = [];
-    let createdAt = Date.now();
+    let createdAt,
+      updatedAt = Date.now();
 
     if (currentData.exists()) {
-      favorites = currentData.data().favorites;
-      history = currentData.data().history;
-      likes = currentData.data().likes;
-      uploads = currentData.data().uploads;
-      createdAt = currentData.data().createdAt;
+      const data = currentData.data();
+
+      favorites = data.favorites || [];
+      history = data.history || [];
+      likes = data.likes || [];
+      uploads = data.uploads || [];
+      createdAt = data.createdAt || updatedAt;
     }
 
     await setDoc(
-      doc(db, "users", userData.uid),
+      doc(db, "users", uid),
       {
-        email: userData.email,
-        name: userData.displayName,
-        image: userData.photoURL,
-        uid: userData.uid,
+        email,
+        name: displayName,
+        image: photoURL,
+        uid,
         favorites,
         history,
         likes,
         uploads,
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
-        displayName: userData.displayName,
-        photoURL: userData.photoURL,
+        createdAt,
+        updatedAt,
+        displayName,
+        photoURL,
       } as User,
       { merge: true },
     );
