@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation";
 import { User } from "~/types/User";
 import { LiaCheckSolid, LiaHashtagSolid } from "react-icons/lia";
 import { GrLanguage } from "react-icons/gr";
+import { MdBlock } from "react-icons/md";
+import { motion } from "framer-motion";
 
 const LANGUAGES = ["arabic", "english", "other"];
 
@@ -24,6 +26,7 @@ type Props = {
 export default function Form({ user, videoData }: Props) {
   const [title, setTitle] = useState("");
   const [languages, setLanguages] = useState<string[]>([LANGUAGES[0]]);
+  const [nsfw, setNsfw] = useState(false);
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
@@ -56,10 +59,11 @@ export default function Form({ user, videoData }: Props) {
     router.push(`/v/${id}`);
   };
 
-  console.log(languages);
-
   return (
-    <form className="h-full w-full pt-16" onSubmit={(e) => e.preventDefault()}>
+    <form
+      className="flex h-full w-full flex-col gap-4 pt-16"
+      onSubmit={(e) => e.preventDefault()}
+    >
       <textarea
         placeholder="Describe your meme"
         className="relative mb-4 h-40 w-full resize-none border-y border-slate-700 bg-transparent p-4 py-2 text-xl outline-none"
@@ -67,7 +71,7 @@ export default function Form({ user, videoData }: Props) {
         onChange={(e) => setTitle(e.target.value)}
       />
 
-      <div className="relative top-[-4rem] ml-4 flex w-max items-center gap-1 rounded-2xl border p-1 px-3 text-xs font-medium">
+      <div className="relative top-[-4rem] -mt-4 ml-4 flex w-max items-center gap-1 rounded-2xl border p-1 px-3 text-xs font-medium">
         <LiaHashtagSolid /> Hashtags
       </div>
 
@@ -95,6 +99,30 @@ export default function Form({ user, videoData }: Props) {
             </button>
           ))}
         </div>
+      </div>
+
+      <div className="flex w-full items-center justify-between px-4">
+        <label className="flex items-center gap-4 text-gray-400">
+          <MdBlock />
+          NSFW
+        </label>
+
+        <button
+          className="ri ng relative flex h-8 w-16 gap-4 rounded-full bg-gray-500 bg-opacity-30"
+          onClick={() => setNsfw(!nsfw)}
+        >
+          <motion.span
+            initial={{
+              x: nsfw ? "100%" : "0%",
+              backgroundColor: nsfw ? "#14b8a6" : "#f43f5e",
+            }}
+            animate={{
+              x: nsfw ? "100%" : "0%",
+              backgroundColor: nsfw ? "#14b8a6" : "#f43f5e",
+            }}
+            className="absolute size-8 rounded-full shadow-md"
+          />
+        </button>
       </div>
     </form>
   );
