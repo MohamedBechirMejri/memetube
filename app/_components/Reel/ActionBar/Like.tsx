@@ -42,7 +42,7 @@ export default function Like() {
       onClick={handleLike}
       className={
         "flex flex-col items-center gap-1 p-4" +
-        (video?.likes.includes("users/" + user?.uid) ? " text-red-500" : "")
+        (video?.likes.includes("users/" + user?.uid) ? " text-rose-500" : "")
       }
     >
       {<IoHeart className="text-3xl" />}
