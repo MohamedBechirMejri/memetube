@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { collection, getFirestore, onSnapshot } from "firebase/firestore";
 import { firebaseConfig, getCollection } from "~/lib/firebase";
 import Reel from "./_components/Reel";
 import { useUserStore } from "~/lib/globals/user";
@@ -17,12 +17,17 @@ export default function Home() {
   const { user } = useUserStore();
 
   useEffect(() => {
-    console.log(user);
-    getCollection(db, "videos").then((querySnapshot) => {
-      const videos = querySnapshot.docs.map((doc) => doc.data());
-      setVideos(videos);
-    });
-  }, []);
+    const unsubscribe = onSnapshot(
+      collection(db, "videos"),
+      (snapshot) => {
+        const videos = snapshot.docs.map((doc) => doc.data());
+        setVideos(videos);
+      },
+      (error) => console.error(error),
+    );
+
+    return () => unsubscribe();
+  }, [db]);
 
   return (
     <main className="h-full w-full snap-y snap-mandatory overflow-hidden overflow-y-scroll">
