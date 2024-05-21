@@ -25,25 +25,34 @@ export default function Comments() {
         <span>{video?.comments.length}</span>
       </button>
 
-      <div className="fixed bottom-[4rem] left-1/2 grid h-[64svh] w-full max-w-[38rem] -translate-x-1/2 grid-rows-[auto,minmax(0,1fr),auto] overflow-hidden rounded-t-2xl bg-slate-950 bg-opacity-30 p-4 backdrop-blur-3xl">
-        <div className="flex items-center justify-between">
-          <button className="pointer-events-none text-3xl opacity-0">
-            <RiCloseFill />
-          </button>
-          <span>{video?.comments.length} Comments</span>
-          <button className="text-3xl" onClick={hideComments}>
-            <RiCloseFill />
-          </button>
-        </div>
+      {isCommentsVisible && (
+        <div
+          className="fixed left-1/2 top-0 h-svh w-svw max-w-[38rem] -translate-x-1/2 bg-black opacity-50"
+          onClick={hideComments}
+        />
+      )}
 
-        <div className="h-full overflow-y-auto">
-          {comments.map((comment) => (
-            <Comment key={comment.id} comment={comment} />
-          ))}
-        </div>
+      {isCommentsVisible && (
+        <div className="fixed bottom-[4rem] left-1/2 z-50 grid h-[64svh] w-full max-w-[38rem] -translate-x-1/2 grid-rows-[auto,minmax(0,1fr),auto] overflow-hidden rounded-t-2xl bg-slate-950 bg-opacity-50 p-4 backdrop-blur-3xl">
+          <div className="flex items-center justify-between">
+            <button className="pointer-events-none text-3xl opacity-0">
+              <RiCloseFill />
+            </button>
+            <span>{video?.comments.length} Comments</span>
+            <button className="text-3xl" onClick={hideComments}>
+              <RiCloseFill />
+            </button>
+          </div>
 
-        <CommentInput />
-      </div>
+          <div className="h-full overflow-y-auto">
+            {comments.map((comment) => (
+              <Comment key={comment.id} comment={comment} />
+            ))}
+          </div>
+
+          <CommentInput />
+        </div>
+      )}
     </>
   );
 }
