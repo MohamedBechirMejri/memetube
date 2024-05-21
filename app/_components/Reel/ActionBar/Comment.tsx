@@ -4,22 +4,12 @@ import { useState } from "react";
 import { FaCommentDots, FaHeart } from "react-icons/fa";
 import { useUserStore } from "~/lib/globals/user";
 import { useVideoStore } from "~/lib/globals/video";
+import { nanoid } from "nanoid";
+import { Comment as TComment } from "~/types/Video";
 
-// export type Comment = {
-// //     author: {
-//     id: string;
-//     name: string;
-//     image: string;
-//   };
-//   body: string;
-//   likes: string[];
-//   replies: Comment[];
-//   createdAt: number;
-//   updatedAt: number;
-// };
-
-export default function Comment() {
+export default function Comments() {
   const [isCommentsVisible, setIsCommentsVisible] = useState(false);
+  const [input, setInput] = useState("");
 
   const { video } = useVideoStore();
   const { user } = useUserStore();
@@ -46,6 +36,28 @@ export default function Comment() {
   // };
 
   console.log(comments);
+
+  const addComment = async () => {
+    if (!user || !video) return;
+
+    const { uid, name, image } = user;
+
+    const comment: TComment = {
+      id: nanoid(),
+      author: { id: uid, name, image },
+      body: input,
+      likes: [],
+      replies: [],
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    };
+
+    await setDoc(
+      doc(db, "videos", video.id),
+      { comments: [...video.comments, comment] },
+      { merge: true },
+    );
+  };
 
   return (
     <>
@@ -90,7 +102,19 @@ export default function Comment() {
         <textarea
           className="h-20 w-full resize-none justify-self-end rounded-xl border border-slate-700 bg-transparent p-4 shadow-xl"
           placeholder="Add Comment"
-        ></textarea>
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+
+              if (input.trim()) {
+                addComment();
+                setInput("");
+              }
+            }
+          }}
+        />
       </div>
     </>
   );

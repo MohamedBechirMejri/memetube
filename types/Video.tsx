@@ -20,6 +20,7 @@ export type Video = {
 };
 
 export type Comment = {
+  id: string;
   author: {
     id: string;
     name: string;
