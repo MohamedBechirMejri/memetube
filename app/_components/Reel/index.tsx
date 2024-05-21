@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function Reel({ video }: Props) {
-  const { url, createdAt, name, id, views } = video;
+  const { url, id } = video;
 
   const { user } = useUserStore();
   const { setVideo } = useVideoStore();
@@ -78,13 +78,6 @@ export default function Reel({ video }: Props) {
       className="relative mb-8 flex h-full w-screen snap-center items-center"
     >
       <VideoPlayer url={url} isInView={isInView} />
-
-      <p className="absolute bottom-0 left-0 z-30 w-full bg-gradient-to-t from-slate-950 p-4 font-semibold">
-        <span className="line-clamp-1 w-[65%]">{name}</span>
-        <span className="items-center text-sm font-normal opacity-80">
-          {new Date(createdAt).toDateString()} <br /> {views.length} views
-        </span>
-      </p>
     </div>
   );
 }
