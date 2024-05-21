@@ -10,12 +10,12 @@
   },
   "dependencies": {
     "@uploadthing/react": "^6.5.4",
-    "firebase": "^10.12.0",
+    "firebase": "^10.12.1",
     "framer-motion": "^11.2.4",
     "nanoid": "^5.0.7",
-    "next": "^14.3.0-canary.72",
-    "react": "^19.0.0-rc-915b914b3a-20240515",
-    "react-dom": "^19.0.0-rc-915b914b3a-20240515",
+    "next": "^14.3.0-canary.73",
+    "react": "^19.0.0-rc-d3ce0d3ea9-20240520",
+    "react-dom": "^19.0.0-rc-d3ce0d3ea9-20240520",
     "react-icons": "^5.2.1",
     "uploadthing": "^6.10.4",
     "zustand": "^4.5.2"
