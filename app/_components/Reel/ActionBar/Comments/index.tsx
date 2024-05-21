@@ -1,64 +1,19 @@
-import { RiCloseFill } from "react-icons/ri";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { useState } from "react";
-import { FaCommentDots, FaHeart } from "react-icons/fa";
-import { useUserStore } from "~/lib/globals/user";
+import { FaCommentDots } from "react-icons/fa";
+import { RiCloseFill } from "react-icons/ri";
 import { useVideoStore } from "~/lib/globals/video";
-import { nanoid } from "nanoid";
-import { Comment as TComment } from "~/types/Video";
 import Comment from "./Comment";
+import CommentInput from "./Input";
 
 export default function Comments() {
   const [isCommentsVisible, setIsCommentsVisible] = useState(false);
-  const [input, setInput] = useState("");
 
   const { video } = useVideoStore();
-  const { user } = useUserStore();
 
   const comments = video?.comments || [];
 
-  const db = getFirestore();
-
   const showComments = () => setIsCommentsVisible(true);
   const hideComments = () => setIsCommentsVisible(false);
-
-  // const handleLike = async () => {
-  //   if (!user || !video) return;
-
-  //   let likes;
-
-  //   if (video.likes.includes("users/" + user.uid)) {
-  //     likes = video.likes.filter((like) => like !== "users/" + user.uid);
-  //   } else {
-  //     likes = [...video.likes, "users/" + user.uid];
-  //   }
-
-  //   await setDoc(doc(db, "videos", video.id), { likes }, { merge: true });
-  // };
-
-  console.log(comments);
-
-  const addComment = async () => {
-    if (!user || !video) return;
-
-    const { uid, name, image } = user;
-
-    const comment: TComment = {
-      id: nanoid(),
-      author: { id: uid, name, image },
-      body: input,
-      likes: [],
-      replies: [],
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
-    };
-
-    await setDoc(
-      doc(db, "videos", video.id),
-      { comments: [...video.comments, comment] },
-      { merge: true },
-    );
-  };
 
   return (
     <>
@@ -81,28 +36,13 @@ export default function Comments() {
           </button>
         </div>
 
-        <div className="border">
+        <div className="h-full overflow-y-auto">
           {comments.map((comment) => (
             <Comment key={comment.id} comment={comment} />
           ))}
         </div>
 
-        <textarea
-          className="h-20 w-full resize-none justify-self-end rounded-xl border border-slate-700 bg-transparent p-4 shadow-xl"
-          placeholder="Add Comment"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey) {
-              e.preventDefault();
-
-              if (input.trim()) {
-                addComment();
-                setInput("");
-              }
-            }
-          }}
-        />
+        <CommentInput />
       </div>
     </>
   );

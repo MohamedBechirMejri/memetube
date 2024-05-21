@@ -37,3 +37,5 @@ export type Tag = {
   name: string;
   image?: string;
 };
+
+export type TComment = Comment
