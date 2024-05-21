@@ -14,20 +14,20 @@ export default function Like() {
 
     let likes;
 
-    if (video.likes.includes("users/" + user.uid)) {
-      likes = video.likes.filter((like) => like !== "users/" + user.uid);
+    if (video.likes.includes(user.uid)) {
+      likes = video.likes.filter((like) => like !== user.uid);
     } else {
-      likes = [...video.likes, "users/" + user.uid];
+      likes = [...video.likes, user.uid];
     }
 
     await setDoc(doc(db, "videos", video.id), { likes }, { merge: true });
 
     let userLikes = user.likes;
 
-    if (userLikes.includes("videos/" + video.id)) {
-      userLikes = userLikes.filter((like) => like !== "videos/" + video.id);
+    if (userLikes.includes(video.id)) {
+      userLikes = userLikes.filter((like) => like !== video.id);
     } else {
-      userLikes = [...userLikes, "videos/" + video.id];
+      userLikes = [...userLikes, video.id];
     }
 
     await setDoc(
@@ -42,7 +42,9 @@ export default function Like() {
       onClick={handleLike}
       className={
         "flex flex-col items-center gap-1 p-4" +
-        (video?.likes.includes("users/" + user?.uid) ? " text-rose-500" : "")
+        (video?.likes.includes(user?.uid || "not found")
+          ? " text-rose-500"
+          : "")
       }
     >
       {<IoHeart className="text-3xl" />}

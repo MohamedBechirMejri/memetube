@@ -49,9 +49,9 @@ export default function Reel({ video }: Props) {
       let { history } = user;
 
       if (!history) history = [];
-      if (history.includes("videos/" + id)) return;
+      if (history.includes(id)) return;
 
-      const newHistory = [...history, "videos/" + id];
+      const newHistory = [...history, id];
 
       await setDoc(
         doc(db, "users", user.uid),

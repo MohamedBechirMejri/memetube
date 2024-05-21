@@ -21,9 +21,9 @@ export default function Comment({ comment }: Props) {
 
     let likes;
 
-    if (comment.likes.includes("users/" + user.uid))
-      likes = comment.likes.filter((like) => like !== "users/" + user.uid);
-    else likes = [...comment.likes, "users/" + user.uid];
+    if (comment.likes.includes(user.uid))
+      likes = comment.likes.filter((like) => like !== user.uid);
+    else likes = [...comment.likes, user.uid];
 
     const newComments = video.comments.map((c) =>
       c.id === comment.id ? { ...c, likes } : c,
@@ -58,7 +58,7 @@ export default function Comment({ comment }: Props) {
       </div>
 
       <button
-        className={`mt-2 flex shrink-0 flex-col items-center gap-2 text-xl ${comment.likes.includes("users/" + user?.uid) ? "text-rose-500" : ""}`}
+        className={`mt-2 flex shrink-0 flex-col items-center gap-2 text-xl ${comment.likes.includes(user?.uid || "shouldn't reach this") ? "text-rose-500" : ""}`}
         onClick={handleLike}
       >
         <FaHeart />

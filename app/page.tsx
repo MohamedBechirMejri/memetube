@@ -50,7 +50,7 @@ export default function Home() {
         .filter((v) => {
           return true;
           if (!user) return true;
-          // return !user.history.includes("videos/" + v.id);
+          // return !user.history.includes( v.id);
         })
         .sort((a, b) => {
           return b.createdAt - a.createdAt;
