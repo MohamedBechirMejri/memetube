@@ -1,17 +1,10 @@
-import { FaCommentDots } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
-import { IoHeart } from "react-icons/io5";
 import { RxBookmarkFilled, RxSpeakerOff } from "react-icons/rx";
 import { TbDots } from "react-icons/tb";
-import { Video } from "~/types/Video";
-import Like from "./Like";
 import Comment from "./Comments";
+import Like from "./Like";
 
-type Props = {
-  video: Video;
-};
-
-export default function ActionBar({ video }: Props) {
+export default function ActionBar() {
   const buttons = [
     {
       icon: RxBookmarkFilled,
@@ -26,7 +19,7 @@ export default function ActionBar({ video }: Props) {
   ];
 
   return (
-    <div className="absolute bottom-0 right-0 z-30 flex h-full flex-col justify-between gap-4">
+    <div className="absolute bottom-16 right-0 z-50 flex h-full flex-col justify-between gap-4">
       <button className="p-4 text-3xl">
         <RxSpeakerOff />
       </button>

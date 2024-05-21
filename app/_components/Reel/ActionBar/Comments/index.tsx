@@ -33,7 +33,7 @@ export default function Comments() {
       )}
 
       {isCommentsVisible && (
-        <div className="fixed bottom-[4rem] left-1/2 z-50 grid h-[64svh] w-full max-w-[38rem] -translate-x-1/2 grid-rows-[auto,minmax(0,1fr),auto] overflow-hidden rounded-t-2xl bg-slate-950 bg-opacity-70 p-4 backdrop-blur-3xl">
+        <div className="fixed bottom-[4rem] left-1/2 z-50 grid h-[64svh] w-full max-w-[38rem] -translate-x-1/2 grid-rows-[auto,minmax(0,1fr),auto] overflow-hidden rounded-t-2xl bg-slate-950 bg-opacity-90 p-4 backdrop-blur-xl">
           <div className="flex items-center justify-between">
             <button className="pointer-events-none text-3xl opacity-0">
               <RiCloseFill />
