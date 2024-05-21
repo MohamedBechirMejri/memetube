@@ -4,6 +4,7 @@ import { IoHeart } from "react-icons/io5";
 import { RxBookmarkFilled, RxSpeakerOff } from "react-icons/rx";
 import { TbDots } from "react-icons/tb";
 import { Video } from "~/types/Video";
+import Like from "./Like";
 
 type Props = {
   video: Video;
@@ -11,12 +12,6 @@ type Props = {
 
 export default function ActionBar({ video }: Props) {
   const buttons = [
-    {
-      icon: IoHeart,
-      text: video.likes.length,
-      action: () => {},
-      color: false,
-    },
     {
       icon: FaCommentDots,
       text: video.comments.length,
@@ -44,6 +39,8 @@ export default function ActionBar({ video }: Props) {
         <button className="p-4 text-3xl">
           <TbDots />
         </button>
+
+        <Like />
         {buttons.map((button, i) => (
           <button
             key={i}
