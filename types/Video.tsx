@@ -20,7 +20,11 @@ export type Video = {
 };
 
 export type Comment = {
-  author: string;
+  author: {
+    id: string;
+    name: string;
+    image: string;
+  };
   body: string;
   likes: string[];
   replies: Comment[];
