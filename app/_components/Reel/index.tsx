@@ -1,11 +1,6 @@
-import { IoHeart } from "react-icons/io5";
-import { FaCommentDots } from "react-icons/fa";
-import { RxBookmarkFilled } from "react-icons/rx";
-import { IoIosShareAlt } from "react-icons/io";
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import { useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { TbDots } from "react-icons/tb";
 import VideoPlayer from "~/app/_components/Reel/Video";
 import { useUserStore } from "~/lib/globals/user";
 import { Video } from "~/types/Video";
@@ -16,7 +11,7 @@ type Props = {
 };
 
 export default function Reel({ video }: Props) {
-  const { url, createdAt, name, id } = video;
+  const { url, createdAt, name, id, views } = video;
 
   const { user } = useUserStore();
 
@@ -24,8 +19,6 @@ export default function Reel({ video }: Props) {
   const isInView = useInView(ref, { amount: 0.5 });
 
   useEffect(() => {
-    if (!user) return;
-
     const db = getFirestore();
 
     const updateViews = async () => {
@@ -34,11 +27,24 @@ export default function Reel({ video }: Props) {
 
       if (views.includes("users/" + user?.uid)) return;
 
-      const newViews = [...views, "users/" + user?.uid];
+      let newViews;
+
+      if (!user) {
+        const { ip } = await (
+          await fetch("https://api.ipify.org?format=json")
+        ).json();
+
+        newViews = views.includes("ips/" + ip)
+          ? [...views]
+          : [...views, "ips/" + ip];
+      } else newViews = [...views, "users/" + user?.uid];
+
       await setDoc(doc(db, "videos", id), { views: newViews }, { merge: true });
     };
 
     const updateHistory = async () => {
+      if (!user) return;
+
       let { history } = user;
 
       if (!history) history = [];
@@ -66,8 +72,8 @@ export default function Reel({ video }: Props) {
 
       <p className="absolute bottom-0 left-0 z-30 w-full bg-gradient-to-t from-slate-950 p-4 font-semibold">
         <span className="line-clamp-1 w-[65%]">{name}</span>
-        <span className="text-sm font-normal opacity-80">
-          {new Date(createdAt).toDateString()}
+        <span className="items-center text-sm font-normal opacity-80">
+          {new Date(createdAt).toDateString()} <br /> {views.length} views
         </span>
       </p>
 
