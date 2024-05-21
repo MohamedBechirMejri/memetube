@@ -61,8 +61,12 @@ export default function Reel({ video }: Props) {
       );
     };
 
-    updateViews();
-    updateHistory();
+    const timeout = setTimeout(() => {
+      updateViews();
+      updateHistory();
+    }, 4000);
+
+    return () => clearTimeout(timeout);
   }, [id, user]);
 
   useEffect(() => {
