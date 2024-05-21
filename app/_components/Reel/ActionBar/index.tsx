@@ -5,14 +5,14 @@ import { RxBookmarkFilled, RxSpeakerOff } from "react-icons/rx";
 import { TbDots } from "react-icons/tb";
 import { Video } from "~/types/Video";
 import Like from "./Like";
-import Comment from "./Comment";
+import Comment from "./Comments";
 
 type Props = {
   video: Video;
 };
 
 export default function ActionBar({ video }: Props) {
-  const buttons = [ 
+  const buttons = [
     {
       icon: RxBookmarkFilled,
       text: "",

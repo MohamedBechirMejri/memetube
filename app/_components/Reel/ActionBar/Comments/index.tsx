@@ -6,6 +6,7 @@ import { useUserStore } from "~/lib/globals/user";
 import { useVideoStore } from "~/lib/globals/video";
 import { nanoid } from "nanoid";
 import { Comment as TComment } from "~/types/Video";
+import Comment from "./Comment";
 
 export default function Comments() {
   const [isCommentsVisible, setIsCommentsVisible] = useState(false);
@@ -82,20 +83,7 @@ export default function Comments() {
 
         <div className="border">
           {comments.map((comment) => (
-            <div
-              key={comment.createdAt}
-              className="flex justify-between gap-4 p-4"
-            >
-              <div className="flex flex-col">
-                <span className="font-semibold">{comment.author.name}</span>
-                <span>{comment.body}</span>
-              </div>
-
-              <button className="flex items-center gap-1">
-                <FaHeart />
-                <span>{comment.likes.length}</span>
-              </button>
-            </div>
+            <Comment key={comment.id} comment={comment} />
           ))}
         </div>
 
