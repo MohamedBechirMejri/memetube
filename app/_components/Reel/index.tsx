@@ -75,7 +75,7 @@ export default function Reel({ video }: Props) {
   return (
     <div
       ref={ref}
-      className="relative mb-8 flex h-full w-screen snap-center items-center"
+      className="relative mb-8 flex h-full w-screen max-w-[38rem] snap-center  items-center"
     >
       <VideoPlayer url={url} isInView={isInView} />
     </div>
