@@ -5,7 +5,7 @@ import { useVideoStore } from "~/lib/globals/video";
 
 export default function Like() {
   const { video } = useVideoStore();
-  const { user, setUser } = useUserStore();
+  const { user } = useUserStore();
 
   const db = getFirestore();
 
@@ -21,6 +21,20 @@ export default function Like() {
     }
 
     await setDoc(doc(db, "videos", video.id), { likes }, { merge: true });
+
+    let userLikes = user.likes;
+
+    if (userLikes.includes("videos/" + video.id)) {
+      userLikes = userLikes.filter((like) => like !== "videos/" + video.id);
+    } else {
+      userLikes = [...userLikes, "videos/" + video.id];
+    }
+
+    await setDoc(
+      doc(db, "users", user.uid),
+      { likes: userLikes },
+      { merge: true },
+    );
   };
 
   return (
