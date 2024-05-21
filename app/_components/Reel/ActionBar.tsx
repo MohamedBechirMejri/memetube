@@ -15,25 +15,22 @@ export default function ActionBar({ video }: Props) {
       icon: IoHeart,
       text: video.likes.length,
       action: () => {},
-      isActive: false,
+      color: false,
     },
     {
       icon: FaCommentDots,
       text: video.comments.length,
       action: () => {},
-      isActive: false,
     },
     {
       icon: RxBookmarkFilled,
       text: "",
       action: () => {},
-      isActive: false,
+      color: false,
     },
     {
       icon: IoIosShareAlt,
-      text: "",
       action: () => {},
-      isActive: false,
     },
   ];
 
