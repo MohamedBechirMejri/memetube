@@ -5,6 +5,7 @@ import VideoPlayer from "~/app/_components/Reel/Video";
 import { useUserStore } from "~/lib/globals/user";
 import { Video } from "~/types/Video";
 import ActionBar from "./ActionBar";
+import { useVideoStore } from "~/lib/globals/video";
 
 type Props = {
   video: Video;
@@ -14,6 +15,7 @@ export default function Reel({ video }: Props) {
   const { url, createdAt, name, id, views } = video;
 
   const { user } = useUserStore();
+  const { setVideo } = useVideoStore();
 
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { amount: 0.5 });
@@ -62,6 +64,10 @@ export default function Reel({ video }: Props) {
     updateViews();
     updateHistory();
   }, [id, user]);
+
+  useEffect(() => {
+    if (isInView) setVideo(video);
+  }, [isInView, setVideo, video]);
 
   return (
     <div
