@@ -3,15 +3,10 @@ import { RxBookmarkFilled, RxSpeakerOff } from "react-icons/rx";
 import { TbDots } from "react-icons/tb";
 import Comment from "./Comments";
 import Like from "./Like";
+import Save from "./Save";
 
 export default function ActionBar() {
   const buttons = [
-    {
-      icon: RxBookmarkFilled,
-      text: "",
-      action: () => {},
-      color: false,
-    },
     {
       icon: IoIosShareAlt,
       action: () => {},
@@ -31,6 +26,7 @@ export default function ActionBar() {
 
         <Like />
         <Comment />
+        <Save />
         {buttons.map((button, i) => (
           <button
             key={i}
@@ -38,7 +34,6 @@ export default function ActionBar() {
             className="flex flex-col items-center gap-1 p-4"
           >
             {<button.icon className="text-3xl" />}
-            <span>{button.text}</span>
           </button>
         ))}
       </div>
