@@ -5,18 +5,14 @@ import { RxBookmarkFilled, RxSpeakerOff } from "react-icons/rx";
 import { TbDots } from "react-icons/tb";
 import { Video } from "~/types/Video";
 import Like from "./Like";
+import Comment from "./Comment";
 
 type Props = {
   video: Video;
 };
 
 export default function ActionBar({ video }: Props) {
-  const buttons = [
-    {
-      icon: FaCommentDots,
-      text: video.comments.length,
-      action: () => {},
-    },
+  const buttons = [ 
     {
       icon: RxBookmarkFilled,
       text: "",
@@ -41,6 +37,7 @@ export default function ActionBar({ video }: Props) {
         </button>
 
         <Like />
+        <Comment />
         {buttons.map((button, i) => (
           <button
             key={i}
