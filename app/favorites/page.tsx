@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 
 import { initializeApp } from "firebase/app";
 import { collection, getFirestore, onSnapshot } from "firebase/firestore";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Reel from "~/app/_components/Reel";
+import ActionBar from "~/app/_components/Reel/ActionBar";
 import { firebaseConfig } from "~/lib/firebase";
 import { useUserStore } from "~/lib/globals/user";
 import { useVideoStore } from "~/lib/globals/video";
-import Reel from "~/app/_components/Reel";
-import ActionBar from "~/app/_components/Reel/ActionBar";
-import Link from "next/link";
 
 export default function Favorites() {
   const [videos, setVideos] = useState<any[]>([]);
@@ -20,6 +21,8 @@ export default function Favorites() {
 
   const { video } = useVideoStore();
   const { user } = useUserStore();
+
+  const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -34,6 +37,10 @@ export default function Favorites() {
 
     return () => unsubscribe();
   }, [db]);
+
+  useEffect(() => {
+    if (!user) return router.push("/login");
+  }, [user, router]);
 
   // not memoized to test new react compiler
   const sortedVideos = videos
