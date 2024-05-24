@@ -36,14 +36,7 @@ export default function Share() {
       }}
       onClick={handleShare}
     >
-      <button
-        className={
-          "flex flex-col items-center gap-1 p-4" +
-          (user?.favorites.includes(video?.id || "not found")
-            ? " text-blue-500"
-            : "")
-        }
-      >
+      <button className="flex flex-col items-center gap-1 p-4">
         <IoIosShareAlt className="text-3xl" />
         {video?.shares?.length}
       </button>
