@@ -51,7 +51,7 @@ export default function Form({ user, videoData, onBack }: Props) {
       [] as { name: string }[],
     );
 
-    await setDoc(doc(db, "videos", id), {
+    const v: Video = {
       id,
       name: title,
       url: videoData.url,
@@ -60,13 +60,16 @@ export default function Form({ user, videoData, onBack }: Props) {
       views: [],
       likes: [],
       comments: [],
+      shares: [],
       languages,
       tags,
       createdAt: Date.now(),
       updatedAt: Date.now(),
       nsfw,
       serverData: videoData,
-    } as Video);
+    };
+
+    await setDoc(doc(db, "videos", id), v);
 
     // setTitle("");
     // setLanguages([LANGUAGES[0]]);

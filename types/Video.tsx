@@ -8,6 +8,7 @@ export type Video = {
   categories: string[];
   views: string[];
   likes: string[];
+  shares: string[];
   comments: Comment[];
   languages: string[];
   tags: Tag[];
@@ -38,4 +39,4 @@ export type Tag = {
   image?: string;
 };
 
-export type TComment = Comment
+export type TComment = Comment;
