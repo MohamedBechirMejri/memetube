@@ -9,9 +9,10 @@ import { useUserStore } from "~/lib/globals/user";
 import { useVideoStore } from "~/lib/globals/video";
 import Reel from "~/components/Reel";
 import ActionBar from "~/components/Reel/ActionBar";
+import { Video } from "~/types/Video";
 
 export default function Home() {
-  const [videos, setVideos] = useState<any[]>([]);
+  const [videos, setVideos] = useState<Video[]>([]);
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
@@ -23,7 +24,7 @@ export default function Home() {
     const unsubscribe = onSnapshot(
       collection(db, "videos"),
       (snapshot) => {
-        const videos = snapshot.docs.map((doc) => doc.data());
+        const videos = snapshot.docs.map((doc) => doc.data()) as Video[];
         setVideos(videos);
       },
       (error) => console.error(error),
