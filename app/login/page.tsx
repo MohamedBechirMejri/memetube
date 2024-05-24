@@ -31,38 +31,30 @@ export default function Login() {
     const { email, displayName, photoURL, uid } = result.user;
 
     const currentData = await getDoc(doc(db, "users", uid));
-    let favorites,
-      history,
-      likes,
-      uploads = [];
-    let createdAt,
-      updatedAt = Date.now();
 
-    if (currentData.exists()) {
-      const data = currentData.data();
+    const now = Date.now();
 
-      favorites = data.favorites || [];
-      history = data.history || [];
-      likes = data.likes || [];
-      uploads = data.uploads || [];
-      createdAt = data.createdAt || updatedAt;
-    }
+    const data = currentData.exists()
+      ? currentData.data()
+      : {
+          favorites: [],
+          history: [],
+          likes: [],
+          uploads: [],
+          createdAt: now,
+        };
 
     await setDoc(
       doc(db, "users", uid),
       {
+        ...data,
         email,
         name: displayName,
         image: photoURL,
         uid,
-        favorites,
-        history,
-        likes,
-        uploads,
-        createdAt,
-        updatedAt,
         displayName,
         photoURL,
+        updatedAt: now,
       } as User,
       { merge: true },
     );
