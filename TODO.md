@@ -6,10 +6,10 @@
 - [x] add select preferred languages
 - [ ] add user profile
 - [x] add history
-- [ ] add bookmarks
-- [ ] add comments
-- [ ] add likes
-- [ ] add share
+- [x] add bookmarks
+- [x] add comments
+- [x] add likes
+- [x] add share
 - [ ] add report
 - [ ] add notifications
 - [ ] add settings
