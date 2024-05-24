@@ -13,6 +13,7 @@ import Link from "next/link";
 
 export default function Favorites() {
   const [videos, setVideos] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
@@ -26,6 +27,7 @@ export default function Favorites() {
       (snapshot) => {
         const videos = snapshot.docs.map((doc) => doc.data());
         setVideos(videos);
+        setLoading(false);
       },
       (error) => console.error(error),
     );
@@ -33,6 +35,7 @@ export default function Favorites() {
     return () => unsubscribe();
   }, [db]);
 
+  // not memoized to test new react compiler
   const sortedVideos = videos
     .filter((v) => {
       if (!user) return true;
@@ -42,33 +45,41 @@ export default function Favorites() {
       return b.createdAt - a.createdAt;
     });
 
+  const isEmpty = !video || !sortedVideos.length;
+
   return (
     <main className="h-full w-full snap-y snap-mandatory overflow-hidden overflow-y-scroll">
-      {video && sortedVideos.length ? (
-        <ActionBar />
+      {loading ? (
+        <p className="center absolute">Loading..</p>
       ) : (
-        <p className="absolute left-1/2 top-1/2 w-max -translate-x-1/2 -translate-y-1/2 text-center font-semibold">
-          You haven{"'"}t saved any videos yet.
-          <br />
-          <Link href={"/"} className="block pt-4 text-blue-500">
-            Browse videos
-          </Link>
-        </p>
+        <>
+          {isEmpty ? (
+            <p className="center absolute w-max text-center font-semibold">
+              You haven{"'"}t saved any videos yet.
+              <br />
+              <Link href={"/"} className="block pt-4 text-blue-500">
+                Browse videos
+              </Link>
+            </p>
+          ) : (
+            <ActionBar />
+          )}
+
+          {!isEmpty ? (
+            <p className="absolute bottom-16 left-0 z-30 w-full bg-gradient-to-t from-slate-950 p-4 font-semibold">
+              <span className="line-clamp-1 w-[65%]">{video.name}</span>
+              <span className="items-center text-sm font-normal opacity-80">
+                {new Date(video.createdAt).toDateString()} <br />
+                {video.views.length} views
+              </span>
+            </p>
+          ) : null}
+
+          {sortedVideos.map((video) => (
+            <Reel key={video.id} video={video} />
+          ))}
+        </>
       )}
-
-      {video && sortedVideos.length ? (
-        <p className="absolute bottom-16 left-0 z-30 w-full bg-gradient-to-t from-slate-950 p-4 font-semibold">
-          <span className="line-clamp-1 w-[65%]">{video.name}</span>
-          <span className="items-center text-sm font-normal opacity-80">
-            {new Date(video.createdAt).toDateString()} <br />
-            {video.views.length} views
-          </span>
-        </p>
-      ) : null}
-
-      {sortedVideos.map((video) => (
-        <Reel key={video.id} video={video} />
-      ))}
     </main>
   );
 }
