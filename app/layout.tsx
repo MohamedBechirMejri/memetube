@@ -1,7 +1,7 @@
 "use client";
 
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { Inter } from "next/font/google";
 import { firebaseConfig } from "~/lib/firebase";
 import Nav from "./Nav";
@@ -48,10 +48,13 @@ export default function RootLayout({
     if (uid)
       onSnapshot(doc(db, "users", uid), (doc) => {
         if (doc.exists()) setUser(doc.data());
-        else setUser(null);
+        else {
+          setUser(null);
+          signOut(auth);
+        }
       });
     else setUser(null);
-  }, [db, setUser, uid]);
+  }, [auth, db, setUser, uid]);
 
   return (
     <html lang="en">
