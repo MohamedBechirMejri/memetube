@@ -1,20 +1,13 @@
-import { IoIosShareAlt } from "react-icons/io";
-import { RxBookmarkFilled, RxSpeakerOff } from "react-icons/rx";
+import { RxSpeakerOff } from "react-icons/rx";
 import { TbDots } from "react-icons/tb";
 import Comment from "./Comments";
 import Like from "./Like";
 import Save from "./Save";
+import Share from "./Share";
 
 export default function ActionBar() {
-  const buttons = [
-    {
-      icon: IoIosShareAlt,
-      action: () => {},
-    },
-  ];
-
   return (
-    <div className="absolute pb-16 right-0 z-50 flex h-full flex-col justify-between gap-4 items-center">
+    <div className="absolute right-0 z-50 flex h-full flex-col items-center justify-between gap-4 pb-16">
       <button className="p-4 text-3xl">
         <RxSpeakerOff />
       </button>
@@ -27,15 +20,7 @@ export default function ActionBar() {
         <Like />
         <Comment />
         <Save />
-        {buttons.map((button, i) => (
-          <button
-            key={i}
-            onClick={button.action}
-            className="flex flex-col items-center gap-1 p-4"
-          >
-            {<button.icon className="text-3xl" />}
-          </button>
-        ))}
+        <Share />
       </div>
     </div>
   );
