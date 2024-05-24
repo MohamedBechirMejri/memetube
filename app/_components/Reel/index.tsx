@@ -8,13 +8,14 @@ import { Video } from "~/types/Video";
 
 type Props = {
   video: Video;
+  i: number;
 };
 
-export default function Reel({ video }: Props) {
+export default function Reel({ video, i = 0 }: Props) {
   const { url, id } = video;
 
   const { user } = useUserStore();
-  const { setVideo } = useVideoStore();
+  const { setVideo, setIndex, index } = useVideoStore();
 
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { amount: 0.5 });
@@ -69,15 +70,21 @@ export default function Reel({ video }: Props) {
   }, [id, user]);
 
   useEffect(() => {
-    if (isInView) setVideo(video);
-  }, [isInView, setVideo, video]);
+    if (isInView) {
+      setVideo(video);
+      setIndex(i || 0);
+    }
+  }, [i, isInView, setIndex, setVideo, video]);
+
+  // allowing all previous videos to render so we don't have to re-fetch them and preparing the next 2 videos to render
+  const canRender = index || 0 >= i || index === i + 1 || index === i + 2;
 
   return (
     <div
       ref={ref}
-      className="relative mb-8 flex h-full w-screen max-w-[38rem] snap-center  items-center"
+      className="relative mb-8 flex h-full w-screen max-w-[38rem] snap-center items-center"
     >
-      <VideoPlayer url={url} isInView={isInView} />
+      {canRender && <VideoPlayer url={url} isInView={isInView} />}
     </div>
   );
 }

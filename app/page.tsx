@@ -55,8 +55,8 @@ export default function Home() {
         .sort((a, b) => {
           return b.createdAt - a.createdAt;
         })
-        .map((video) => (
-          <Reel key={video.id} video={video} />
+        .map((video, i) => (
+          <Reel key={video.id} video={video} i={i} />
         ))}
     </main>
   );

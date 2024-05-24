@@ -82,8 +82,8 @@ export default function Favorites() {
             </p>
           ) : null}
 
-          {sortedVideos.map((video) => (
-            <Reel key={video.id} video={video} />
+          {sortedVideos.map((video, i) => (
+            <Reel key={video.id} video={video} i={i} />
           ))}
         </>
       )}
