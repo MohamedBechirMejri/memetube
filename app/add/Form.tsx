@@ -1,21 +1,33 @@
 import type { Video } from "~/types/Video";
 
 import { initializeApp } from "firebase/app";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getFirestore,
+  onSnapshot,
+  setDoc,
+} from "firebase/firestore";
 import { motion } from "framer-motion";
 import { nanoid } from "nanoid";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GrLanguage } from "react-icons/gr";
 import { LiaCheckSolid, LiaHashtagSolid } from "react-icons/lia";
 import { MdBlock, MdCategory } from "react-icons/md";
 import { TbX } from "react-icons/tb";
 import { ClientUploadedFileData } from "uploadthing/types";
+import Toggle from "~/components/Toggle";
 import { firebaseConfig } from "~/lib/firebase";
 import { User } from "~/types/User";
-import Toggle from "~/components/Toggle";
 
 const LANGUAGES = ["arabic", "english", "any"];
+
+type TCategory = {
+  name: string;
+  image: string;
+  id: string;
+};
 
 type Props = {
   user: User;
@@ -30,6 +42,8 @@ export default function Form({ user, videoData, onBack }: Props) {
   const [languages, setLanguages] = useState<string[]>([LANGUAGES[0]]);
   const [nsfw, setNsfw] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [categories, setCategories] = useState([] as string[]);
+  const [CATEGORIES, setCATEGORIES] = useState<TCategory[]>([]);
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
@@ -56,7 +70,7 @@ export default function Form({ user, videoData, onBack }: Props) {
       name: title,
       url: videoData.url,
       uploadedBy: user.uid,
-      categories: [],
+      categories,
       views: [],
       likes: [],
       comments: [],
@@ -86,9 +100,22 @@ export default function Form({ user, videoData, onBack }: Props) {
     router.push(`/v/${id}`);
   };
 
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(db, "categories"),
+      (snapshot) => {
+        const cats = snapshot.docs.map((doc) => doc.data()) as TCategory[];
+        setCATEGORIES(cats);
+      },
+      (error) => console.error(error),
+    );
+
+    return () => unsubscribe();
+  }, [db]);
+
   return (
     <form
-      className="flex h-full w-full flex-col gap-4"
+      className="grid h-full w-full grid-rows-[auto,auto,auto,auto,auto,minmax(0,1fr),auto] gap-4"
       onSubmit={(e) => e.preventDefault()}
     >
       {isSaving && (
@@ -108,7 +135,7 @@ export default function Form({ user, videoData, onBack }: Props) {
         onChange={(e) => setTitle(e.target.value)}
       />
 
-      <div className="relative top-[-2rem] -mt-12 ml-4 flex w-max select-none items-center gap-1 rounded-2xl bg-white bg-opacity-30 p-1 px-2 text-xs font-medium opacity-90">
+      <div className="relative top-[-2rem] -mt-14 ml-4 flex h-max w-max select-none items-center gap-1 rounded-2xl bg-white bg-opacity-30 p-2 text-xs font-medium opacity-90">
         <LiaHashtagSolid /> Hashtags
       </div>
 
@@ -157,15 +184,39 @@ export default function Form({ user, videoData, onBack }: Props) {
         <Toggle checked={nsfw} setChecked={setNsfw} />
       </div>
 
-      <div className="flex w-full items-center justify-between px-4 opacity-40">
+      <div className="grid h-full w-full grid-rows-[auto,minmax(0,1fr)] gap-4 p-4 pt-0">
         <label className="flex items-center gap-4 text-gray-400">
           <MdCategory />
           Categories
         </label>
-        Soon..
+
+        <div className="flex h-max max-h-full flex-wrap gap-4 overflow-y-auto rounded-2xl bg-slate-800 bg-opacity-10 p-4">
+          {CATEGORIES.map((category, i) => {
+            return (
+              <button
+                key={category.id}
+                className={
+                  "flex h-max items-center gap-1 rounded-2xl p-4 text-sm font-medium capitalize leading-none" +
+                  (categories.includes(category.id)
+                    ? " bg-blue-500 bg-opacity-15 text-blue-500"
+                    : " bg-slate-900 bg-opacity-40 text-slate-300")
+                }
+                onClick={() => {
+                  setCategories((cats) => {
+                    if (cats.includes(category.id))
+                      return cats.filter((cat) => cat !== category.id);
+                    else return [...cats, category.id];
+                  });
+                }}
+              >
+                {category.name}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      <div className="flex h-full w-full items-end p-8 pb-12 ">
+      <div className="flex h-max w-full items-end px-8 pb-4 ">
         <motion.button
           initial={{ paddingBlock: "0.5rem" }}
           animate={{ paddingBlock: "0.5rem" }}
