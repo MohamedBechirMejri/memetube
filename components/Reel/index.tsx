@@ -1,7 +1,7 @@
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import { useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
-import VideoPlayer from "~/app/_components/Reel/Video";
+import VideoPlayer from "~/components/Reel/Video";
 import { useUserStore } from "~/lib/globals/user";
 import { useVideoStore } from "~/lib/globals/video";
 import { Video } from "~/types/Video";

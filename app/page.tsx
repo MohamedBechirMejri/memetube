@@ -7,8 +7,8 @@ import { collection, getFirestore, onSnapshot } from "firebase/firestore";
 import { firebaseConfig } from "~/lib/firebase";
 import { useUserStore } from "~/lib/globals/user";
 import { useVideoStore } from "~/lib/globals/video";
-import Reel from "./_components/Reel";
-import ActionBar from "./_components/Reel/ActionBar";
+import Reel from "../components/Reel";
+import ActionBar from "../components/Reel/ActionBar";
 
 export default function Home() {
   const [videos, setVideos] = useState<any[]>([]);

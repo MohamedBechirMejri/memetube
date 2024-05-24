@@ -13,7 +13,7 @@ import { TbX } from "react-icons/tb";
 import { ClientUploadedFileData } from "uploadthing/types";
 import { firebaseConfig } from "~/lib/firebase";
 import { User } from "~/types/User";
-import Toggle from "../_components/Toggle";
+import Toggle from "../../components/Toggle";
 
 const LANGUAGES = ["arabic", "english", "any"];
 
