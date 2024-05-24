@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useSettingsStore } from "~/lib/globals/settings";
 
 type Props = {
   url: string;
@@ -10,6 +11,8 @@ export default function Video({ url, isInView }: Props) {
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoRef2 = useRef<HTMLVideoElement>(null);
+
+  const { settings } = useSettingsStore();
 
   const togglePlay = useCallback(() => {
     if (status === "playing") setStatus("stopped");
@@ -45,6 +48,7 @@ export default function Video({ url, isInView }: Props) {
         src={url}
         className="relative z-10 max-h-full w-full max-w-full"
         loop
+        muted={settings.muted}
       />
     </div>
   );
