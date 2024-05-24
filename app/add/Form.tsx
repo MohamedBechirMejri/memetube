@@ -15,7 +15,7 @@ import { firebaseConfig } from "~/lib/firebase";
 import { User } from "~/types/User";
 import Toggle from "../_components/Toggle";
 
-const LANGUAGES = ["arabic", "english", "other"];
+const LANGUAGES = ["arabic", "english", "any"];
 
 type Props = {
   user: User;
