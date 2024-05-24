@@ -5,7 +5,7 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { Inter } from "next/font/google";
 import { firebaseConfig } from "~/lib/firebase";
 import Nav from "./Nav";
-import "./globals.css";
+import "./globals.scss";
 import { useUserStore } from "~/lib/globals/user";
 import { useEffect } from "react";
 import { doc, getFirestore, onSnapshot } from "firebase/firestore";
