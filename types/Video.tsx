@@ -39,4 +39,10 @@ export type Tag = {
   image?: string;
 };
 
+export type Category = {
+  name: string;
+  image: string;
+  id: string;
+};
+
 export type TComment = Comment;
