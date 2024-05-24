@@ -11,4 +11,10 @@ export type User = {
   uploads: string[];
   createdAt: number;
   updatedAt: number;
+  preferences: Preferences;
+};
+
+export type Preferences = {
+  language: "arabic" | "english" | "any";
+  nsfw: boolean;
 };
