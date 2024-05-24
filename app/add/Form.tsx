@@ -29,6 +29,7 @@ export default function Form({ user, videoData, onBack }: Props) {
   const [title, setTitle] = useState("");
   const [languages, setLanguages] = useState<string[]>([LANGUAGES[0]]);
   const [nsfw, setNsfw] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
@@ -36,6 +37,8 @@ export default function Form({ user, videoData, onBack }: Props) {
   const router = useRouter();
 
   const addVideo = async () => {
+    setIsSaving(true);
+
     const id = nanoid(8);
 
     const tags = title.split(" ").reduce(
@@ -65,7 +68,18 @@ export default function Form({ user, videoData, onBack }: Props) {
       serverData: videoData,
     } as Video);
 
-    setTitle("");
+    // setTitle("");
+    // setLanguages([LANGUAGES[0]]);
+    // setNsfw(false);
+
+    await setDoc(
+      doc(db, "users", user.uid),
+      {
+        uploads: [...user.uploads, id],
+      },
+      { merge: true },
+    );
+
     router.push(`/v/${id}`);
   };
 
@@ -74,6 +88,12 @@ export default function Form({ user, videoData, onBack }: Props) {
       className="flex h-full w-full flex-col gap-4"
       onSubmit={(e) => e.preventDefault()}
     >
+      {isSaving && (
+        <div className="fixed left-0 top-0 z-[90] flex h-full w-full items-center justify-center bg-black bg-opacity-40 backdrop-blur">
+          Saving Meme..
+        </div>
+      )}
+
       <button className="z-50 p-4 pb-0 text-3xl text-gray-500" onClick={onBack}>
         <TbX />
       </button>
