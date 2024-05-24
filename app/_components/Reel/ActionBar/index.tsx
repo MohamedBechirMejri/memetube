@@ -14,7 +14,7 @@ export default function ActionBar() {
   ];
 
   return (
-    <div className="absolute bottom-16 right-0 z-50 flex h-full flex-col justify-between gap-4">
+    <div className="absolute pb-16 right-0 z-50 flex h-full flex-col justify-between gap-4 items-center">
       <button className="p-4 text-3xl">
         <RxSpeakerOff />
       </button>
