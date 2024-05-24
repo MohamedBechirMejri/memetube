@@ -42,6 +42,7 @@ export default function Video({ url, isInView }: Props) {
         className="absolute inset-0 h-full w-full scale-[2] blur-2xl brightness-50"
         muted
         loop
+        preload="auto"
       />
       <video
         ref={videoRef}
@@ -49,6 +50,7 @@ export default function Video({ url, isInView }: Props) {
         className="relative z-10 max-h-full w-full max-w-full"
         loop
         muted={settings.muted}
+        preload="auto"
       />
     </div>
   );
