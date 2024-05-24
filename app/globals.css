@@ -19,5 +19,12 @@ label[for="file-upload"] {
 .ghosting-text {
   color: white;
   -webkit-text-stroke: 1px #88888888;
-  filter: drop-shadow(4px 4px 0px #00b8ff99) drop-shadow(-4px -4px 0px #a82d48) blur(1px);
+  filter: drop-shadow(4px 4px 0px #00b8ff99) drop-shadow(-4px -4px 0px #a82d48)
+    blur(1px);
+}
+
+.center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
