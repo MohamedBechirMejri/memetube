@@ -30,34 +30,48 @@ export default function Login() {
     const result = await signInWithPopup(auth, new GoogleAuthProvider());
     const { email, displayName, photoURL, uid } = result.user;
 
+    if (!uid || !email || !displayName || !photoURL) return;
+
     const currentData = await getDoc(doc(db, "users", uid));
 
     const now = Date.now();
 
-    const data = currentData.exists()
-      ? currentData.data()
-      : {
-          favorites: [],
-          history: [],
-          likes: [],
-          uploads: [],
-          createdAt: now,
-        };
+    const stubData = {
+      favorites: [],
+      history: [],
+      likes: [],
+      uploads: [],
+      createdAt: now,
+      preferences: {
+        language: "any",
+        nsfw: false,
+      },
+    } as {
+      favorites: string[];
+      history: string[];
+      likes: string[];
+      uploads: string[];
+      createdAt: number;
+      preferences: {
+        language: "arabic" | "english" | "any";
+        nsfw: boolean;
+      };
+    };
 
-    await setDoc(
-      doc(db, "users", uid),
-      {
-        ...data,
-        email,
-        name: displayName,
-        image: photoURL,
-        uid,
-        displayName,
-        photoURL,
-        updatedAt: now,
-      } as User,
-      { merge: true },
-    );
+    const data = currentData.exists() ? (currentData.data() as User) : stubData;
+
+    const u: User = {
+      ...data,
+      email,
+      name: displayName,
+      image: photoURL,
+      uid,
+      displayName,
+      photoURL,
+      updatedAt: now,
+    };
+
+    await setDoc(doc(db, "users", uid), u, { merge: true });
   };
 
   useEffect(() => {
