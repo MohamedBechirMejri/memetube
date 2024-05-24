@@ -1,4 +1,5 @@
 import type { Video } from "~/types/Video";
+import type { ClientUploadedFileData } from "uploadthing/types";
 
 import { initializeApp } from "firebase/app";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
@@ -6,15 +7,14 @@ import { motion } from "framer-motion";
 import { nanoid } from "nanoid";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { GrLanguage } from "react-icons/gr";
-import { LiaCheckSolid, LiaHashtagSolid } from "react-icons/lia";
+import { LiaHashtagSolid } from "react-icons/lia";
 import { MdBlock } from "react-icons/md";
 import { TbX } from "react-icons/tb";
-import { ClientUploadedFileData } from "uploadthing/types";
 import Toggle from "~/components/Toggle";
 import { firebaseConfig } from "~/lib/firebase";
 import { User } from "~/types/User";
 import Categories from "./Categories";
+import Languages from "./Languages";
 
 const LANGUAGES = ["arabic", "english", "any"];
 
@@ -73,15 +73,9 @@ export default function Form({ user, videoData, onBack }: Props) {
 
     await setDoc(doc(db, "videos", id), v);
 
-    // setTitle("");
-    // setLanguages([LANGUAGES[0]]);
-    // setNsfw(false);
-
     await setDoc(
       doc(db, "users", user.uid),
-      {
-        uploads: [...user.uploads, id],
-      },
+      { uploads: [...user.uploads, id] },
       { merge: true },
     );
 
@@ -90,7 +84,7 @@ export default function Form({ user, videoData, onBack }: Props) {
 
   return (
     <form
-      className="grid h-full w-full grid-rows-[auto,auto,auto,auto,auto,minmax(0,1fr),auto] gap-4"
+      className="grid h-full w-full grid-rows-[repeat(5,auto),minmax(0,1fr),auto] gap-4"
       onSubmit={(e) => e.preventDefault()}
     >
       {isSaving && (
@@ -114,41 +108,11 @@ export default function Form({ user, videoData, onBack }: Props) {
         <LiaHashtagSolid /> Hashtags
       </div>
 
-      <div className="flex w-full items-center justify-between px-4">
-        <label className="flex items-center gap-4 text-gray-400">
-          <GrLanguage />
-          Language
-        </label>
-
-        <div className="flex gap-4">
-          {LANGUAGES.map((lang, i) => {
-            const isSelected = languages.includes(lang);
-            const buttonAnimation = {
-              color: isSelected ? "#14b8a6" : "#fff",
-              backgroundColor: isSelected ? "#14b8a633" : "#ffffff00",
-            };
-            const tickAnimation = {
-              width: isSelected ? "max-content" : 0,
-              opacity: isSelected ? 1 : 0,
-            };
-
-            return (
-              <motion.button
-                initial={buttonAnimation}
-                animate={buttonAnimation}
-                key={"lang" + i + lang}
-                className="flex items-center gap-2 rounded-xl p-2 capitalize"
-                onClick={() => setLanguages([lang])}
-              >
-                {lang}
-                <motion.span initial={tickAnimation} animate={tickAnimation}>
-                  <LiaCheckSolid />
-                </motion.span>
-              </motion.button>
-            );
-          })}
-        </div>
-      </div>
+      <Languages
+        LANGUAGES={LANGUAGES}
+        languages={languages}
+        setLanguages={setLanguages}
+      />
 
       <div className="my-4 flex w-full items-center justify-between px-4">
         <label className="flex items-center gap-4 text-gray-400">
