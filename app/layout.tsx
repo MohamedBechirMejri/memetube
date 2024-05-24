@@ -35,7 +35,7 @@ export default function RootLayout({
       page = "New Meme";
       break;
     default:
-      page = "MemeTube";
+      page = "MemeStash";
   }
 
   useEffect(() => {
