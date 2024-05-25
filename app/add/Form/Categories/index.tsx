@@ -1,16 +1,19 @@
-import { collection, onSnapshot } from "firebase/firestore";
+import { Firestore, collection, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { MdCategory } from "react-icons/md";
 import { Category as TCategory } from "~/types/Video";
+import NewCategory from "./New";
+import { Button } from "~/components/ui/button";
 
 type Props = {
   categories: string[];
   setCategories: React.Dispatch<React.SetStateAction<string[]>>;
-  db: any;
+  db: Firestore;
 };
 
 export default function Categories({ categories, setCategories, db }: Props) {
   const [CATEGORIES, setCATEGORIES] = useState<TCategory[]>([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -27,10 +30,22 @@ export default function Categories({ categories, setCategories, db }: Props) {
 
   return (
     <div className="grid h-full w-full grid-rows-[auto,minmax(0,1fr)] gap-4 p-4 pt-0">
-      <label className="flex items-center gap-4 text-gray-400">
-        <MdCategory />
-        Categories
-      </label>
+      {isModalVisible && (
+        <div className="fixed left-0 top-0 z-[70] flex h-full w-full items-center justify-center bg-black bg-opacity-40 backdrop-blur" />
+      )}
+
+      {isModalVisible && (
+        <NewCategory db={db} setIsModalVisible={setIsModalVisible} />
+      )}
+
+      <div className="flex items-center justify-between">
+        <label className="flex items-center gap-4 text-gray-400">
+          <MdCategory />
+          Categories
+        </label>
+
+        <Button onClick={() => setIsModalVisible(true)}>New</Button>
+      </div>
 
       <div className="flex h-max max-h-full flex-wrap gap-4 overflow-y-auto rounded-2xl bg-slate-800 bg-opacity-10 p-4">
         {CATEGORIES.map((category, i) => {
