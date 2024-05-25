@@ -60,7 +60,7 @@ export default function NewCategory({ db, setIsModalVisible }: Props) {
         onChange={async (e) => setInput(e.target.value.trim())}
         className="w-full rounded-2xl border-none bg-slate-500 bg-opacity-10 p-6 text-lg"
       />
-      <div className="grid h-full w-full grid-cols-3 gap-2 overflow-auto">
+      <div className="grid h-full w-full grid-cols-2 gap-2 overflow-auto p-2">
         {gifs &&
           gifs.data.map((g) => (
             <div
@@ -75,7 +75,8 @@ export default function NewCategory({ db, setIsModalVisible }: Props) {
                 height={g.images.original.height}
                 src={g.images.original.url}
                 alt={g.title}
-                className="h-full w-full rounded object-cover"
+                className="h-full w-full cursor-pointer rounded object-cover transition-all duration-300 hover:ring"
+                unoptimized
               />
             </div>
           ))}
