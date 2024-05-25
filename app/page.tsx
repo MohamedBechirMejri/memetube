@@ -1,46 +1,24 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
-import { initializeApp } from "firebase/app";
-import { collection, getFirestore, onSnapshot } from "firebase/firestore";
-import { firebaseConfig } from "~/lib/firebase";
-import { useUserStore } from "~/lib/globals/user";
-import { useVideoStore } from "~/lib/globals/video";
 import Reel from "~/components/Reel";
 import ActionBar from "~/components/Reel/ActionBar";
-import { Video } from "~/types/Video";
+import { useUserStore } from "~/lib/globals/user";
+import { useVideoStore } from "~/lib/globals/video";
 
 export default function Home() {
-  const [videos, setVideos] = useState<Video[]>([]);
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  const { video } = useVideoStore();
+  const { video, collection } = useVideoStore();
   const { user } = useUserStore();
 
   // since the videos list updates in real-time, we don't want the videos to disappear after the user watches them so we'll keep a constant history that's loaded when the component mounts
   const historyRef = useRef<string[] | null>(null);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(
-      collection(db, "videos"),
-      (snapshot) => {
-        const videos = snapshot.docs.map((doc) => doc.data()) as Video[];
-        setVideos(videos);
-      },
-      (error) => console.error(error),
-    );
-
-    return () => unsubscribe();
-  }, [db]);
-
-  useEffect(() => {
     if (!historyRef.current) historyRef.current = user?.history || null;
   }, [user]);
 
-  const sortedVideos = videos
+  const sortedVideos = (collection || [])
     .filter((v) => {
       return true;
       if (!historyRef.current) return true;

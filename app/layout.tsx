@@ -8,8 +8,10 @@ import Nav from "./Nav";
 import "./globals.scss";
 import { useUserStore } from "~/lib/globals/user";
 import { useEffect } from "react";
-import { doc, getFirestore, onSnapshot } from "firebase/firestore";
+import { collection, doc, getFirestore, onSnapshot } from "firebase/firestore";
 import { usePathname } from "next/navigation";
+import { Video } from "~/types/Video";
+import { useVideoStore } from "~/lib/globals/video";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +26,8 @@ export default function RootLayout({
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  const { setUID, setUser, uid, user } = useUserStore();
+  const { setUID, setUser, uid } = useUserStore();
+  const { setCollection } = useVideoStore();
 
   const pathname = usePathname();
 
@@ -58,6 +61,19 @@ export default function RootLayout({
       });
     else setUser(null);
   }, [auth, db, setUser, uid]);
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(db, "videos"),
+      (snapshot) => {
+        const videos = snapshot.docs.map((doc) => doc.data()) as Video[];
+        setCollection(videos);
+      },
+      (error) => console.error(error),
+    );
+
+    return () => unsubscribe();
+  }, [db, setCollection]);
 
   return (
     <html lang="en">
