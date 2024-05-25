@@ -46,7 +46,7 @@ export default function NewCategory({ db, setIsModalVisible }: Props) {
   }, [input]);
 
   return (
-    <div className="center fixed z-[80] flex h-2/3 w-[90%] grid-rows-[auto,minmax(0,1fr)] flex-col items-center gap-4 rounded-2xl bg-slate-900 p-4 shadow">
+    <div className="center fixed z-[80] flex h-2/3 w-[90%] grid-rows-[auto,minmax(0,1fr)] flex-col items-center gap-4 rounded-2xl bg-slate-900 p-4 shadow max-w-[38rem]">
       <button
         className="absolute right-6 top-4 z-50 text-3xl text-gray-500"
         onClick={() => setIsModalVisible(false)}

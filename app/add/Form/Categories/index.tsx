@@ -31,7 +31,10 @@ export default function Categories({ categories, setCategories, db }: Props) {
   return (
     <div className="grid h-full w-full grid-rows-[auto,minmax(0,1fr)] gap-4 p-4 pt-0">
       {isModalVisible && (
-        <div className="fixed left-0 top-0 z-[70] flex h-full w-full items-center justify-center bg-black bg-opacity-40 backdrop-blur" />
+        <div
+          className="fixed left-0 top-0 z-[70] flex h-full w-full items-center justify-center bg-black bg-opacity-40 backdrop-blur"
+          onClick={() => setIsModalVisible(false)}
+        />
       )}
 
       {isModalVisible && (
