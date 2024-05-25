@@ -17,7 +17,7 @@ export default function Search() {
   return (
     <main className="flex h-full flex-col items-center gap-8 p-4 pt-16">
       <Input
-        placeholder="Category name"
+        placeholder="Search.."
         onChange={async (e) => setSearch(e.target.value.trim())}
         className="w-full rounded-2xl border-none bg-slate-500 bg-opacity-10 p-6 text-lg"
       />
