@@ -34,6 +34,9 @@ export default function RootLayout({
     case "/add":
       page = "New Meme";
       break;
+    case "/search":
+      page = "Search Memes";
+      break;
     default:
       page = "MemeStash";
   }
