@@ -1,8 +1,8 @@
 # TODO
 
 - [x] setup auth
-- [ ] add categories
-- [ ] add search by tags
+- [x] add categories
+- [x] add search
 - [x] add select preferred languages
 - [ ] add user profile
 - [x] add history
