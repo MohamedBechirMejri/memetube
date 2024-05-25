@@ -11,9 +11,9 @@ export default function ActionBar() {
       <Sound />
 
       <div className="flex flex-col gap-2">
-        <button className="p-4 text-3xl">
+        {/* <button className="p-4 text-3xl">
           <TbDots />
-        </button>
+        </button> */}
 
         <Like />
         <Comment />
