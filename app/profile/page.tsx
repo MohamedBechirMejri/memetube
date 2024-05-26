@@ -9,7 +9,12 @@ import { firebaseConfig } from "~/lib/firebase";
 import { useUserStore } from "~/lib/globals/user";
 import Settings from "./Settings";
 
-const tabs = ["uploads", "likes", "history", "settings"];
+const tabs = [
+  { name: "uploads", icon: "📤", component: Settings },
+  { name: "likes", icon: "👍", component: Settings },
+  { name: "history", icon: "🕒", component: Settings },
+  { name: "settings", icon: "⚙️", component: Settings },
+];
 
 export default function Profile() {
   const [tab, setTab] = useState("r");
@@ -22,15 +27,17 @@ export default function Profile() {
 
   const close = () => setTab("");
 
+  const Tab = tabs.find((t) => t.name === tab)?.component;
+
   useEffect(() => {
     if (!user) router.push("/login");
   }, [router, user]);
 
   return (
     <main className="flex h-full flex-col items-center justify-between p-4 pb-8 pt-16">
-      {tab && (
+      {Tab && (
         <div className="center fixed z-[80] h-full w-full bg-black bg-opacity-40 backdrop-blur-3xl">
-          <Settings close={close} />
+          <Tab close={close} />
         </div>
       )}
 
@@ -63,11 +70,11 @@ export default function Profile() {
         <ul className="flex flex-col gap-4 pt-12">
           {tabs.map((tab, i) => (
             <li
-              key={tab}
+              key={tab.name}
               className={`mx-auto flex w-full cursor-pointer select-none items-center justify-between gap-4 rounded-2xl border border-blue-500 bg-blue-500 bg-opacity-10 p-4 text-lg font-bold capitalize text-yellow-500 transition-all hover:bg-opacity-20`}
-              onClick={() => setTab(tab)}
+              onClick={() => setTab(tab.name)}
             >
-              <span>{tab}</span>
+              <span>{tab.name}</span>
               <span>→</span>
             </li>
           ))}
