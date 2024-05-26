@@ -7,17 +7,20 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { firebaseConfig } from "~/lib/firebase";
 import { useUserStore } from "~/lib/globals/user";
+import Settings from "./Settings";
 
 const tabs = ["uploads", "likes", "history", "settings"];
 
 export default function Profile() {
-  const [tab, setTab] = useState("");
+  const [tab, setTab] = useState("r");
 
   const { user } = useUserStore();
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const router = useRouter();
+
+  const close = () => setTab("");
 
   useEffect(() => {
     if (!user) router.push("/login");
@@ -26,7 +29,9 @@ export default function Profile() {
   return (
     <main className="flex h-full flex-col items-center justify-between p-4 pb-8 pt-16">
       {tab && (
-        <div className="center fixed z-[80] h-full w-full backdrop-blur"></div>
+        <div className="center fixed z-[80] h-full w-full bg-black bg-opacity-40 backdrop-blur-3xl">
+          <Settings close={close} />
+        </div>
       )}
 
       <div className="w-full pt-4">
