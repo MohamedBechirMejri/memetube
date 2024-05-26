@@ -2,12 +2,17 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, signOut } from "firebase/auth";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { firebaseConfig } from "~/lib/firebase";
 import { useUserStore } from "~/lib/globals/user";
 
+const tabs = ["uploads", "likes", "history", "settings"];
+
 export default function Profile() {
+  const [tab, setTab] = useState("");
+
   const { user } = useUserStore();
 
   const app = initializeApp(firebaseConfig);
@@ -19,17 +24,56 @@ export default function Profile() {
   }, [router, user]);
 
   return (
-    <main className="flex h-full flex-col items-center justify-between p-4 pb-8">
-      <h1 className="self-start text-2xl font-semibold">
-        Hello, {user?.name.split(" ")[0]}
-      </h1>
+    <main className="flex h-full flex-col items-center justify-between p-4 pb-8 pt-16">
+      {tab && (
+        <div className="center fixed z-[80] h-full w-full backdrop-blur"></div>
+      )}
 
-      <button
-        className="rounded-2xl bg-rose-500 bg-opacity-15 p-2 px-8 text-rose-500"
-        onClick={() => signOut(auth)}
-      >
-        Logout
-      </button>
+      <div className="w-full pt-4">
+        <div className="flex w-max items-center justify-between gap-4 text-lg font-bold">
+          <Image
+            src={user?.image || ""}
+            alt={user?.name || ""}
+            width={100}
+            height={100}
+            className="rounded-full"
+          />
+
+          <div>
+            <p>{user?.name}</p>
+            <p className="flex gap-2 opacity-70">
+              <span className="text-sm font-light">
+                Uploads: {user?.uploads.length}
+              </span>
+              <span className="text-sm font-light">
+                likes: {user?.likes.length}
+              </span>
+              <span className="text-sm font-light">
+                History: {user?.history.length}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <ul className="flex flex-col gap-4 pt-12">
+          {tabs.map((tab, i) => (
+            <li
+              key={tab}
+              className={`mx-auto flex w-full cursor-pointer select-none items-center justify-between gap-4 rounded-2xl border border-blue-500 bg-blue-500 bg-opacity-10 p-4 text-lg font-bold capitalize text-yellow-500 transition-all hover:bg-opacity-20`}
+              onClick={() => setTab(tab)}
+            >
+              <span>{tab}</span>
+              <span>→</span>
+            </li>
+          ))}
+          <button
+            className="select-none rounded-2xl border border-rose-500 bg-rose-500 bg-opacity-15 p-4 px-8 font-bold text-rose-500 transition-all hover:bg-opacity-20 hover:text-rose-600"
+            onClick={() => signOut(auth)}
+          >
+            Logout
+          </button>
+        </ul>
+      </div>
     </main>
   );
 }

@@ -26,7 +26,7 @@ export default function RootLayout({
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  const { setUID, setUser, uid } = useUserStore();
+  const { setUID, setUser, uid, user } = useUserStore();
   const { setCollection } = useVideoStore();
 
   const pathname = usePathname();
@@ -39,6 +39,9 @@ export default function RootLayout({
       break;
     case "/search":
       page = "Search Memes";
+      break;
+    case "/profile":
+      page = user ? "Hello, " + user.name.split(" ")[0] : "Profile";
       break;
     default:
       page = "MemeStash";
