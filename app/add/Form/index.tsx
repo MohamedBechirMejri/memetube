@@ -16,7 +16,7 @@ import { User } from "~/types/User";
 import Categories from "./Categories";
 import Languages from "./Languages";
 
-const LANGUAGES = ["arabic", "english", "any"];
+export const LANGUAGES = ["arabic", "english", "any"];
 
 type Props = {
   user: User;
