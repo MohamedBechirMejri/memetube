@@ -29,17 +29,10 @@ export default function Settings({ close }: { close: () => void }) {
   };
 
   return (
-    <div className="flex h-full flex-col justify-between p-4 py-8">
+    <div className="flex h-full flex-col justify-between p-4 py-8 pb-24">
       <div className="flex flex-col gap-8">
-        <div className="flex items-center justify-between">
-          <button className="pointer-events-none text-3xl opacity-0 ml-4">
-            <TbX />
-          </button>
-          <h1 className="text-3xl font-bold">Settings</h1>
-          <button className="text-3xl text-gray-500 mr-4" onClick={close}>
-            <TbX />
-          </button>
-        </div>
+        <h1 className="text-3xl font-bold w-full text-center">Settings</h1>
+
         <div className="my-4 flex w-full items-center justify-between px-4">
           <label className="flex items-center gap-4 text-gray-400">
             <MdBlock />
