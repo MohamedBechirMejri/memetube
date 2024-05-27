@@ -1,9 +1,9 @@
 {
-  "display_override": ["window-controls-overlay"],
-  "protocol_handlers": [
-    {
-      "protocol": "web+memestash"
-    }
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui",
+    "browser"
   ],
   "description": "Collection of the best memes on the internet",
   "shortcuts": [
@@ -14,7 +14,7 @@
       "url": "/add",
       "icons": [
         {
-          "src": "https://pwabuilder.com/assets/icons/icon_192.png",
+          "src": "icons/icon-192x192.png",
           "sizes": "192x192"
         }
       ]
@@ -22,22 +22,10 @@
   ],
   "screenshots": [
     {
-      "src": "https://www.pwabuilder.com/assets/screenshots/screen1.png",
-      "sizes": "2880x1800",
+      "src": "screenshots/1.png",
+      "sizes": "606x956",
       "type": "image/png",
       "description": "PWABuilder Home Screen"
-    },
-    {
-      "src": "https://www.pwabuilder.com/assets/screenshots/screen2.png",
-      "sizes": "2880/1800",
-      "type": "image/png",
-      "description": "PWABuilder Report Card"
-    },
-    {
-      "src": "https://www.pwabuilder.com/assets/screenshots/screen3.png",
-      "sizes": "2880x1800",
-      "type": "image/png",
-      "description": "Manifest information on the Report Card"
     }
   ],
   "name": "MemeStash",
@@ -492,5 +480,12 @@
   "background_color": "#020617",
   "start_url": "/",
   "display": "standalone",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "dir": "ltr",
+  "lang": "en",
+  "id": "mbm-memes-stash",
+  "categories": ["entertainment", "social"],
+  "edge_side_panel": {
+    "preferred_width": 608
+  }
 }
