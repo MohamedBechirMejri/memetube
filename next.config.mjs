@@ -19,8 +19,9 @@ const nextConfig = {
 const withSerwist = withSerwistInit({
   swSrc: "app/sw.ts",
   swDest: "public/sw.js",
+  disable: false,
+  // exclude manifest.json from service worker
+  exclude: ["manifest.json"],
 });
 
-// export default withSerwist(nextConfig);
-
-export default nextConfig;
+export default withSerwist(nextConfig);
