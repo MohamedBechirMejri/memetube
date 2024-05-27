@@ -1,5 +1,7 @@
+import { TiMediaPause } from "react-icons/ti";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useSettingsStore } from "~/lib/globals/settings";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Props = {
   url: string;
@@ -35,7 +37,23 @@ export default function Video({ url, isInView }: Props) {
   }, [isInView]);
 
   return (
-    <div onClick={togglePlay} className="flex h-full w-full items-center">
+    <div
+      onClick={togglePlay}
+      className="relative flex h-full w-full items-center"
+    >
+      <AnimatePresence>
+        {status === "stopped" && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0, x: "-50%", y: "-50%" }}
+            animate={{ opacity: 1, scale: 1, x: "-50%", y: "-50%" }}
+            exit={{ opacity: 0, scale: 0, x: "-50%", y: "-50%" }}
+            className="absolute left-1/2 top-1/2 z-50 flex size-20 items-center justify-center rounded-full bg-black bg-opacity-50 backdrop-blur-3xl"
+          >
+            <TiMediaPause size={48} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <video
         ref={videoRef2}
         src={url}
