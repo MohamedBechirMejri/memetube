@@ -40,7 +40,7 @@ export default function Profile() {
   return (
     <main className="flex h-full flex-col items-center justify-between p-4 pb-8 pt-16">
       {Tab && (
-        <div className="center fixed z-50 h-full w-full bg-black bg-opacity-40 backdrop-blur-3xl">
+        <div className="center fixed z-50 h-full w-full bg-black bg-opacity-40 backdrop-blur-3xl max-w-[38rem]">
           <button
             className="absolute left-4 top-4 z-50 text-3xl text-white"
             onClick={close}
