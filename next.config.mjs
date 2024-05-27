@@ -21,4 +21,6 @@ const withSerwist = withSerwistInit({
   swDest: "public/sw.js",
 });
 
-export default withSerwist(nextConfig);
+// export default withSerwist(nextConfig);
+
+export default nextConfig;
