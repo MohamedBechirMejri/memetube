@@ -18,12 +18,11 @@
     "@serwist/next": "^9.0.2",
     "@serwist/precaching": "^9.0.2",
     "@serwist/sw": "^9.0.2",
-    "@uploadthing/react": "^6.5.4",
+    "@uploadthing/react": "^6.6.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "firebase": "^10.12.1",
+    "firebase": "^10.12.2",
     "framer-motion": "^11.2.6",
-    "i": "^0.3.7",
     "nanoid": "^5.0.7",
     "next": "^15.0.0-rc.0",
     "react": "^19.0.0-rc-f994737d14-20240522",
@@ -32,7 +31,7 @@
     "react-web-share": "^2.0.2",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "uploadthing": "^6.10.4",
+    "uploadthing": "^6.12.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
