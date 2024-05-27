@@ -31,7 +31,7 @@ export default function Add() {
       ) : (
         <UploadDropzone
           endpoint="imageUploader"
-          className="h-full w-full rounded-lg bg-slate-950 p-4 text-white"
+          className="h-full w-full rounded-lg border-0 bg-slate-950 p-4 text-white"
           onClientUploadComplete={(res) => {
             // console.log(res);
             setVideoData(res[0]);
