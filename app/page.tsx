@@ -20,7 +20,7 @@ export default function Home() {
 
   const sortedVideos = (collection || [])
     .filter((v) => {
-      return true;
+      // return true; // uncomment this line to see all videos
       if (!historyRef.current) return true;
       return !historyRef.current.includes(v.id);
     })
