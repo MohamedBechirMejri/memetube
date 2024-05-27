@@ -86,21 +86,34 @@ export default function Profile() {
           {tabs.map((tab, i) => (
             <li
               key={tab.name}
-              className={`mx-auto flex w-full cursor-pointer select-none items-center justify-between gap-4 rounded-2xl border border-blue-500 bg-blue-500 bg-opacity-10 p-4 text-lg font-bold capitalize text-yellow-500 transition-all hover:bg-opacity-20`}
+              className={`mx-auto flex w-full cursor-pointer select-none items-center justify-between gap-4 rounded-2xl bg-slate-500 bg-opacity-10 p-4  px-8 text-lg font-bold capitalize text-slate-200 transition-all duration-300 hover:bg-opacity-20`}
               onClick={() => setTab(tab.name)}
             >
               <span>{tab.name}</span>
-              <span>→</span>
+              <span className="grayscale">{tab.icon}</span>
             </li>
           ))}
           <button
-            className="select-none rounded-2xl border border-rose-500 bg-rose-500 bg-opacity-15 p-4 px-8 font-bold text-rose-500 transition-all hover:bg-opacity-20 hover:text-rose-600"
+            className="select-none rounded-2xl border-rose-500 bg-rose-500 bg-opacity-15 p-4 px-8 font-bold text-rose-500 opacity-90 transition-all hover:bg-opacity-20 hover:text-rose-600"
             onClick={() => signOut(auth)}
           >
-            Logout
+            Logout 👋
           </button>
         </ul>
       </div>
+
+      <p className="flex flex-col items-center">
+        <span className="text-sm opacity-80">© 2024</span>
+        <span className="text-sm opacity-80">Made with ❤️ by</span>{" "}
+        <a
+          href="https://twitter.com/0x4D424D"
+          target="_blank"
+          rel="noreferrer"
+          className="text-rose-500"
+        >
+          @0x4D424D
+        </a>
+      </p>
     </main>
   );
 }
