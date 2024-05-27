@@ -10,6 +10,7 @@ import {
 } from "react-icons/tb";
 import Image from "next/image";
 import { useUserStore } from "~/lib/globals/user";
+import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/", name: "Home", icon: <TbBrandGoogleHome /> },
@@ -22,6 +23,8 @@ const links = [
 export default function Nav() {
   const { user } = useUserStore();
 
+  const pathname = usePathname();
+
   return (
     <nav className="relative z-50 grid h-16 w-full grid-cols-5 grid-rows-1">
       {links.map((link) => (
@@ -29,10 +32,12 @@ export default function Nav() {
           href={link.href}
           key={link.href}
           className={
-            "flex flex-col items-center justify-center gap-1 text-xl" +
+            "flex flex-col items-center justify-center gap-1 text-xl " +
             (link.href === "/add"
               ? " ghosting-text h-12 rounded-2xl bg-white bg-opacity-40"
-              : "")
+              : pathname === link.href
+                ? "text-rose-500"
+                : "text-gray-300")
           }
         >
           {link.icon}
