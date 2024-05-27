@@ -1,6 +1,5 @@
 "use client";
 
-import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { firebaseConfig } from "~/lib/firebase";
@@ -20,7 +19,7 @@ export default function Layout({
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
-  const analytics = getAnalytics(app);
+  // const analytics = getAnalytics(app);
 
   const { setUID, setUser, uid, user } = useUserStore();
   const { setCollection } = useVideoStore();
