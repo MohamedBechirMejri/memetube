@@ -8,11 +8,15 @@ import { useEffect, useState } from "react";
 import { firebaseConfig } from "~/lib/firebase";
 import { useUserStore } from "~/lib/globals/user";
 import Settings from "./Settings";
+import Uploads from "./Uploads";
+import Likes from "./Likes";
+import History from "./History";
+import { TbX } from "react-icons/tb";
 
 const tabs = [
-  { name: "uploads", icon: "📤", component: Settings },
-  { name: "likes", icon: "👍", component: Settings },
-  { name: "history", icon: "🕒", component: Settings },
+  { name: "uploads", icon: "📤", component: Uploads },
+  { name: "likes", icon: "👍", component: Likes },
+  { name: "history", icon: "🕒", component: History },
   { name: "settings", icon: "⚙️", component: Settings },
 ];
 
@@ -36,20 +40,28 @@ export default function Profile() {
   return (
     <main className="flex h-full flex-col items-center justify-between p-4 pb-8 pt-16">
       {Tab && (
-        <div className="center fixed z-[80] h-full w-full bg-black bg-opacity-40 backdrop-blur-3xl">
+        <div className="center fixed z-50 h-full w-full bg-black bg-opacity-40 backdrop-blur-3xl">
+          <button
+            className="absolute left-4 top-4 z-50 text-3xl text-white"
+            onClick={close}
+          >
+            <TbX />
+          </button>
           <Tab close={close} />
         </div>
       )}
 
       <div className="w-full pt-4">
         <div className="flex w-max items-center justify-between gap-4 text-lg font-bold">
-          <Image
-            src={user?.image || ""}
-            alt={user?.name || ""}
-            width={100}
-            height={100}
-            className="rounded-full"
-          />
+          {user && (
+            <Image
+              src={user?.image}
+              alt={user?.name}
+              width={100}
+              height={100}
+              className="rounded-full"
+            />
+          )}
 
           <div>
             <p>{user?.name}</p>
