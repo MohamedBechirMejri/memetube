@@ -5,16 +5,18 @@ import {
   GoogleAuthProvider,
   browserLocalPersistence,
   getAuth,
+  getRedirectResult,
   onAuthStateChanged,
   setPersistence,
-  signInWithPopup,
+  // signInWithPopup,
+  signInWithRedirect,
 } from "firebase/auth";
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { firebaseConfig } from "~/lib/firebase";
 import { useUserStore } from "~/lib/globals/user";
 import { User } from "~/types/User";
-import { useRouter } from "next/navigation";
 
 export default function Login() {
   const app = initializeApp(firebaseConfig);
@@ -27,8 +29,10 @@ export default function Login() {
   const signIn = async () => {
     await setPersistence(auth, browserLocalPersistence);
 
-    const result = await signInWithPopup(auth, new GoogleAuthProvider());
-    const { email, displayName, photoURL, uid } = result.user;
+    await signInWithRedirect(auth, new GoogleAuthProvider());
+
+    const result = getRedirectResult(auth) as any;
+    const { email, displayName, photoURL, uid } = result?.user || {};
 
     if (!uid || !email || !displayName || !photoURL) return;
 
@@ -72,6 +76,8 @@ export default function Login() {
     };
 
     await setDoc(doc(db, "users", uid), u, { merge: true });
+
+    router.push("/");
   };
 
   useEffect(() => {
