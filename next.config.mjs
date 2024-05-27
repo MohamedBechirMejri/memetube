@@ -21,7 +21,7 @@ const withSerwist = withSerwistInit({
   swDest: "public/sw.js",
   disable: false,
   // exclude manifest.json from service worker
-  exclude: ["manifest.json"],
+  exclude: [/^manifest./],
 });
 
 export default withSerwist(nextConfig);
