@@ -19,13 +19,18 @@ export default function Home() {
   }, [user]);
 
   const sortedVideos = (collection || [])
-    .filter((v) => {
-      // return true; // uncomment this line to see all videos
-      if (!historyRef.current) return true;
-      return !historyRef.current.includes(v.id);
-    })
+    // .filter((v) => {
+    //   // return true; // uncomment this line to see all videos
+    //   if (!historyRef.current) return true;
+    //   return !historyRef.current.includes(v.id);
+    // })
     .sort((a, b) => {
       return b.createdAt - a.createdAt;
+    })
+    // move watched videos to the end of the list
+    .sort((a, b) => {
+      if (!historyRef.current) return 0;
+      return historyRef.current.includes(a.id) ? 1 : -1;
     });
 
   return (
