@@ -40,7 +40,17 @@ export default function Nav() {
                 : "text-gray-300")
           }
         >
-          {link.icon}
+          {user && link.href === "/profile" ? (
+            <Image
+              src={user.image}
+              alt={user.name}
+              width={48}
+              height={48}
+              className="h-6 w-6 rounded-full"
+            />
+          ) : (
+            link.icon
+          )}
           <span className="text-xs">{link.name}</span>
         </Link>
       ))}
