@@ -84,6 +84,10 @@ export default function RootLayout({
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>MemeStash</title>
+        <meta
+          name="description"
+          content="Collection of the best memes around the web"
+        />
       </head>
       <body
         className={
