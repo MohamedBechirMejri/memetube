@@ -42,8 +42,9 @@ export default function Video({ url, isInView }: Props) {
       className="relative flex h-full w-full items-center"
     >
       <AnimatePresence>
-        {status === "stopped" && (
+        {status === "stopped" && isInView ? (
           <motion.div
+            key={url}
             initial={{ opacity: 0, scale: 0, x: "-50%", y: "-50%" }}
             animate={{ opacity: 1, scale: 1, x: "-50%", y: "-50%" }}
             exit={{ opacity: 0, scale: 0, x: "-50%", y: "-50%" }}
@@ -51,7 +52,7 @@ export default function Video({ url, isInView }: Props) {
           >
             <TiMediaPause size={48} />
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
 
       <video

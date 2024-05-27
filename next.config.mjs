@@ -14,6 +14,8 @@ const nextConfig = {
       },
     ],
   },
+  // react 19 breaks framer motion so this is a workaround until it gets fixed
+  reactStrictMode: process.env.NODE_ENV === "development" ? false : true,
 };
 
 const withSerwist = withSerwistInit({
