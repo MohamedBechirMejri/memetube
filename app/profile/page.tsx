@@ -38,9 +38,12 @@ export default function Profile() {
   }, [router, user]);
 
   return (
-    <main className="flex h-full flex-col items-center justify-between p-4 pb-8 pt-16">
+    <main
+      className="flex h-full flex-col items-center justify-between p-4 pb-8 pt-16"
+      style={{ opacity: user ? 1 : 0 }}
+    >
       {Tab && (
-        <div className="center fixed z-50 h-full w-full bg-black bg-opacity-40 backdrop-blur-3xl max-w-[38rem]">
+        <div className="center fixed z-50 h-full w-full max-w-[38rem] bg-black bg-opacity-40 backdrop-blur-3xl">
           <button
             className="absolute left-4 top-4 z-50 text-3xl text-white"
             onClick={close}
