@@ -29,60 +29,72 @@ export default function Login() {
 
   const signIn = async () => {
     await setPersistence(auth, browserLocalPersistence);
-
     await signInWithRedirect(auth, new GoogleAuthProvider());
-
-    const result = getRedirectResult(auth) as any;
-    const { email, displayName, photoURL, uid } = result?.user || {};
-
-    if (!uid || !email || !displayName || !photoURL) return;
-
-    const currentData = await getDoc(doc(db, "users", uid));
-
-    const now = Date.now();
-
-    const stubData = {
-      favorites: [],
-      history: [],
-      likes: [],
-      uploads: [],
-      createdAt: now,
-      preferences: {
-        language: "any",
-        nsfw: false,
-      },
-    } as {
-      favorites: string[];
-      history: string[];
-      likes: string[];
-      uploads: string[];
-      createdAt: number;
-      preferences: {
-        language: "arabic" | "english" | "any";
-        nsfw: boolean;
-      };
-    };
-
-    const data = currentData.exists() ? (currentData.data() as User) : stubData;
-
-    const u: User = {
-      ...data,
-      email,
-      name: displayName,
-      image: photoURL,
-      uid,
-      displayName,
-      photoURL,
-      updatedAt: now,
-    };
-
-    await setDoc(doc(db, "users", uid), u, { merge: true });
-
-    router.push("/");
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (u) => setUID(u?.uid || null));
+    const handleRedirect = async () => {
+      const result = (await getRedirectResult(auth)) as any;
+
+      if (!result) return;
+
+      const { email, displayName, photoURL, uid } = result.user;
+
+      if (!uid || !email || !displayName || !photoURL) return;
+
+      const currentData = await getDoc(doc(db, "users", uid));
+
+      const now = Date.now();
+
+      const stubData = {
+        favorites: [],
+        history: [],
+        likes: [],
+        uploads: [],
+        createdAt: now,
+        preferences: {
+          language: "any",
+          nsfw: false,
+        },
+      } as {
+        favorites: string[];
+        history: string[];
+        likes: string[];
+        uploads: string[];
+        createdAt: number;
+        preferences: {
+          language: "arabic" | "english" | "any";
+          nsfw: boolean;
+        };
+      };
+
+      const data = currentData.exists()
+        ? (currentData.data() as User)
+        : stubData;
+
+      const u: User = {
+        ...data,
+        email,
+        name: displayName,
+        image: photoURL,
+        uid,
+        displayName,
+        photoURL,
+        updatedAt: now,
+      };
+
+      await setDoc(doc(db, "users", uid), u, { merge: true });
+
+      router.push("/");
+    };
+
+    handleRedirect();
+  }, [auth, db, router]);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (u) => setUID(u?.uid || null));
+
+    return () => unsubscribe();
   }, [auth, setUID]);
 
   useEffect(() => {
