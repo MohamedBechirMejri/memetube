@@ -14,6 +14,7 @@ import {
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { Button } from "~/components/ui/button";
 import { firebaseConfig } from "~/lib/firebase";
 import { useUserStore } from "~/lib/globals/user";
 import { User } from "~/types/User";
@@ -92,9 +93,9 @@ export default function Login() {
     <main className="flex h-full flex-col items-center justify-center p-4">
       <h1 className="text-xl font-bold text-rose-500">Login to continue</h1>
 
-      <button onClick={signIn} className="mt-4 rounded border p-2 px-8">
+      <Button onClick={signIn} className="mt-4 rounded border p-2 px-8">
         Sign in with Google
-      </button>
+      </Button>
     </main>
   );
 }
