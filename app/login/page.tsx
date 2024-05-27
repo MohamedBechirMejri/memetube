@@ -15,6 +15,8 @@ import { firebaseConfig } from "~/lib/firebase";
 import { useUserStore } from "~/lib/globals/user";
 import { User } from "~/types/User";
 import { useRouter } from "next/navigation";
+import { Button } from "~/components/ui/button";
+import { FcGoogle } from "react-icons/fc";
 
 export default function Login() {
   const app = initializeApp(firebaseConfig);
@@ -88,9 +90,9 @@ export default function Login() {
     <main className="flex h-full flex-col items-center justify-center p-4">
       <h1 className="text-xl font-bold text-rose-500">Login to continue</h1>
 
-      <button onClick={signIn} className="mt-4 rounded border p-2 px-8">
-        Sign in with Google
-      </button>
+      <Button onClick={signIn} className="mt-4 rounded border p-2 px-8 flex gap-2 border-opacity-20 border-white">
+        <FcGoogle /> Sign in with Google
+      </Button>
     </main>
   );
 }
