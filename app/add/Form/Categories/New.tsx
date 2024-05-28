@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { TbX } from "react-icons/tb";
 import { Input } from "~/components/ui/input";
 import { Category } from "~/types/Video";
+import { motion } from "framer-motion";
 
 const gf = new GiphyFetch(process.env.NEXT_PUBLIC_GIPHY_API_KEY!);
 const fetchGifs = (q: string) => gf.search(q, { limit: 12 });
@@ -46,7 +47,12 @@ export default function NewCategory({ db, setIsModalVisible }: Props) {
   }, [input]);
 
   return (
-    <div className="center fixed z-[80] flex h-2/3 w-[90%] grid-rows-[auto,minmax(0,1fr)] flex-col items-center gap-4 rounded-2xl bg-slate-900 p-4 shadow max-w-[38rem]">
+    <motion.div
+      initial={{ scale: 0, x: "-50%", y: "-50%" }}
+      animate={{ scale: 1, x: "-50%", y: "-50%" }}
+      exit={{ scale: 0, x: "-50%", y: "-60%", transition: { duration: 0.2 } }}
+      className="center fixed z-[80] flex h-2/3 w-[90%] max-w-[38rem] origin-right grid-rows-[auto,minmax(0,1fr)] flex-col items-center gap-4 rounded-2xl bg-slate-900 p-4 shadow"
+    >
       <button
         className="absolute right-6 top-4 z-50 text-3xl text-gray-500"
         onClick={() => setIsModalVisible(false)}
@@ -81,6 +87,6 @@ export default function NewCategory({ db, setIsModalVisible }: Props) {
             </div>
           ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
