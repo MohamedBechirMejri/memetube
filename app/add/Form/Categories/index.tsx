@@ -4,6 +4,7 @@ import { MdCategory } from "react-icons/md";
 import { Category as TCategory } from "~/types/Video";
 import NewCategory from "./New";
 import { Button } from "~/components/ui/button";
+import { AnimatePresence } from "framer-motion";
 
 type Props = {
   categories: string[];
@@ -37,9 +38,11 @@ export default function Categories({ categories, setCategories, db }: Props) {
         />
       )}
 
-      {isModalVisible && (
-        <NewCategory db={db} setIsModalVisible={setIsModalVisible} />
-      )}
+      <AnimatePresence>
+        {isModalVisible && (
+          <NewCategory db={db} setIsModalVisible={setIsModalVisible} />
+        )}
+      </AnimatePresence>
 
       <div className="flex items-center justify-between">
         <label className="flex items-center gap-4 text-gray-400">
