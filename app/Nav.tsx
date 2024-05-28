@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   TbBrandGoogleHome,
   TbSearch,
@@ -11,6 +10,10 @@ import {
 import Image from "next/image";
 import { useUserStore } from "~/lib/globals/user";
 import { usePathname } from "next/navigation";
+import L from "next/link";
+import { motion } from "framer-motion";
+
+const Link = motion(L);
 
 const links = [
   { href: "/", name: "Home", icon: <TbBrandGoogleHome /> },
@@ -29,15 +32,18 @@ export default function Nav() {
     <nav className="relative z-50 grid h-16 w-full grid-cols-5 grid-rows-1">
       {links.map((link) => (
         <Link
+          initial={{ scale: 1 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 1 }}
           href={link.href}
           key={link.href}
           className={
-            "flex flex-col items-center justify-center gap-1 text-xl " +
+            "flex flex-col items-center justify-center gap-1 " +
             (link.href === "/add"
-              ? " ghosting-text h-12 rounded-2xl bg-white bg-opacity-40"
+              ? " ghosting-text-alt h-12 rounded-2xl bg-white bg-opacity-50 text-3xl text-black"
               : pathname === link.href
-                ? "text-rose-500"
-                : "text-gray-300")
+                ? "text-xl text-rose-500"
+                : "text-xl text-gray-300")
           }
         >
           {user && link.href === "/profile" ? (
