@@ -22,7 +22,7 @@ export default function Layout({
   // const analytics = getAnalytics(app);
 
   const { setUID, setUser, uid, user } = useUserStore();
-  const { setCollection } = useVideoStore();
+  const { setCollection, setRawCollection } = useVideoStore();
 
   const pathname = usePathname();
 
@@ -88,12 +88,13 @@ export default function Layout({
         });
 
         setCollection(filtered);
+        setRawCollection(videos);
       },
       (error) => console.error(error),
     );
 
     return () => unsubscribe();
-  }, [db, setCollection, user?.preferences]);
+  }, [db, setCollection, setRawCollection, user?.preferences]);
 
   return (
     <div className="relative grid h-[100svh] w-full max-w-[38rem] grid-rows-[minmax(0,1fr),auto]">
