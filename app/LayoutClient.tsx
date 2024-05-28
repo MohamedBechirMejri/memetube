@@ -65,7 +65,22 @@ export default function Layout({
       collection(db, "videos"),
       (snapshot) => {
         const videos = snapshot.docs.map((doc) => doc.data()) as Video[];
-        setCollection(videos);
+        setCollection(
+          videos.filter((v) => {
+            const { nsfw, languages } = v;
+            const { nsfw: userNSFW, language: userLanguage } =
+              user?.preferences || {};
+
+            if (nsfw && !userNSFW) return false;
+
+            if (userLanguage === "any") return true;
+
+            if (languages && !languages.includes(userLanguage || "any"))
+              return false;
+
+            return true;
+          }),
+        );
       },
       (error) => console.error(error),
     );
