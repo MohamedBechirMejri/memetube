@@ -32,9 +32,8 @@ export default function Home({ params }: { params: { id: string } }) {
     .filter((v) => v.id !== id);
 
   // using rawCollection here since the video might be filtered in the collection due to nsfw/language
-  // const v = rawCollection?.find((v) => v.id === id);
+  const v = rawCollection?.find((v) => v.id === id);
 
-  const v = null;
 
   return (
     <main className="h-full w-full snap-y snap-mandatory overflow-hidden overflow-y-scroll">
