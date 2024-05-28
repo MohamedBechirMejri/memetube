@@ -34,7 +34,6 @@ export default function Home({ params }: { params: { id: string } }) {
   // using rawCollection here since the video might be filtered in the collection due to nsfw/language
   const v = rawCollection?.find((v) => v.id === id);
 
-
   return (
     <main className="h-full w-full snap-y snap-mandatory overflow-hidden overflow-y-scroll">
       {v && <ActionBar />}
