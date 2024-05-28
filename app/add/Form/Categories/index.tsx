@@ -56,7 +56,7 @@ export default function Categories({ categories, setCategories, db }: Props) {
             <button
               key={category.id}
               className={
-                "flex h-max items-center gap-1 rounded-2xl p-4 text-sm font-medium capitalize leading-none" +
+                "flex h-max items-center gap-1 rounded-2xl p-4 text-sm font-medium capitalize leading-none transition-all duration-300 hover:ring-1" +
                 (categories.includes(category.id)
                   ? " bg-blue-500 bg-opacity-15 text-blue-500"
                   : " bg-slate-900 bg-opacity-40 text-slate-300")
