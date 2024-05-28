@@ -4,7 +4,6 @@ import Reel from "~/components/Reel";
 import ActionBar from "~/components/Reel/ActionBar";
 import { useUserStore } from "~/lib/globals/user";
 import { useVideoStore } from "~/lib/globals/video";
-import Nav from "../Nav";
 
 export default function Likes() {
   const { video, collection } = useVideoStore();
