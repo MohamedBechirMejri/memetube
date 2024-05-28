@@ -67,28 +67,33 @@ export default function Layout({
       collection(db, "videos"),
       (snapshot) => {
         const videos = snapshot.docs.map((doc) => doc.data()) as Video[];
-        setCollection(
-          videos.filter((v) => {
-            const { nsfw, languages } = v;
-            const { nsfw: userNSFW, language: userLanguage } =
-              user?.preferences || {};
 
-            if (nsfw && !userNSFW) return false;
+        const filtered = videos.filter((v) => {
+          const { nsfw, languages } = v;
+          const { nsfw: userNSFW, language: userLanguage } =
+            user?.preferences || {};
 
-            if (userLanguage === "any") return true;
+          if (nsfw && !userNSFW) return false;
 
-            if (languages && !languages.includes(userLanguage || "any"))
-              return false;
+          if (userLanguage === "any") return true;
 
-            return true;
-          }),
-        );
+          if (
+            languages &&
+            !languages.includes(userLanguage || "any") &&
+            !languages.includes("any")
+          )
+            return false;
+
+          return true;
+        });
+
+        setCollection(filtered);
       },
       (error) => console.error(error),
     );
 
     return () => unsubscribe();
-  }, [db, setCollection]);
+  }, [db, setCollection, user?.preferences]);
 
   return (
     <div className="relative grid h-[100svh] w-full max-w-[38rem] grid-rows-[minmax(0,1fr),auto]">
