@@ -42,6 +42,8 @@ export default function Layout({
       page = "MemeStash";
   }
 
+  if (pathname.includes("/search/c/")) page = "";
+
   useEffect(() => {
     onAuthStateChanged(auth, (u) => setUID(u?.uid || null));
 
