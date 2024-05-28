@@ -6,6 +6,7 @@ import { ClientUploadedFileData } from "uploadthing/types";
 import { useUserStore } from "~/lib/globals/user";
 import { UploadDropzone } from "~/utils/uploadthing";
 import Form from "./Form";
+import { sleep } from "~/lib/utils";
 
 export default function Add() {
   const [videoData, setVideoData] = useState<ClientUploadedFileData<{
@@ -17,7 +18,12 @@ export default function Add() {
   const { user } = useUserStore();
 
   useEffect(() => {
-    if (!user) return router.push("/login");
+    const checkUser = async () => {
+      await sleep(2000);
+      if (!user) return router.push("/login");
+    };
+
+    checkUser();
   }, [user, router]);
 
   return (
@@ -33,7 +39,7 @@ export default function Add() {
           endpoint="imageUploader"
           className="h-full w-full rounded-lg border-0 bg-slate-950 p-4 text-white"
           onClientUploadComplete={(res) => {
-            // console.log(res);
+            console.log(res);
             setVideoData(res[0]);
           }}
           onUploadError={(error: Error) => {
