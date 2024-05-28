@@ -96,6 +96,10 @@ label[for="file-upload"] {
     blur(1px);
 }
 
+.ghosting-text-alt {
+  filter: drop-shadow(4px 4px 4px #00b8ff99) drop-shadow(-4px -4px 4px #a82d48);
+}
+
 .center {
   top: 50%;
   left: 50%;
