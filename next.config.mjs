@@ -4,6 +4,7 @@ import withSerwistInit from "@serwist/next";
 const nextConfig = {
   experimental: {
     reactCompiler: process.env.NODE_ENV === "development" ? false : true,
+    ppr: true,
   },
   // allow all image domains
   images: {
