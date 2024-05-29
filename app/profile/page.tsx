@@ -47,7 +47,7 @@ export default function Profile() {
           <motion.div
             initial={{ opacity: 0, y: "-40%", x: "-50%" }}
             animate={{ opacity: 1, y: "-50%", x: "-50%" }}
-            exit={{ opacity: 0, y: "-60%", x: "-50%" }}
+            exit={{ opacity: 0, y: "-40%", x: "-50%" }}
             // transition={{ duration: 0.2 }}
             className="center fixed z-50 h-full w-full max-w-[38rem] bg-black bg-opacity-40 backdrop-blur-3xl"
           >
