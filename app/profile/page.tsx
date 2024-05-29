@@ -2,16 +2,18 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, signOut } from "firebase/auth";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { TbX } from "react-icons/tb";
 import { firebaseConfig } from "~/lib/firebase";
 import { useUserStore } from "~/lib/globals/user";
+import useUserCheck from "~/lib/hooks/useUserCheck";
+import History from "./History";
+import Likes from "./Likes";
 import Settings from "./Settings";
 import Uploads from "./Uploads";
-import Likes from "./Likes";
-import History from "./History";
-import { TbX } from "react-icons/tb";
 
 const tabs = [
   { name: "uploads", icon: "📤", component: Uploads },
@@ -21,7 +23,7 @@ const tabs = [
 ];
 
 export default function Profile() {
-  const [tab, setTab] = useState("r");
+  const [tab, setTab] = useState("");
 
   const { user } = useUserStore();
 
@@ -29,30 +31,42 @@ export default function Profile() {
   const auth = getAuth(app);
   const router = useRouter();
 
+  useUserCheck({ user, router, duration: 2500 });
+
   const close = () => setTab("");
 
   const Tab = tabs.find((t) => t.name === tab)?.component;
-
-  useEffect(() => {
-    if (!user) router.push("/login");
-  }, [router, user]);
 
   return (
     <main
       className="flex h-full flex-col items-center justify-between p-4 pb-8 pt-16"
       style={{ opacity: user ? 1 : 0 }}
     >
-      {Tab && (
-        <div className="center fixed z-50 h-full w-full max-w-[38rem] bg-black bg-opacity-40 backdrop-blur-3xl">
-          <button
-            className="absolute left-4 top-4 z-50 text-3xl text-white"
-            onClick={close}
-          >
-            <TbX />
-          </button>
-          <Tab close={close} />
-        </div>
+      {tab && (
+        <h1 className="ghosting-text pointer-events-none fixed top-4 z-[60] w-full text-center text-3xl font-bold capitalize italic">
+          {tab}
+        </h1>
       )}
+
+      <AnimatePresence>
+        {Tab && (
+          <motion.div
+            initial={{ opacity: 0, y: "-30%", x: "-50%" }}
+            animate={{ opacity: 1, y: "-50%", x: "-50%" }}
+            exit={{ opacity: 0, y: "-70%", x: "-50%" }}
+            transition={{ duration: 0.2 }}
+            className="center fixed z-50 h-full w-full max-w-[38rem] bg-black bg-opacity-40 backdrop-blur-3xl"
+          >
+            <button
+              className="absolute left-4 top-4 z-50 text-3xl text-white"
+              onClick={close}
+            >
+              <TbX />
+            </button>
+            <Tab close={close} />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="w-full pt-4">
         <div className="flex w-max items-center justify-between gap-4 text-lg font-bold">
