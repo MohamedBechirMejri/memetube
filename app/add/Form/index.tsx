@@ -83,7 +83,10 @@ export default function Form({ user, videoData, onBack }: Props) {
   };
 
   return (
-    <form
+    <motion.form
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
       className="grid h-full w-full grid-rows-[repeat(5,auto),minmax(0,1fr),auto] gap-4"
       onSubmit={(e) => e.preventDefault()}
     >
@@ -140,6 +143,6 @@ export default function Form({ user, videoData, onBack }: Props) {
           Save Meme
         </motion.button>
       </div>
-    </form>
+    </motion.form>
   );
 }
