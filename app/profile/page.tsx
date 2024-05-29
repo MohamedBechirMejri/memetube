@@ -42,21 +42,18 @@ export default function Profile() {
       className="flex h-full flex-col items-center justify-between p-4 pb-8 pt-16"
       style={{ opacity: user ? 1 : 0 }}
     >
-      {tab && (
-        <h1 className="ghosting-text pointer-events-none fixed top-4 z-[60] w-full text-center text-3xl font-bold capitalize italic">
-          {tab}
-        </h1>
-      )}
-
       <AnimatePresence>
         {Tab && (
           <motion.div
-            initial={{ opacity: 0, y: "-30%", x: "-50%" }}
+            initial={{ opacity: 0, y: "-40%", x: "-50%" }}
             animate={{ opacity: 1, y: "-50%", x: "-50%" }}
-            exit={{ opacity: 0, y: "-70%", x: "-50%" }}
-            transition={{ duration: 0.2 }}
+            exit={{ opacity: 0, y: "-60%", x: "-50%" }}
+            // transition={{ duration: 0.2 }}
             className="center fixed z-50 h-full w-full max-w-[38rem] bg-black bg-opacity-40 backdrop-blur-3xl"
           >
+            <h1 className="ghosting-text pointer-events-none fixed top-4 z-[60] w-full text-center text-3xl font-bold capitalize italic">
+              {tab}
+            </h1>
             <button
               className="absolute left-4 top-4 z-50 text-3xl text-white"
               onClick={close}
