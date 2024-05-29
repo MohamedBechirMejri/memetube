@@ -45,3 +45,7 @@ Contributions are welcome. Please open an issue or submit a pull request.
 ## Author
 
 [Mohamed Bechir Mejri](https://mohamedbechirmejri.dev)
+
+## Visits Count
+
+![https://visitor-count-b8lb.vercel.app/api/MohamedBechirMejri/memetube](https://visitor-count-b8lb.vercel.app/api/MohamedBechirMejri/memetube)
