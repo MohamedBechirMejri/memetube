@@ -1,30 +1,22 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ClientUploadedFileData } from "uploadthing/types";
 import { useUserStore } from "~/lib/globals/user";
+import useUserCheck from "~/lib/hooks/useUserCheck";
 import { UploadDropzone } from "~/utils/uploadthing";
 import Form from "./Form";
-import { sleep } from "~/lib/utils";
 
 export default function Add() {
   const [videoData, setVideoData] = useState<ClientUploadedFileData<{
     uploadedBy: string;
   }> | null>(null);
 
+  const { user } = useUserStore();
   const router = useRouter();
 
-  const { user } = useUserStore();
-
-  useEffect(() => {
-    const checkUser = async () => {
-      await sleep(2000);
-      if (!user) return router.push("/login");
-    };
-
-    checkUser();
-  }, [user, router]);
+  useUserCheck({ user, router });
 
   return (
     <main className="relative flex h-full flex-col items-center justify-center overflow-y-scroll">
