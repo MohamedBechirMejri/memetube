@@ -55,7 +55,7 @@ export default function Home({ params }: { params: { id: string } }) {
           <Reel key={video.id} video={video} i={i + 1} />
         ))}
 
-      {!v && (
+      {!v && rawCollection?.length ? (
         <div className="center absolute flex select-none flex-col gap-4 p-4 text-center font-bold text-white">
           <span className="ghosting-text text-5xl italic">404</span>
           <p className="ghosting-text text-2xl">Meme not found</p>
@@ -66,7 +66,7 @@ export default function Home({ params }: { params: { id: string } }) {
             Browse other memes
           </Link>
         </div>
-      )}
+      ) : null}
     </main>
   );
 }
