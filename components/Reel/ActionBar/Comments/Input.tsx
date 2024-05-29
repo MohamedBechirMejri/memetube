@@ -6,7 +6,7 @@ import { KeyboardEvent, useState } from "react";
 import { useUserStore } from "~/lib/globals/user";
 import { useVideoStore } from "~/lib/globals/video";
 
-export default function CommentInput() {
+export default function CommentInput({ cb }: { cb: () => void }) {
   const [input, setInput] = useState("");
 
   const { video } = useVideoStore();
@@ -37,6 +37,8 @@ export default function CommentInput() {
       { comments: [...video.comments, comment] },
       { merge: true },
     );
+
+    cb();
   };
 
   return (

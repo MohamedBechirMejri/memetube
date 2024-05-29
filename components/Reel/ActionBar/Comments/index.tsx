@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { FaCommentDots } from "react-icons/fa";
 import { RiCloseFill } from "react-icons/ri";
 import { useVideoStore } from "~/lib/globals/video";
@@ -15,6 +15,17 @@ export default function Comments() {
 
   const showComments = () => setIsCommentsVisible(true);
   const hideComments = () => setIsCommentsVisible(false);
+
+  const commentsListRef = useRef<HTMLDivElement>(null);
+
+  const cb = () => {
+    const list = commentsListRef.current;
+
+    if (!list) return;
+    // scroll to bottom of comments list
+    // eslint-disable-next-line react-compiler/react-compiler -- will be fixed after merging this https://github.com/facebook/react/pull/29591
+    list.scrollTop = list.scrollHeight;
+  };
 
   return (
     <>
@@ -57,13 +68,16 @@ export default function Comments() {
               </button>
             </div>
 
-            <div className="h-full overflow-y-auto">
+            <div
+              className="h-full overflow-y-auto scroll-smooth"
+              ref={commentsListRef}
+            >
               {comments.map((comment) => (
                 <Comment key={comment.id} comment={comment} />
               ))}
             </div>
 
-            <CommentInput />
+            <CommentInput cb={cb} />
           </motion.div>
         )}
       </AnimatePresence>

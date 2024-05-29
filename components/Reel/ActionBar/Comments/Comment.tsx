@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FaHeart } from "react-icons/fa";
 import { useUserStore } from "~/lib/globals/user";
 import { useVideoStore } from "~/lib/globals/video";
+import { motion } from "framer-motion";
 
 import type { Comment as CommentT } from "~/types/Video";
 
@@ -37,7 +38,9 @@ export default function Comment({ comment }: Props) {
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       key={comment.createdAt}
       className="flex items-start justify-between gap-4 p-4"
     >
@@ -64,6 +67,6 @@ export default function Comment({ comment }: Props) {
         <FaHeart />
         <span className="text-xs">{comment.likes.length}</span>
       </button>
-    </div>
+    </motion.div>
   );
 }
