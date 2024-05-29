@@ -31,7 +31,9 @@ export default function Settings({ close }: { close: () => void }) {
   return (
     <div className="flex h-full flex-col justify-between p-4 py-8 pb-24">
       <div className="flex flex-col gap-8">
-        <h1 className="text-3xl font-bold w-full text-center">Settings</h1>
+        <h1 className="w-full text-center text-3xl font-bold opacity-0">
+          Settings
+        </h1>
 
         <div className="my-4 flex w-full items-center justify-between px-4">
           <label className="flex items-center gap-4 text-gray-400">
@@ -49,7 +51,10 @@ export default function Settings({ close }: { close: () => void }) {
         />
       </div>
 
-      <Button className="py-6 text-base" onClick={saveSettings}>
+      <Button
+        className="mb-4 rounded-2xl bg-teal-300 bg-opacity-15 py-6 text-base text-teal-300 hover:bg-teal-300 hover:bg-opacity-25 duration-300"
+        onClick={saveSettings}
+      >
         Save Settings
       </Button>
     </div>
