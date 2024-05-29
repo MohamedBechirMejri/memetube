@@ -2,7 +2,7 @@ import { TComment } from "~/types/Video";
 
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { nanoid } from "nanoid";
-import { useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import { useUserStore } from "~/lib/globals/user";
 import { useVideoStore } from "~/lib/globals/video";
 
@@ -14,8 +14,11 @@ export default function CommentInput() {
 
   const db = getFirestore();
 
-  const addComment = async () => {
+  const addComment = async (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (!user || !video) return;
+
+    // hide mobile keyboard
+    (e.target as HTMLTextAreaElement).blur();
 
     const { uid, name, image } = user;
 
@@ -38,7 +41,7 @@ export default function CommentInput() {
 
   return (
     <textarea
-      className="h-20 w-full resize-none justify-self-end rounded-xl border border-slate-700 bg-transparent p-4 shadow-xl"
+      className="h-20 w-full resize-none justify-self-end rounded-xl border border-slate-700 bg-transparent p-4 shadow-xl outline-none transition-all duration-300 focus:ring-1"
       placeholder="Add Comment"
       value={input}
       onChange={(e) => setInput(e.target.value)}
@@ -47,7 +50,7 @@ export default function CommentInput() {
           e.preventDefault();
 
           if (input.trim()) {
-            addComment();
+            addComment(e);
             setInput("");
           }
         }
