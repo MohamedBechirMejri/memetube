@@ -4,6 +4,7 @@ import { RiCloseFill } from "react-icons/ri";
 import { useVideoStore } from "~/lib/globals/video";
 import Comment from "./Comment";
 import CommentInput from "./Input";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Comments() {
   const [isCommentsVisible, setIsCommentsVisible] = useState(false);
@@ -25,34 +26,47 @@ export default function Comments() {
         <span>{video?.comments.length}</span>
       </button>
 
-      {isCommentsVisible && (
-        <div
-          className="fixed left-1/2 top-0 h-[calc(100svh-4rem)] w-svw max-w-[38rem] -translate-x-1/2 bg-black opacity-50"
-          onClick={hideComments}
-        />
-      )}
+      <AnimatePresence>
+        {isCommentsVisible && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.5 }}
+            exit={{ opacity: 0 }}
+            className="fixed left-1/2 top-0 h-[calc(100svh-4rem)] w-svw max-w-[38rem] -translate-x-1/2 bg-black"
+            onClick={hideComments}
+          />
+        )}
+      </AnimatePresence>
 
-      {isCommentsVisible && (
-        <div className="fixed bottom-[4rem] left-1/2 z-50 grid h-[64svh] w-full max-w-[38rem] -translate-x-1/2 grid-rows-[auto,minmax(0,1fr),auto] overflow-hidden rounded-t-2xl bg-slate-950 bg-opacity-90 p-4 backdrop-blur-xl">
-          <div className="flex items-center justify-between">
-            <button className="pointer-events-none text-3xl opacity-0">
-              <RiCloseFill />
-            </button>
-            <span>{video?.comments.length} Comments</span>
-            <button className="text-3xl" onClick={hideComments}>
-              <RiCloseFill />
-            </button>
-          </div>
+      <AnimatePresence>
+        {isCommentsVisible && (
+          <motion.div
+            initial={{ y: "90%", x: "-50%", opacity: 0 }}
+            animate={{ y: 0, x: "-50%", opacity: 1 }}
+            exit={{ y: "100%", x: "-50%", opacity: 0 }}
+            transition={{ type: "spring", damping: 18, stiffness: 150 }}
+            className="fixed bottom-[4rem] left-1/2 z-50 grid h-[64svh] w-full max-w-[38rem] -translate-x-1/2 grid-rows-[auto,minmax(0,1fr),auto] overflow-hidden rounded-t-2xl bg-slate-950 bg-opacity-90 p-4 backdrop-blur-xl"
+          >
+            <div className="flex items-center justify-between">
+              <button className="pointer-events-none text-3xl opacity-0">
+                <RiCloseFill />
+              </button>
+              <span>{video?.comments.length} Comments</span>
+              <button className="text-3xl" onClick={hideComments}>
+                <RiCloseFill />
+              </button>
+            </div>
 
-          <div className="h-full overflow-y-auto">
-            {comments.map((comment) => (
-              <Comment key={comment.id} comment={comment} />
-            ))}
-          </div>
+            <div className="h-full overflow-y-auto">
+              {comments.map((comment) => (
+                <Comment key={comment.id} comment={comment} />
+              ))}
+            </div>
 
-          <CommentInput />
-        </div>
-      )}
+            <CommentInput />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
