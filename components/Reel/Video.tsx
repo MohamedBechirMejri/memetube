@@ -10,6 +10,7 @@ type Props = {
 
 export default function Video({ url, isInView }: Props) {
   const [status, setStatus] = useState<"playing" | "stopped">("stopped");
+  const [canPlay, setCanPlay] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoRef2 = useRef<HTMLVideoElement>(null);
@@ -25,11 +26,11 @@ export default function Video({ url, isInView }: Props) {
     if (status === "stopped") {
       videoRef.current?.pause();
       videoRef2.current?.pause();
-    } else if (status === "playing") {
+    } else if (status === "playing" && canPlay) {
       videoRef.current?.play();
       videoRef2.current?.play();
     }
-  }, [status]);
+  }, [status, canPlay]);
 
   useEffect(() => {
     if (isInView) setStatus("playing");
@@ -55,21 +56,29 @@ export default function Video({ url, isInView }: Props) {
         ) : null}
       </AnimatePresence>
 
+      <p className="center ghosting-text absolute animate-pulse text-3xl italic">
+        loading meme
+      </p>
+
       <video
+        key={url + "blur"}
         ref={videoRef2}
         src={url}
-        className="absolute inset-0 h-full w-full scale-[2] blur-2xl brightness-50"
+        className="absolute inset-0 z-10 h-full w-full scale-[2] blur-2xl brightness-50"
         muted
         loop
         preload="auto"
       />
       <video
+        key={url + "main"}
         ref={videoRef}
         src={url}
-        className="relative z-10 max-h-full w-full max-w-full"
+        className="relative z-20 max-h-full w-full max-w-full"
         loop
         muted={settings.muted}
         preload="auto"
+        onCanPlay={() => setCanPlay(true)}
+        onLoadedData={() => setCanPlay(true)}
       />
     </div>
   );
