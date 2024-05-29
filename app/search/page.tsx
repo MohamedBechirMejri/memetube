@@ -5,7 +5,10 @@ import { Input } from "~/components/ui/input";
 import Categories from "./Categories";
 import { useVideoStore } from "~/lib/globals/video";
 import { Video } from "~/types/Video";
-import Link from "next/link";
+import L from "next/link";
+import { motion } from "framer-motion";
+
+const Link = motion(L);
 
 export default function Search() {
   const { collection } = useVideoStore();
@@ -29,26 +32,44 @@ export default function Search() {
         <div className="grid w-full grid-cols-2 gap-4 overflow-y-scroll p-2">
           <div className="flex flex-col gap-4">
             {filtered.map((v, i) =>
-              i % 2 === 1 ? null : <Result key={v.id} video={v} />,
+              i % 2 === 1 ? null : <Result key={v.id} video={v} i={i} />,
             )}
           </div>
           <div className="flex flex-col gap-4">
             {filtered.map((v, i) =>
-              i % 2 === 0 ? null : <Result key={v.id} video={v} />,
+              i % 2 === 0 ? null : <Result key={v.id} video={v} i={i} />,
             )}
           </div>
+
+          {filtered.length === 0 && (
+            <p className="col-span-2 pt-8 text-center text-lg font-semibold text-slate-200">
+              No results found
+            </p>
+          )}
         </div>
       )}
     </main>
   );
 }
 
-function Result({ video }: { video: Video }) {
+function Result({ video, i }: { video: Video; i: number }) {
   return (
     <Link
+      initial={{ opacity: 0, scale: 0.9, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 1 }}
+      transition={{
+        type: "spring",
+        damping: 10,
+        stiffness: 100,
+        duration: 0.3,
+        delay: i > 10 ? 0 : i * 0.1,
+        scale: { type: "spring", damping: 10, stiffness: 100, delay: 0 },
+      }}
       href={"/v/" + video.id}
       key={video.id}
-      className="relative flex h-max w-full flex-col justify-between gap-2 overflow-hidden rounded-lg ring-blue-500 ring-opacity-50 transition-all duration-300 hover:ring"
+      className="relative flex h-max w-full flex-col justify-between gap-2 overflow-hidden rounded-lg"
     >
       <video
         src={video.url}
