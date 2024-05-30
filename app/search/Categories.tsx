@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 const Link = motion(L);
 
 export default function Categories() {
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<TCategory[]>([]);
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
