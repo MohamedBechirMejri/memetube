@@ -17,12 +17,12 @@ export default function Reel({ video, i = 0 }: Props) {
   const { user } = useUserStore();
   const { setVideo, setIndex, index } = useVideoStore();
 
+  const db = getFirestore();
+
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { amount: 0.5 });
 
   useEffect(() => {
-    const db = getFirestore();
-
     const updateViews = async () => {
       const latestData = (await getDoc(doc(db, "videos", id))).data();
       const { views } = latestData!;
@@ -67,7 +67,7 @@ export default function Reel({ video, i = 0 }: Props) {
     }, 4000);
 
     return () => clearTimeout(timeout);
-  }, [id, user]);
+  }, [db, id, user]);
 
   useEffect(() => {
     if (isInView) {

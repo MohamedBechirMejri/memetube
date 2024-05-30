@@ -22,7 +22,7 @@ const nextConfig = {
 const withSerwist = withSerwistInit({
   swSrc: "app/sw.ts",
   swDest: "public/sw.js",
-  disable: process.env.NODE_ENV === "development",
+  disable: true, // process.env.NODE_ENV === "development",
   // exclude manifest.json from service worker
   exclude: [/^manifest/],
 });
