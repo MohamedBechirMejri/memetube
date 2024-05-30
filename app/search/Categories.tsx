@@ -20,7 +20,7 @@ export default function Categories() {
       collection(db, "categories"),
       (snapshot) => {
         const cats = snapshot.docs.map((doc) => doc.data()) as TCategory[];
-        setCategories([...cats, ...cats, ...cats, ...cats, ...cats, ...cats]);
+        setCategories(cats);
       },
       (error) => console.error(error),
     );
