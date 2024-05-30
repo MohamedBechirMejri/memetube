@@ -56,9 +56,11 @@ export default function Video({ url, isInView }: Props) {
         ) : null}
       </AnimatePresence>
 
-      <p className="center ghosting-text absolute animate-pulse text-3xl italic">
-        loading meme
-      </p>
+      {!canPlay && (
+        <p className="center ghosting-text absolute animate-pulse text-3xl italic">
+          loading meme
+        </p>
+      )}
 
       <video
         key={url + "main"}
