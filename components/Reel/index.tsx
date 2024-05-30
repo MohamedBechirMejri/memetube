@@ -77,14 +77,14 @@ export default function Reel({ video, i = 0 }: Props) {
   }, [i, isInView, setIndex, setVideo, video]);
 
   // allowing all previous videos to render so we don't have to re-fetch them and preparing the next 2 videos to render
-  const canRender = index || 0 >= i || index === i + 1 || index === i + 2;
+  // const canRender = index || 0 >= i || index === i + 1 || index === i + 2;
 
   return (
     <div
       ref={ref}
       className="relative mb-8 flex h-full w-screen max-w-[38rem] snap-center items-center"
     >
-      {canRender && <VideoPlayer url={url} isInView={isInView} />}
+      <VideoPlayer url={url} isInView={isInView} />
     </div>
   );
 }
