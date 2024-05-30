@@ -1,12 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import L from "next/link";
+import { useState } from "react";
 import { Input } from "~/components/ui/input";
-import Categories from "./Categories";
 import { useVideoStore } from "~/lib/globals/video";
 import { Video } from "~/types/Video";
-import L from "next/link";
-import { motion } from "framer-motion";
+import Categories from "./Categories";
 
 const Link = motion(L);
 
@@ -15,16 +15,9 @@ export default function Search() {
 
   const [search, setSearch] = useState("");
 
-  console.log("c", collection);
-  console.log("s", search);
-
-  const filtered = useMemo(
-    () =>
-      (collection || []).filter((v) => v.name.toLowerCase().includes(search)),
-    [collection, search],
+  const filtered = (collection || []).filter((v) =>
+    v.name.toLowerCase().includes(search),
   );
-
-  console.log("f", filtered);
 
   return (
     <main className="flex h-full flex-col items-center gap-4 p-4 pt-16">
