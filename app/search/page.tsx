@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Input } from "~/components/ui/input";
 import Categories from "./Categories";
 import { useVideoStore } from "~/lib/globals/video";
@@ -15,9 +15,16 @@ export default function Search() {
 
   const [search, setSearch] = useState("");
 
-  const filtered = (collection || []).filter((v) =>
-    v.name.toLowerCase().includes(search),
+  console.log("c", collection);
+  console.log("s", search);
+
+  const filtered = useMemo(
+    () =>
+      (collection || []).filter((v) => v.name.toLowerCase().includes(search)),
+    [collection, search],
   );
+
+  console.log("f", filtered);
 
   return (
     <main className="flex h-full flex-col items-center gap-4 p-4 pt-16">
