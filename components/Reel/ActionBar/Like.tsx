@@ -1,5 +1,7 @@
+import { initializeApp } from "firebase/app";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { IoHeart } from "react-icons/io5";
+import { firebaseConfig } from "~/lib/firebase";
 import { useUserStore } from "~/lib/globals/user";
 import { useVideoStore } from "~/lib/globals/video";
 
@@ -7,7 +9,8 @@ export default function Like() {
   const { video } = useVideoStore();
   const { user } = useUserStore();
 
-  const db = getFirestore();
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
   const handleLike = async () => {
     if (!user || !video) return;
