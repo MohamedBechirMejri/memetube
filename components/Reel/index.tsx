@@ -76,9 +76,7 @@ export default function Reel({ video, i = 0 }: Props) {
     }
   }, [i, isInView, setIndex, setVideo, video]);
 
-  const ii = index ?? 0;
-
-  const canRender = ii - i <= 2 && ii - i >= -2;
+  const canRender = index - i <= 2 && index - i >= -2;
 
   return (
     <div

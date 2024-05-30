@@ -8,7 +8,7 @@ type VideoStore = {
   setRawCollection: (collection: Video[]) => void;
   video: Video | null;
   setVideo: (video: Video) => void;
-  index?: number;
+  index: number;
   setIndex: (index: number) => void;
 };
 
