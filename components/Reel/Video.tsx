@@ -61,15 +61,6 @@ export default function Video({ url, isInView }: Props) {
       </p>
 
       <video
-        key={url + "blur"}
-        ref={videoRef2}
-        src={url}
-        className="absolute inset-0 z-10 h-full w-full scale-[2] blur-2xl brightness-50"
-        muted
-        loop
-        preload="auto"
-      />
-      <video
         key={url + "main"}
         ref={videoRef}
         src={url}
@@ -79,6 +70,16 @@ export default function Video({ url, isInView }: Props) {
         preload="auto"
         onCanPlay={() => setCanPlay(true)}
         onLoadedData={() => setCanPlay(true)}
+      />
+
+      <video
+        key={url + "blur"}
+        ref={videoRef2}
+        src={url}
+        className="absolute inset-0 z-10 h-full w-full scale-[2] blur-2xl brightness-50"
+        muted
+        loop
+        preload="auto"
       />
     </div>
   );
