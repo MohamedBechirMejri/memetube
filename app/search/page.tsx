@@ -20,7 +20,7 @@ export default function Search() {
   );
 
   return (
-    <main className="flex h-full flex-col items-center gap-8 p-4 pt-16">
+    <main className="flex h-full flex-col items-center gap-4 p-4 pt-16">
       <Input
         placeholder="Search.."
         onChange={async (e) => setSearch(e.target.value.trim().toLowerCase())}
@@ -29,7 +29,7 @@ export default function Search() {
       {search.length < 3 ? (
         <Categories />
       ) : (
-        <div className="grid w-full grid-cols-2 gap-4 overflow-y-scroll p-2">
+        <div className="grid w-full grid-cols-2 gap-4 overflow-y-scroll p-2 pt-4">
           <div className="flex flex-col gap-4">
             {filtered.map((v, i) =>
               i % 2 === 1 ? null : <Result key={v.id} video={v} i={i} />,
