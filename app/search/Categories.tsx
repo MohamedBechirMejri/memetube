@@ -70,7 +70,7 @@ const Category = ({ category, i }: { category: TCategory; i: number }) => {
       key={category.id}
       className="relative overflow-hidden rounded-lg"
     >
-      <h2 className="ghosting-text center absolute z-10 w-max text-xl font-semibold text-gray-300">
+      <h2 className="ghosting-text center absolute z-10 w-max max-w-full text-center text-xl font-semibold text-gray-300">
         {category.name}
       </h2>
       <Image
